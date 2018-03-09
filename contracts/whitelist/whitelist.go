@@ -1,5 +1,7 @@
 package whitelist
 
+//go:generate abigen --sol contract/whitelist.sol --pkg contract --out contract/whitelist.go
+
 import (
 	"github.com/xcareteam/xci/accounts/abi/bind"
 	"github.com/xcareteam/xci/common"
