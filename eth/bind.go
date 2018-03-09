@@ -28,8 +28,8 @@ type ContractBackend struct {
 
 // NewContractBackend creates a new native contract backend using an existing
 // Ethereum object.
-func NewContractBackend(apiBackend ethapi.Backend) ContractBackend {
-	return ContractBackend{
+func NewContractBackend(apiBackend ethapi.Backend) *ContractBackend {
+	return &ContractBackend{
 		eapi:  ethapi.NewPublicEthereumAPI(apiBackend),
 		bcapi: ethapi.NewPublicBlockChainAPI(apiBackend),
 		txapi: ethapi.NewPublicTransactionPoolAPI(apiBackend, new(ethapi.AddrLocker)),
@@ -108,9 +108,9 @@ func (b *ContractBackend) SuggestGasPrice(ctx context.Context) (*big.Int, error)
 // the backend blockchain. There is no guarantee that this is the true gas limit
 // requirement as other transactions may be added or removed by miners, but it
 // should provide a basis for setting a reasonable default.
-func (b *ContractBackend) EstimateGas(ctx context.Context, msg ethereum.CallMsg) (*big.Int, error) {
+func (b *ContractBackend) EstimateGas(ctx context.Context, msg ethereum.CallMsg) (uint64, error) {
 	out, err := b.bcapi.EstimateGas(ctx, toCallArgs(msg))
-	return out.ToInt(), err
+	return uint64(out), err
 }
 
 // SendTransaction implements bind.ContractTransactor injects the transaction
