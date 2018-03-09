@@ -1,13 +1,13 @@
 pragma solidity ^0.4.18;
 
-contract PermissionedWhiteList {
+contract Whitelist {
 
     address _owner;
     uint256 _nodeId;
     mapping (string => uint256) _whiteList;
     mapping (uint256 => string) _dids;
 
-    function PermissionedWhiteList () public {
+    function Whitelist () public {
         _owner = msg.sender;
         _nodeId = 1;
     }
