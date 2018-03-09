@@ -70,7 +70,11 @@ func GetNewWhiteList(ctx *node.ServiceContext, address common.Address, passphras
 		return nil, err
 	}
 
-	contract, err := NewWhiteList(transactOpts, TestNetAddress, eth.NewContractBackend(apiBackend))
+	contractBackend2 := eth.NewContractBackend(apiBackend)
+	var contractBackend bind.ContractBackend
+	contractBackend = contractBackend2
+
+	contract, err := NewWhiteList(transactOpts, TestNetAddress, contractBackend)
 	if err != nil {
 		return nil, err
 	}
