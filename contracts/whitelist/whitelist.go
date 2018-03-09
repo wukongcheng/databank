@@ -39,12 +39,26 @@ func NewWhiteList(transactOpts *bind.TransactOpts, contractAddr common.Address, 
 	}, nil
 }
 
+func DeployWhiteList(transactOpts *bind.TransactOpts, contractBackend bind.ContractBackend) (common.Address, *WhiteList, error) {
+	whitelistAddr, _, _, err := contract.DeployWhitelist(transactOpts, contractBackend)
+	if err != nil {
+		return whitelistAddr, nil, err
+	}
+
+	whitelist, err := NewWhiteList(transactOpts, whitelistAddr, contractBackend)
+	if err != nil {
+		return whitelistAddr, nil, err
+	}
+
+	return whitelistAddr, whitelist, nil
+}
+
 func (self *WhiteList) AddNewNode(enode string, DIDJson string) (*types.Transaction, error) {
-	return self.AddNewNode(enode, DIDJson)
+	return self.Contract.AddNewNode(&self.TransactOpts, enode, DIDJson)
 }
 
 func (self *WhiteList) GetDID(enode string) (string, error) {
-	return self.GetDID(enode);
+	return self.Contract.GetDID(&self.CallOpts, enode);
 }
 
 func GetNewWhiteList(ctx *node.ServiceContext, address common.Address, passphrase string) (*WhiteList, error) {

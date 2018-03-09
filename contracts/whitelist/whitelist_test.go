@@ -21,9 +21,28 @@ func TestGetNewWhiteList(t *testing.T) {
 	contractBackend := backends.NewSimulatedBackend(core.GenesisAlloc{addr: {Balance: big.NewInt(1000000000)}})
 	transactOpts := bind.NewKeyedTransactor(key)
 
-	_, err := NewWhiteList(transactOpts, addr, contractBackend)
+	//_, err := NewWhiteList(transactOpts, addr, contractBackend)
+	//if err != nil {
+	//	t.Fatalf("can't bind the whitelist contract: %v", err)
+	//}
+
+	_, whitelist, err := DeployWhiteList(transactOpts, contractBackend)
 	if err != nil {
 		t.Fatalf("can't bind the whitelist contract: %v", err)
 	}
+	contractBackend.Commit()
 
+	if _, err := whitelist.AddNewNode("enode://xxxxx@ip:port", "{name:silei}"); err != nil {
+		t.Fatalf("can't add new node: %v", err)
+	}
+	contractBackend.Commit()
+
+	did, err := whitelist.GetDID("enode://xxxxx@ip:port")
+	if err != nil {
+		t.Fatalf("can't get node: %v", err)
+	}
+
+	if did != "{name:silei}" {
+		t.Fatalf("AddNewNode error, expected %v, got %v", "{name:silei}", did)
+	}
 }
