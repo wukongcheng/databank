@@ -17,7 +17,7 @@ var (
 	addr   = crypto.PubkeyToAddress(key.PublicKey)
 )
 
-func TestTest(t *testing.T) {
+func TestGetNewWhiteList(t *testing.T) {
 	contractBackend := backends.NewSimulatedBackend(core.GenesisAlloc{addr: {Balance: big.NewInt(1000000000)}})
 	transactOpts := bind.NewKeyedTransactor(key)
 
