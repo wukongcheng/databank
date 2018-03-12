@@ -5,12 +5,12 @@ package whitelist
 import (
 	"github.com/xcareteam/xci/accounts/abi/bind"
 	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/eth"
+	//"github.com/xcareteam/xci/eth"
 	"github.com/xcareteam/xci/contracts/whitelist/contract"
 	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/node"
-	"github.com/xcareteam/xci/internal/ethapi"
-	"github.com/xcareteam/xci/les"
+	//"github.com/xcareteam/xci/node"
+	//"github.com/xcareteam/xci/internal/ethapi"
+	//"github.com/xcareteam/xci/les"
 	"github.com/xcareteam/xci/accounts"
 )
 
@@ -39,6 +39,15 @@ func NewWhiteList(transactOpts *bind.TransactOpts, contractAddr common.Address, 
 	}, nil
 }
 
+func NewWhiteListCaller(contractAddr common.Address, contractBackend bind.ContractBackend) (*contract.WhitelistCaller, error) {
+	caller, err := contract.NewWhitelistCaller(contractAddr, contractBackend)
+	if err != nil {
+		return nil, err
+	}
+
+	return caller, nil
+}
+
 func DeployWhiteList(transactOpts *bind.TransactOpts, contractBackend bind.ContractBackend) (common.Address, *WhiteList, error) {
 	whitelistAddr, _, _, err := contract.DeployWhitelist(transactOpts, contractBackend)
 	if err != nil {
@@ -61,22 +70,27 @@ func (self *WhiteList) GetDID(enode string) (string, error) {
 	return self.Contract.GetDID(&self.CallOpts, enode);
 }
 
-func GetNewWhiteList(ctx *node.ServiceContext, address common.Address, passphrase string) (*WhiteList, error) {
-	var apiBackend ethapi.Backend
-	var ethereum *eth.Ethereum
-	if err := ctx.Service(&ethereum); err == nil {
-		apiBackend = ethereum.ApiBackend
-	} else {
-		var ethereum *les.LightEthereum
-		if err := ctx.Service(&ethereum); err == nil {
-			apiBackend = ethereum.ApiBackend
-		} else {
-			return nil, err
-		}
-	}
+//func getEthereumBackend(node *node.Node) (*eth.Ethereum, ethapi.Backend, error) {
+//	var apiBackend ethapi.Backend
+//	var ethereum *eth.Ethereum
+//	if err := node.Service(&ethereum); err == nil {
+//		apiBackend = ethereum.ApiBackend
+//	} else {
+//		var ethereum *les.LightEthereum
+//		if err := node.Service(&ethereum); err == nil {
+//			apiBackend = ethereum.ApiBackend
+//		} else {
+//			return nil, nil, err
+//		}
+//	}
+//
+//	return ethereum, apiBackend, nil
+//}
+
+func GetNewWhiteList(accMng *accounts.Manager, backend bind.ContractBackend, address common.Address, passphrase string) (*WhiteList, error) {
 
 	account := accounts.Account{Address: address}
-	wallet, err := ethereum.AccountManager().Find(account)
+	wallet, err := accMng.Find(account)
 	if err != nil {
 		return nil, err
 	}
@@ -86,14 +100,23 @@ func GetNewWhiteList(ctx *node.ServiceContext, address common.Address, passphras
 		return nil, err
 	}
 
-	contractBackend2 := eth.NewContractBackend(apiBackend)
-	var contractBackend bind.ContractBackend
-	contractBackend = contractBackend2
-
-	contract, err := NewWhiteList(transactOpts, TestNetAddress, contractBackend)
+	contract, err := NewWhiteList(transactOpts, TestNetAddress, backend)
 	if err != nil {
 		return nil, err
 	}
 
 	return contract, nil
 }
+
+//func GetNewWhiteListCaller(node *node.Node) (*contract.WhitelistCaller, error) {
+//	_, apiBackend, err := getEthereumBackend(node)
+//	if err != nil {
+//		return nil, err
+//	}
+//
+//	contractBackend2 := eth.NewContractBackend(apiBackend)
+//	var contractBackend bind.ContractBackend
+//	contractBackend = contractBackend2
+//
+//	return NewWhiteListCaller(TestNetAddress, contractBackend)
+//}

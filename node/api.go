@@ -23,6 +23,8 @@ import (
 	"time"
 
 	"github.com/xcareteam/xci/common/hexutil"
+	//"github.com/xcareteam/xci/common"
+	//"github.com/xcareteam/xci/contracts/whitelist"
 	"github.com/xcareteam/xci/crypto"
 	"github.com/xcareteam/xci/metrics"
 	"github.com/xcareteam/xci/p2p"
@@ -106,6 +108,37 @@ func (api *PrivateAdminAPI) SetupRealMode(pathToCertFile string) (bool, error) {
 
 	return true, nil
 }
+//
+//// WhitelistAddNewNode call the whitelist contract to add new node
+//func (api *PrivateAdminAPI) WhitelistAddNewNode(address common.Address, passphrase string) (common.Hash, error) {
+//
+//	whitelist, err := whitelist.GetNewWhiteList(api.node, address, passphrase)
+//	if err != nil {
+//		return common.Hash{}, err
+//	}
+//
+//	tx, err := whitelist.AddNewNode("enode1", "did1")
+//	if err != nil {
+//		return common.Hash{}, err
+//	}
+//
+//	return tx.Hash(), nil
+//}
+//
+//func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase string) (string, error) {
+//
+//	whitelist, err := whitelist.GetNewWhiteList(api.node, address, passphrase)
+//	if err != nil {
+//		return "", err
+//	}
+//
+//	did, err := whitelist.GetDID("enode1")
+//	if err != nil {
+//		return "", err
+//	}
+//
+//	return "", nil
+//}
 
 // PeerEvents creates an RPC subscription which receives peer events from the
 // node's p2p.Server

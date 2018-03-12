@@ -36,6 +36,7 @@ import (
 	"github.com/xcareteam/xci/rlp"
 	"github.com/xcareteam/xci/rpc"
 	"github.com/xcareteam/xci/trie"
+	"github.com/xcareteam/xci/contracts/whitelist"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum full node-related
@@ -240,6 +241,37 @@ func hasAllBlocks(chain *core.BlockChain, bs []*types.Block) bool {
 	}
 
 	return true
+}
+
+// WhitelistAddNewNode call the whitelist contract to add new node
+func (api *PrivateAdminAPI) WhitelistAddNewNode(address common.Address, passphrase string) (common.Hash, error) {
+
+	whitelist, err := whitelist.GetNewWhiteList(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	tx, err := whitelist.AddNewNode("enode1", "did1")
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase string) (string, error) {
+
+	whitelist, err := whitelist.GetNewWhiteList(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return "", err
+	}
+
+	did, err := whitelist.GetDID("enode1")
+	if err != nil {
+		return "", err
+	}
+
+	return did, nil
 }
 
 // ImportChain imports a blockchain from a local file.
