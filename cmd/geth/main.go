@@ -176,6 +176,7 @@ func init() {
 		licenseCommand,
 		// See config.go
 		dumpConfigCommand,
+		ipfsCommand,
 	}
 	sort.Sort(cli.CommandsByName(app.Commands))
 

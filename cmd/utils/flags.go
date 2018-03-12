@@ -537,6 +537,16 @@ var (
 		Usage: "Minimum POW accepted",
 		Value: whisper.DefaultMinimumPoW,
 	}
+	IPFSStringFlag = cli.StringFlag{
+		Name:  "string",
+		Usage: "string which will be save to ipfs",
+		Value: "",
+	}
+	IPFSHashFlag = cli.StringFlag{
+		Name:  "hash",
+		Usage: "Hash of string which has already saved to ipfs",
+		Value: "",
+	}
 )
 
 // MakeDataDir retrieves the currently requested data directory, terminating
