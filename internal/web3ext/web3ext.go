@@ -140,6 +140,16 @@ web3._extend({
 			params: 1
 		}),
 		new web3._extend.Method({
+			name: 'whitelistAddNewNode',
+			call: 'admin_whitelistAddNewNode',
+			params: 4
+		}),
+		new web3._extend.Method({
+			name: 'whitelistGetNode',
+			call: 'admin_whitelistGetNode',
+			params: 3
+		}),
+		new web3._extend.Method({
 			name: 'sleepBlocks',
 			call: 'admin_sleepBlocks',
 			params: 2
