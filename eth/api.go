@@ -244,14 +244,14 @@ func hasAllBlocks(chain *core.BlockChain, bs []*types.Block) bool {
 }
 
 // WhitelistAddNewNode call the whitelist contract to add new node
-func (api *PrivateAdminAPI) WhitelistAddNewNode(address common.Address, passphrase string) (common.Hash, error) {
+func (api *PrivateAdminAPI) WhitelistAddNewNode(address common.Address, passphrase string, enode string, did string) (common.Hash, error) {
 
 	whitelist, err := whitelist.GetNewWhiteList(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
 	if err != nil {
 		return common.Hash{}, err
 	}
 
-	tx, err := whitelist.AddNewNode("enode1", "did1")
+	tx, err := whitelist.AddNewNode(enode, did)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -259,14 +259,14 @@ func (api *PrivateAdminAPI) WhitelistAddNewNode(address common.Address, passphra
 	return tx.Hash(), nil
 }
 
-func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase string) (string, error) {
+func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase string, enode string) (string, error) {
 
 	whitelist, err := whitelist.GetNewWhiteList(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
 	if err != nil {
 		return "", err
 	}
 
-	did, err := whitelist.GetDID("enode1")
+	did, err := whitelist.GetDID(enode)
 	if err != nil {
 		return "", err
 	}
