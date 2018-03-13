@@ -1,34 +1,47 @@
 package main
 
 import (
-	"github.com/cheekybits/is"
-	"bytes"
 	"testing"
-	"github.com/ipfs/go-ipfs-api"
+	"os"
+	"fmt"
+	"bytes"
+	"io"
 )
-
-const (
-//	shellUrl     = "localhost:5001"
-)
-
-func TestAdd(t *testing.T) {
-	is := is.New(t)
-	s := shell.NewShell(shellUrl)
-
-	mhash, err := s.Add(bytes.NewBufferString("Hello IPFS Shell tests"))
-	is.Nil(err)
-	is.Equal(mhash, "QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
-}
 
 func TestIPFSAdd(t *testing.T) {
-	geth := runGeth(t, "ipfs", "add", "Hello IPFS Shell tests")
+	geth := runGeth(t, "ipfs", "add", "config.go")
+
 	defer geth.ExpectExit()
-	geth.Expect("QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
+	geth.Expect("QmfTDzioWPdsJLPPw6nKyo5SP3obVqWBcgcTZy1d91U4tG")
 }
 
 func TestIPFSCat(t *testing.T) {
-	geth := runGeth(t, "ipfs", "cat", "QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
+	//geth := runGeth(t, "ipfs", "cat", "QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
+	geth := runGeth(t, "ipfs", "cat", "QmfTDzioWPdsJLPPw6nKyo5SP3obVqWBcgcTZy1d91U4tG")
+
+	buf := bytes.NewBuffer(nil)
+	file, _ := os.Open("config.go") // Error handling elided for brevity.
+	io.Copy(buf, file)           // Error handling elided for brevity.
+	file.Close()
+	str := string(buf.Bytes())
+
+	geth.Expect(str)
+
 	defer geth.ExpectExit()
-	geth.Expect("Hello IPFS Shell tests")
+}
+
+func TestIPFSGet(t *testing.T) {
+	//geth := runGeth(t, "ipfs", "cat", "QmUfZ9rAdhV5ioBzXKdUTh2ZNsz9bzbkaLVyQ8uc8pj21F")
+	targetFile := "../../../ipfs_config.go"
+	geth := runGeth(t, "ipfs", "get", "QmfTDzioWPdsJLPPw6nKyo5SP3obVqWBcgcTZy1d91U4tG", targetFile)
+	defer geth.ExpectExit()
+	defer cleanTestFile(targetFile)
+}
+
+func cleanTestFile(path string)  {
+	err := os.Remove(path)
+	if err != nil {
+		fmt.Errorf(err.Error())
+	}
 }
 

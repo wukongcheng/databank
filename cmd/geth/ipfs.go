@@ -5,8 +5,9 @@ import (
 	"gopkg.in/urfave/cli.v1"
 	"github.com/ipfs/go-ipfs-api"
 	"fmt"
+	"os"
+	"bufio"
 	"bytes"
-	"strings"
 )
 
 var (
@@ -21,7 +22,7 @@ var (
 			{
 				Name:   "add",
 				Usage:  "Save content to ipfs",
-				Action: utils.MigrateFlags(ipfsAdd),
+				Action: utils.MigrateFlags(ipfsAddFile),
 				Flags: []cli.Flag{
 //					utils.IPFSStringFlag,
 				},
@@ -36,24 +37,37 @@ var (
 				},
 				Description: ``,
 			},
+			{
+				Name:   "get",
+				Usage:  "Read content from ipfs to specified file",
+				Action: utils.MigrateFlags(ipfsGetFile),
+				Flags: []cli.Flag{
+//					utils.IPFSHashFlag,
+				},
+				Description: ``,
+			},
 		},
 	}
 )
 
-func ipfsAdd(ctx *cli.Context) error {
+func ipfsAddFile(ctx *cli.Context) error {
 
 	args := ctx.Args()
 
 	if len(args) != 1 {
-		utils.Fatalf(`Usage: geth ipfs add <string>`)
+		utils.Fatalf(`Usage: geth ipfs add <file path>`)
 	}
 
-	stringToIPFS := args[0]
+	filePath := args[0]
 	//stringToIPFS := "Hello IPFS Shell tests"
+	file, err := os.Open(filePath)
+	if err != nil{
+		return err
+	}
 
 	s := shell.NewShell(shellUrl)
 
-	mhash, err := s.Add(strings.NewReader(stringToIPFS))
+	mhash, err := s.Add(bufio.NewReader(file))
 	if err != nil{
 		return err
 	}
@@ -83,6 +97,28 @@ func ipfsCat(ctx *cli.Context) error {
 	fileBytes := buf.String()
 
 	fmt.Printf("%+v", fileBytes)
+
+	return nil
+}
+
+func ipfsGetFile(ctx *cli.Context) error {
+
+	args := ctx.Args()
+	if len(args) != 2 {
+		utils.Fatalf(`Usage: geth ipfs get <file hash> <targe file path>`)
+	}
+
+	hash := args[0]
+
+	targetFile := args[1]
+
+	s := shell.NewShell(shellUrl)
+
+	err := s.Get(hash,targetFile)
+
+	if err != nil{
+		return err
+	}
 
 	return nil
 }
