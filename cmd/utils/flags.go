@@ -57,6 +57,8 @@ import (
 	"github.com/xcareteam/xci/params"
 	whisper "github.com/xcareteam/xci/whisper/whisperv5"
 	"gopkg.in/urfave/cli.v1"
+	"github.com/spf13/viper"
+	"crypto/md5"
 )
 
 var (
@@ -70,6 +72,11 @@ SUBCOMMANDS:
 {{range $categorized.Flags}}{{"\t"}}{{.}}
 {{end}}
 {{end}}{{end}}`
+)
+
+
+const (
+	envPrefix = "BC_CONF"
 )
 
 func init() {
@@ -1112,6 +1119,28 @@ func SetEthConfig(ctx *cli.Context, stack *node.Node, cfg *eth.Config) {
 	if gen := ctx.GlobalInt(TrieCacheGenFlag.Name); gen > 0 {
 		state.MaxTrieCacheGen = uint16(gen)
 	}
+
+	cfg.ConfigHash = makePropertesConfig()
+}
+
+func makePropertesConfig() common.Hash {
+	viper.SetEnvPrefix(envPrefix)
+	viper.AutomaticEnv()
+	replacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(replacer)
+	viper.SetConfigName("properties")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("./common/")
+
+	err := viper.ReadInConfig()
+	if err != nil {
+		Fatalf("Fatal error when reading config file: %s", err)
+	}
+
+	dat, err := ioutil.ReadFile("./common/properties.yaml")
+	sum := md5.Sum(dat)
+
+	return common.BytesToHash([]byte(sum[:]))
 }
 
 // SetDashboardConfig applies dashboard related command line flags to the config.
