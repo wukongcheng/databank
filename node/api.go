@@ -31,6 +31,7 @@ import (
 	"github.com/xcareteam/xci/p2p/discover"
 	"github.com/xcareteam/xci/rpc"
 	"os"
+	"path/filepath"
 )
 
 // PrivateAdminAPI is the collection of administrative API methods exposed only
@@ -99,46 +100,28 @@ func (api *PrivateAdminAPI) SetupRealMode(pathToCertFile string) (bool, error) {
 		return false, ErrPeersConn
 	}
 
-	if key, err := crypto.LoadECDSA(pathToCertFile); err == nil {
+	key, err := crypto.LoadECDSA(pathToCertFile)
+	if err == nil {
 		server.Certified = true
 		server.PrivateKey = key
 	} else {
 		return false, err
 	}
 
+	c := api.node.config
+	instanceDir := filepath.Join(c.DataDir, c.name())
+	if err := os.MkdirAll(instanceDir, 0700); err != nil {
+		fmt.Errorf(fmt.Sprintf("Failed to persist node key: %v", err))
+		return false, nil
+	}
+	keyfile := filepath.Join(instanceDir, datadirPrivateKey)
+	if err := crypto.SaveECDSA(keyfile, key); err != nil {
+		fmt.Errorf(fmt.Sprintf("Failed to persist node key: %v", err))
+		return false, nil
+	}
+
 	return true, nil
 }
-//
-//// WhitelistAddNewNode call the whitelist contract to add new node
-//func (api *PrivateAdminAPI) WhitelistAddNewNode(address common.Address, passphrase string) (common.Hash, error) {
-//
-//	whitelist, err := whitelist.GetNewWhiteList(api.node, address, passphrase)
-//	if err != nil {
-//		return common.Hash{}, err
-//	}
-//
-//	tx, err := whitelist.AddNewNode("enode1", "did1")
-//	if err != nil {
-//		return common.Hash{}, err
-//	}
-//
-//	return tx.Hash(), nil
-//}
-//
-//func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase string) (string, error) {
-//
-//	whitelist, err := whitelist.GetNewWhiteList(api.node, address, passphrase)
-//	if err != nil {
-//		return "", err
-//	}
-//
-//	did, err := whitelist.GetDID("enode1")
-//	if err != nil {
-//		return "", err
-//	}
-//
-//	return "", nil
-//}
 
 // PeerEvents creates an RPC subscription which receives peer events from the
 // node's p2p.Server
