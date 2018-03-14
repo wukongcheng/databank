@@ -76,6 +76,7 @@ const (
 	ErrNoStatusMsg
 	ErrExtraStatusMsg
 	ErrSuspendedPeer
+	ErrConfigMsgMismatch
 )
 
 func (e errCode) String() string {
@@ -93,6 +94,7 @@ var errorToString = map[int]string{
 	ErrNoStatusMsg:             "No status message",
 	ErrExtraStatusMsg:          "Extra status message",
 	ErrSuspendedPeer:           "Suspended peer",
+	ErrConfigMsgMismatch:	    "Config items message mismatch",
 }
 
 type txPool interface {
@@ -115,6 +117,7 @@ type statusData struct {
 	TD              *big.Int
 	CurrentBlock    common.Hash
 	GenesisBlock    common.Hash
+	ConfigMsg		common.Hash
 }
 
 // newBlockHashesData is the network packet for the block announcements.

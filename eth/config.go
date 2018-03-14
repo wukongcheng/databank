@@ -99,6 +99,7 @@ type Config struct {
 	MinerThreads int            `toml:",omitempty"`
 	ExtraData    []byte         `toml:",omitempty"`
 	GasPrice     *big.Int
+	ConfigHash	 common.Hash	// Hash value of the file properties.yaml
 
 	// Ethash options
 	Ethash ethash.Config

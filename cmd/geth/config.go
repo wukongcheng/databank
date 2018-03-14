@@ -36,6 +36,7 @@ import (
 	"github.com/naoina/toml"
 )
 
+
 var (
 	dumpConfigCommand = cli.Command{
 		Action:      utils.MigrateFlags(dumpConfig),
