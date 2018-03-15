@@ -30,6 +30,7 @@ var (
 	ErrServiceUnknown = errors.New("unknown service")
 	ErrCertifyDone	  = errors.New("node has been certified")
 	ErrPeersConn	  = errors.New("node has peers connected")
+	ErrAccountsExist  = errors.New("node has existed accounts")
 
 	datadirInUseErrnos = map[uint]bool{11: true, 32: true, 35: true}
 )

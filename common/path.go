@@ -21,6 +21,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"io"
 )
 
 // MakeName creates a node name that follows the ethereum convention
@@ -44,4 +45,19 @@ func AbsolutePath(Datadir string, filename string) string {
 		return filename
 	}
 	return filepath.Join(Datadir, filename)
+}
+
+func LoadFile(file string) (string, error) {
+	buf := make([]byte, 64)
+	fd, err := os.Open(file)
+	if err != nil {
+		return "", err
+	}
+	defer fd.Close()
+
+	if _, err := io.ReadFull(fd, buf); err != nil {
+		return "", err
+	}
+
+	return string(buf), nil
 }

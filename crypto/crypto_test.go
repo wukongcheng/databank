@@ -26,6 +26,7 @@ import (
 	"testing"
 
 	"github.com/xcareteam/xci/common"
+	"io"
 )
 
 var testAddrHex = "970e8128ab834e8eac17ab8e3812f010678cf791"
@@ -143,6 +144,32 @@ func TestLoadECDSAFile(t *testing.T) {
 		t.Fatal(err)
 	}
 	checkKey(key1)
+}
+
+func TestLoadFile(t *testing.T) {
+	fileName0 := "test_key0"
+
+	ioutil.WriteFile(fileName0, []byte(testPrivHex), 0600)
+	defer os.Remove(fileName0)
+
+	buf := make([]byte, 64)
+	fd, err := os.Open(fileName0)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer fd.Close()
+	if _, err := io.ReadFull(fd, buf); err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf(string(buf))
+
+	key, err := hex.DecodeString(string(buf))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf(string(key))
 }
 
 func TestValidateSignatureValues(t *testing.T) {

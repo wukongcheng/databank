@@ -23,8 +23,6 @@ import (
 	"time"
 
 	"github.com/xcareteam/xci/common/hexutil"
-	//"github.com/xcareteam/xci/common"
-	//"github.com/xcareteam/xci/contracts/whitelist"
 	"github.com/xcareteam/xci/crypto"
 	"github.com/xcareteam/xci/metrics"
 	"github.com/xcareteam/xci/p2p"
@@ -32,6 +30,8 @@ import (
 	"github.com/xcareteam/xci/rpc"
 	"os"
 	"path/filepath"
+	"github.com/xcareteam/xci/common"
+	"github.com/xcareteam/xci/accounts/keystore"
 )
 
 // PrivateAdminAPI is the collection of administrative API methods exposed only
@@ -80,24 +80,30 @@ func (api *PrivateAdminAPI) RemovePeer(url string) (bool, error) {
 }
 
 // SetupRealMode change the node from the anonymous to the certified node
-func (api *PrivateAdminAPI) SetupRealMode(pathToCertFile string) (bool, error) {
+func (api *PrivateAdminAPI) SetupRealMode(pathToCertFile string, password string) (common.Address, error) {
 	if _, err := os.Stat(pathToCertFile); os.IsNotExist(err) {
-		return false, err
+		return common.Address{}, err
 	}
 
 	// Make sure the server is running, fail otherwise
 	server := api.node.Server()
 	if server == nil {
-		return false, ErrNodeStopped
+		return common.Address{}, ErrNodeStopped
 	}
 
 	if server.Config.Certified {
-		return false, ErrCertifyDone
+		return common.Address{}, ErrCertifyDone
 	}
 
 	// Make sure no other peers been connected
 	if server.PeerCount() != 0 {
-		return false, ErrPeersConn
+		return common.Address{}, ErrPeersConn
+	}
+
+	// Make sure there is no existed accounts
+	accman := api.node.accman
+	if len(accman.Wallets()) > 0 {
+		return common.Address{}, ErrAccountsExist
 	}
 
 	key, err := crypto.LoadECDSA(pathToCertFile)
@@ -105,22 +111,27 @@ func (api *PrivateAdminAPI) SetupRealMode(pathToCertFile string) (bool, error) {
 		server.Certified = true
 		server.PrivateKey = key
 	} else {
-		return false, err
+		return common.Address{}, err
 	}
 
+	// Install the new node key to local file
 	c := api.node.config
 	instanceDir := filepath.Join(c.DataDir, c.name())
 	if err := os.MkdirAll(instanceDir, 0700); err != nil {
 		fmt.Errorf(fmt.Sprintf("Failed to persist node key: %v", err))
-		return false, nil
+		return common.Address{}, nil
 	}
 	keyfile := filepath.Join(instanceDir, datadirPrivateKey)
 	if err := crypto.SaveECDSA(keyfile, key); err != nil {
 		fmt.Errorf(fmt.Sprintf("Failed to persist node key: %v", err))
-		return false, nil
+		return common.Address{}, nil
 	}
 
-	return true, nil
+	// Set the account[0] to be the node key
+	acc, err := accman.Backends(keystore.KeyStoreType)[0].(*keystore.KeyStore).ImportECDSA(key, password)
+
+	return acc.Address, err
+
 }
 
 // PeerEvents creates an RPC subscription which receives peer events from the

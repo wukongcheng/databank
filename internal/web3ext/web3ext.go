@@ -126,7 +126,7 @@ web3._extend({
 		new web3._extend.Method({
 			name: 'setupRealMode',
 			call: 'admin_setupRealMode',
-			params: 1
+			params: 2
 		}),
 		new web3._extend.Method({
 			name: 'exportChain',
