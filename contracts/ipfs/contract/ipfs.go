@@ -4,6 +4,7 @@
 package contract
 
 import (
+	"math/big"
 	"strings"
 
 	"github.com/xcareteam/xci/accounts/abi"
@@ -13,10 +14,10 @@ import (
 )
 
 // IpfsABI is the input ABI used to generate the binding from.
-const IpfsABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"date\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"}],\"name\":\"getIpfsUrl\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"date\",\"type\":\"string\"}],\"name\":\"getFileListByDate\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"date\",\"type\":\"string\"},{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"url\",\"type\":\"string\"}],\"name\":\"addNewIpfsUrl\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
+const IpfsABI = "[{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"fileName\",\"type\":\"string\"}],\"name\":\"getIpfsUrl\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"}],\"name\":\"getFileQuantity\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"account\",\"type\":\"address\"},{\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getFileNameByIndex\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"fileName\",\"type\":\"string\"},{\"name\":\"ipfsUrl\",\"type\":\"string\"}],\"name\":\"addNewIpfsUrl\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]"
 
 // IpfsBin is the compiled bytecode used for deploying new contracts.
-const IpfsBin = `0x6060604052341561000f57600080fd5b60008054600160a060020a033316600160a060020a0319909116179055610c1f8061003b6000396000f3006060604052600436106100615763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166385be4c098114610066578063893d20e814610170578063b85cbc121461019f578063e19c9a04146101f0575b600080fd5b341561007157600080fd5b6100f960046024813581810190830135806020601f8201819004810201604051908101604052818152929190602084018383808284378201915050505050509190803590602001908201803590602001908080601f01602080910402602001604051908101604052818152929190602084018383808284375094965061022895505050505050565b60405160208082528190810183818151815260200191508051906020019080838360005b8381101561013557808201518382015260200161011d565b50505050905090810190601f1680156101625780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b341561017b57600080fd5b610183610397565b604051600160a060020a03909116815260200160405180910390f35b34156101aa57600080fd5b6100f960046024813581810190830135806020601f820181900481020160405190810160405281815292919060208401838380828437509496506103a795505050505050565b34156101fb57600080fd5b61022660246004803582810192908201359181358083019290820135916044359182019101356104cc565b005b610230610adb565b610238610adb565b6102768460408051908101604052600181527f2d00000000000000000000000000000000000000000000000000000000000000602082015285610945565b600160a060020a033316600090815260016020526040908190209192508290518082805190602001908083835b602083106102c25780518252601f1990920191602091820191016102a3565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390208054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103895780601f1061035e57610100808354040283529160200191610389565b820191906000526020600020905b81548152906001019060200180831161036c57829003601f168201915b505050505091505092915050565b600054600160a060020a03165b90565b6103af610adb565b600160a060020a03331660009081526002602052604090819020908390518082805190602001908083835b602083106103f95780518252601f1990920191602091820191016103da565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390208054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104c05780601f10610495576101008083540402835291602001916104c0565b820191906000526020600020905b8154815290600101906020018083116104a357829003601f168201915b50505050509050919050565b6104d4610adb565b6104dc610adb565b6104e4610adb565b6104ec610adb565b6104f4610adb565b6104fc610adb565b61059b8c8c8080601f016020809104026020016040519081016040528181529291906020840183838082843750604094508493505050505190810160405280600181526020017f2d000000000000000000000000000000000000000000000000000000000000008152508c8c8080601f016020809104026020016040519081016040528181529291906020840183838082843750610945945050505050565b600160a060020a033316600090815260016020526040908190209197508790518082805190602001908083835b602083106105e75780518252601f1990920191602091820191016105c8565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390208054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156106ae5780601f10610683576101008083540402835291602001916106ae565b820191906000526020600020905b81548152906001019060200180831161069157829003601f168201915b505050505094508493508351156106c157fe5b87876001600033600160a060020a0316600160a060020a03168152602001908152602001600020886040518082805190602001908083835b602083106107185780518252601f1990920191602091820191016106f9565b6001836020036101000a038019825116818451168082178552505050505050905001915050908152602001604051908190039020610757929091610aed565b50600160a060020a03331660009081526002602052604090819020908d908d90518083838082843782019150509250505090815260200160405180910390208054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561082a5780601f106107ff5761010080835404028352916020019161082a565b820191906000526020600020905b81548152906001019060200180831161080d57829003601f168201915b50505050509250829150815115156108745789898080601f0160208091040260200160405190810160405281815292919060208401838380828437509495506108e6945050505050565b6108e3836040805190810160405280600181526020017f2c000000000000000000000000000000000000000000000000000000000000008152508c8c8080601f016020809104026020016040519081016040528181529291906020840183838082843750610945945050505050565b90505b600160a060020a0333166000908152600260205260409081902082918e908e9051808383808284378201915050925050509081526020016040518091039020908051610936929160200190610b6b565b50505050505050505050505050565b61094d610adb565b610955610adb565b61095d610adb565b610965610adb565b61096d610adb565b610975610adb565b6000808a965089955088945084518651885101016040518059106109965750595b818152601f19601f83011681016020016040529050935083925060009150600090505b8651811015610a12578681815181106109ce57fe5b016020015160f860020a900460f860020a028383806001019450815181106109f257fe5b906020010190600160f860020a031916908160001a9053506001016109b9565b5060005b8551811015610a6f57858181518110610a2b57fe5b016020015160f860020a900460f860020a02838380600101945081518110610a4f57fe5b906020010190600160f860020a031916908160001a905350600101610a16565b5060005b8451811015610acc57848181518110610a8857fe5b016020015160f860020a900460f860020a02838380600101945081518110610aac57fe5b906020010190600160f860020a031916908160001a905350600101610a73565b50909998505050505050505050565b60206040519081016040526000815290565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610b2e5782800160ff19823516178555610b5b565b82800160010185558215610b5b579182015b82811115610b5b578235825591602001919060010190610b40565b50610b67929150610bd9565b5090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610bac57805160ff1916838001178555610b5b565b82800160010185558215610b5b579182015b82811115610b5b578251825591602001919060010190610bbe565b6103a491905b80821115610b675760008155600101610bdf5600a165627a7a723058207203cb6b15f4356c765f6839e826ac05def2d99b7722d69f6b693e2777a666bf0029`
+const IpfsBin = `0x6060604052341561000f57600080fd5b60008054600160a060020a033316600160a060020a03199091161790556106758061003b6000396000f30060606040526004361061006c5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166315eaebdc81146100715780631b192716146101475780634662959e146101785780635ac072b71461019a578063893d20e8146101c6575b600080fd5b341561007c57600080fd5b6100d060048035600160a060020a03169060446024803590810190830135806020601f820181900481020160405190810160405281815292919060208401838380828437509496506101f595505050505050565b60405160208082528190810183818151815260200191508051906020019080838360005b8381101561010c5780820151838201526020016100f4565b50505050905090810190601f1680156101395780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b341561015257600080fd5b610166600160a060020a036004351661031b565b60405190815260200160405180910390f35b341561018357600080fd5b6100d0600160a060020a0360043516602435610336565b34156101a557600080fd5b6101c460246004803582810192908201359181359182019101356103dd565b005b34156101d157600080fd5b6101d961058f565b604051600160a060020a03909116815260200160405180910390f35b6101fd61059f565b600160a060020a03831660009081526001602052604090819020908390518082805190602001908083835b602083106102475780518252601f199092019160209182019101610228565b6001836020036101000a03801982511681845116808217855250505050505090500191505090815260200160405180910390208054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561030e5780601f106102e35761010080835404028352916020019161030e565b820191906000526020600020905b8154815290600101906020018083116102f157829003601f168201915b5050505050905092915050565b600160a060020a031660009081526003602052604090205490565b61033e61059f565b6002600084600160a060020a0316600160a060020a0316815260200190815260200160002060008381526020019081526020016000208054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561030e5780601f106102e35761010080835404028352916020019161030e565b60006103e761059f565b6103ef61059f565b600160a060020a0333166000908152600360209081526040808320546001909252918290209094509088908890518083838082843782019150509250505090815260200160405180910390208054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104cf5780601f106104a4576101008083540402835291602001916104cf565b820191906000526020600020905b8154815290600101906020018083116104b257829003601f168201915b505050505091508190508051156104e257fe5b84846001600033600160a060020a0316600160a060020a031681526020019081526020016000208989604051808383808284378201915050925050509081526020016040519081900390206105389290916105b1565b50600160a060020a033316600090815260026020908152604080832086845290915290206105679088886105b1565b505050600160a060020a03331660009081526003602052604090206001909101905550505050565b600054600160a060020a03165b90565b60206040519081016040526000815290565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106105f25782800160ff1982351617855561061f565b8280016001018555821561061f579182015b8281111561061f578235825591602001919060010190610604565b5061062b92915061062f565b5090565b61059c91905b8082111561062b57600081556001016106355600a165627a7a72305820c93eff2ca23455b70eda6c2f33cd5bc4f1708a9db0bec63700eb52490855d27c0029`
 
 // DeployIpfs deploys a new Ethereum contract, binding an instance of Ipfs to it.
 func DeployIpfs(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Ipfs, error) {
@@ -173,56 +174,82 @@ func (_Ipfs *IpfsTransactorRaw) Transact(opts *bind.TransactOpts, method string,
 	return _Ipfs.Contract.contract.Transact(opts, method, params...)
 }
 
-// GetFileListByDate is a free data retrieval call binding the contract method 0xb85cbc12.
+// GetFileNameByIndex is a free data retrieval call binding the contract method 0x4662959e.
 //
-// Solidity: function getFileListByDate(date string) constant returns(string)
-func (_Ipfs *IpfsCaller) GetFileListByDate(opts *bind.CallOpts, date string) (string, error) {
+// Solidity: function getFileNameByIndex(account address, index uint256) constant returns(string)
+func (_Ipfs *IpfsCaller) GetFileNameByIndex(opts *bind.CallOpts, account common.Address, index *big.Int) (string, error) {
 	var (
 		ret0 = new(string)
 	)
 	out := ret0
-	err := _Ipfs.contract.Call(opts, out, "getFileListByDate", date)
+	err := _Ipfs.contract.Call(opts, out, "getFileNameByIndex", account, index)
 	return *ret0, err
 }
 
-// GetFileListByDate is a free data retrieval call binding the contract method 0xb85cbc12.
+// GetFileNameByIndex is a free data retrieval call binding the contract method 0x4662959e.
 //
-// Solidity: function getFileListByDate(date string) constant returns(string)
-func (_Ipfs *IpfsSession) GetFileListByDate(date string) (string, error) {
-	return _Ipfs.Contract.GetFileListByDate(&_Ipfs.CallOpts, date)
+// Solidity: function getFileNameByIndex(account address, index uint256) constant returns(string)
+func (_Ipfs *IpfsSession) GetFileNameByIndex(account common.Address, index *big.Int) (string, error) {
+	return _Ipfs.Contract.GetFileNameByIndex(&_Ipfs.CallOpts, account, index)
 }
 
-// GetFileListByDate is a free data retrieval call binding the contract method 0xb85cbc12.
+// GetFileNameByIndex is a free data retrieval call binding the contract method 0x4662959e.
 //
-// Solidity: function getFileListByDate(date string) constant returns(string)
-func (_Ipfs *IpfsCallerSession) GetFileListByDate(date string) (string, error) {
-	return _Ipfs.Contract.GetFileListByDate(&_Ipfs.CallOpts, date)
+// Solidity: function getFileNameByIndex(account address, index uint256) constant returns(string)
+func (_Ipfs *IpfsCallerSession) GetFileNameByIndex(account common.Address, index *big.Int) (string, error) {
+	return _Ipfs.Contract.GetFileNameByIndex(&_Ipfs.CallOpts, account, index)
 }
 
-// GetIpfsUrl is a free data retrieval call binding the contract method 0x85be4c09.
+// GetFileQuantity is a free data retrieval call binding the contract method 0x1b192716.
 //
-// Solidity: function getIpfsUrl(date string, fileName string) constant returns(string)
-func (_Ipfs *IpfsCaller) GetIpfsUrl(opts *bind.CallOpts, date string, fileName string) (string, error) {
+// Solidity: function getFileQuantity(account address) constant returns(uint256)
+func (_Ipfs *IpfsCaller) GetFileQuantity(opts *bind.CallOpts, account common.Address) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _Ipfs.contract.Call(opts, out, "getFileQuantity", account)
+	return *ret0, err
+}
+
+// GetFileQuantity is a free data retrieval call binding the contract method 0x1b192716.
+//
+// Solidity: function getFileQuantity(account address) constant returns(uint256)
+func (_Ipfs *IpfsSession) GetFileQuantity(account common.Address) (*big.Int, error) {
+	return _Ipfs.Contract.GetFileQuantity(&_Ipfs.CallOpts, account)
+}
+
+// GetFileQuantity is a free data retrieval call binding the contract method 0x1b192716.
+//
+// Solidity: function getFileQuantity(account address) constant returns(uint256)
+func (_Ipfs *IpfsCallerSession) GetFileQuantity(account common.Address) (*big.Int, error) {
+	return _Ipfs.Contract.GetFileQuantity(&_Ipfs.CallOpts, account)
+}
+
+// GetIpfsUrl is a free data retrieval call binding the contract method 0x15eaebdc.
+//
+// Solidity: function getIpfsUrl(account address, fileName string) constant returns(string)
+func (_Ipfs *IpfsCaller) GetIpfsUrl(opts *bind.CallOpts, account common.Address, fileName string) (string, error) {
 	var (
 		ret0 = new(string)
 	)
 	out := ret0
-	err := _Ipfs.contract.Call(opts, out, "getIpfsUrl", date, fileName)
+	err := _Ipfs.contract.Call(opts, out, "getIpfsUrl", account, fileName)
 	return *ret0, err
 }
 
-// GetIpfsUrl is a free data retrieval call binding the contract method 0x85be4c09.
+// GetIpfsUrl is a free data retrieval call binding the contract method 0x15eaebdc.
 //
-// Solidity: function getIpfsUrl(date string, fileName string) constant returns(string)
-func (_Ipfs *IpfsSession) GetIpfsUrl(date string, fileName string) (string, error) {
-	return _Ipfs.Contract.GetIpfsUrl(&_Ipfs.CallOpts, date, fileName)
+// Solidity: function getIpfsUrl(account address, fileName string) constant returns(string)
+func (_Ipfs *IpfsSession) GetIpfsUrl(account common.Address, fileName string) (string, error) {
+	return _Ipfs.Contract.GetIpfsUrl(&_Ipfs.CallOpts, account, fileName)
 }
 
-// GetIpfsUrl is a free data retrieval call binding the contract method 0x85be4c09.
+// GetIpfsUrl is a free data retrieval call binding the contract method 0x15eaebdc.
 //
-// Solidity: function getIpfsUrl(date string, fileName string) constant returns(string)
-func (_Ipfs *IpfsCallerSession) GetIpfsUrl(date string, fileName string) (string, error) {
-	return _Ipfs.Contract.GetIpfsUrl(&_Ipfs.CallOpts, date, fileName)
+// Solidity: function getIpfsUrl(account address, fileName string) constant returns(string)
+func (_Ipfs *IpfsCallerSession) GetIpfsUrl(account common.Address, fileName string) (string, error) {
+	return _Ipfs.Contract.GetIpfsUrl(&_Ipfs.CallOpts, account, fileName)
 }
 
 // GetOwner is a free data retrieval call binding the contract method 0x893d20e8.
@@ -251,23 +278,23 @@ func (_Ipfs *IpfsCallerSession) GetOwner() (common.Address, error) {
 	return _Ipfs.Contract.GetOwner(&_Ipfs.CallOpts)
 }
 
-// AddNewIpfsUrl is a paid mutator transaction binding the contract method 0xe19c9a04.
+// AddNewIpfsUrl is a paid mutator transaction binding the contract method 0x5ac072b7.
 //
-// Solidity: function addNewIpfsUrl(date string, fileName string, url string) returns()
-func (_Ipfs *IpfsTransactor) AddNewIpfsUrl(opts *bind.TransactOpts, date string, fileName string, url string) (*types.Transaction, error) {
-	return _Ipfs.contract.Transact(opts, "addNewIpfsUrl", date, fileName, url)
+// Solidity: function addNewIpfsUrl(fileName string, ipfsUrl string) returns()
+func (_Ipfs *IpfsTransactor) AddNewIpfsUrl(opts *bind.TransactOpts, fileName string, ipfsUrl string) (*types.Transaction, error) {
+	return _Ipfs.contract.Transact(opts, "addNewIpfsUrl", fileName, ipfsUrl)
 }
 
-// AddNewIpfsUrl is a paid mutator transaction binding the contract method 0xe19c9a04.
+// AddNewIpfsUrl is a paid mutator transaction binding the contract method 0x5ac072b7.
 //
-// Solidity: function addNewIpfsUrl(date string, fileName string, url string) returns()
-func (_Ipfs *IpfsSession) AddNewIpfsUrl(date string, fileName string, url string) (*types.Transaction, error) {
-	return _Ipfs.Contract.AddNewIpfsUrl(&_Ipfs.TransactOpts, date, fileName, url)
+// Solidity: function addNewIpfsUrl(fileName string, ipfsUrl string) returns()
+func (_Ipfs *IpfsSession) AddNewIpfsUrl(fileName string, ipfsUrl string) (*types.Transaction, error) {
+	return _Ipfs.Contract.AddNewIpfsUrl(&_Ipfs.TransactOpts, fileName, ipfsUrl)
 }
 
-// AddNewIpfsUrl is a paid mutator transaction binding the contract method 0xe19c9a04.
+// AddNewIpfsUrl is a paid mutator transaction binding the contract method 0x5ac072b7.
 //
-// Solidity: function addNewIpfsUrl(date string, fileName string, url string) returns()
-func (_Ipfs *IpfsTransactorSession) AddNewIpfsUrl(date string, fileName string, url string) (*types.Transaction, error) {
-	return _Ipfs.Contract.AddNewIpfsUrl(&_Ipfs.TransactOpts, date, fileName, url)
+// Solidity: function addNewIpfsUrl(fileName string, ipfsUrl string) returns()
+func (_Ipfs *IpfsTransactorSession) AddNewIpfsUrl(fileName string, ipfsUrl string) (*types.Transaction, error) {
+	return _Ipfs.Contract.AddNewIpfsUrl(&_Ipfs.TransactOpts, fileName, ipfsUrl)
 }

@@ -10,7 +10,8 @@ import (
 )
 
 var (
-	key, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
+	//key, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
+	key, _ = crypto.HexToECDSA("c1cda6346c07ad45f5ac328c366fd4803e848428bb7967751a9815e17cb3fcca")
 	addr   = crypto.PubkeyToAddress(key.PublicKey)
 )
 
@@ -41,17 +42,17 @@ func TestIPFS(t *testing.T) {
 	}
 
 
-	if _, err := ipfs.AddNewIpfsUrl("2018-03-15", "hello","/ipfs/QmXgBq2xJKMqVo8jZdziyudNmnbiwjbpAycy5RbfDBoJRM"); err != nil {
+	if _, err := ipfs.AddNewIpfsUrl("2018-03-15-hello","/ipfs/QmXgBq2xJKMqVo8jZdziyudNmnbiwjbpAycy5RbfDBoJRM"); err != nil {
 		t.Fatalf("can't add new ipfs url: %v", err)
 	}
 	contractBackend.Commit()
 
-	if _, err := ipfs.AddNewIpfsUrl("2018-03-15", "blockchain","/ipfs/QmSQ3eNodmzvnBp9suPWFgZ4EhcgDr5dfZXQFnjAR3yZsT"); err != nil {
+	if _, err := ipfs.AddNewIpfsUrl("2018-03-15-blockchain","/ipfs/QmSQ3eNodmzvnBp9suPWFgZ4EhcgDr5dfZXQFnjAR3yZsT"); err != nil {
 		t.Fatalf("can't add new ipfs url: %v", err)
 	}
 	contractBackend.Commit()
 
-	did, err := ipfs.GetIpfsUrl("2018-03-15", "hello")
+	did, err := ipfs.GetIpfsUrl(addr,"2018-03-15-hello")
 	if err != nil {
 		t.Fatalf("can't get ipfs url: %v", err)
 	}
@@ -60,12 +61,18 @@ func TestIPFS(t *testing.T) {
 		t.Fatalf("AddNewIpfsUrl error, expected %v, got %v", "/ipfs/QmXgBq2xJKMqVo8jZdziyudNmnbiwjbpAycy5RbfDBoJRM", did)
 	}
 
-	fileNameList, err := ipfs.GetFileListByDate("2018-03-15")
-	t.Logf("date: 2018-03-15, fileNameList: %s",fileNameList)
+	quantity, err := ipfs.GetFileQuantity(addr)
+	t.Logf("date: 2018-03-15, file quantity: %d",quantity)
 
-	url, err := ipfs.GetIpfsUrl("2018-03-15", "blockchain")
+	url, err := ipfs.GetIpfsUrl(addr,"2018-03-15-blockchain")
 	if err != nil {
 		t.Fatalf("can't get ipfs url: %v", err)
 	}
-	t.Logf("date: 2018-03-15, fileName: blockchain, ipfs url: %s",url)
+	t.Logf("date: 2018-03-15, fileName: 2018-03-15-blockchain, ipfs url: %s",url)
+
+	name, err := ipfs.GetFileNameByIndex(addr,big.NewInt(0))
+	t.Logf("date: 2018-03-15, file name: %s",name)
+
+	name, err = ipfs.GetFileNameByIndex(addr,big.NewInt(1))
+	t.Logf("date: 2018-03-15, file name: %s",name)
 }
