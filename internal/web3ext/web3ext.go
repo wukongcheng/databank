@@ -150,6 +150,26 @@ web3._extend({
 			params: 3
 		}),
 		new web3._extend.Method({
+			name: 'saveDataToIpfs',
+			call: 'admin_saveDataToIpfs',
+			params: 4
+		}),
+		new web3._extend.Method({
+			name: 'getDataFromIpfs',
+			call: 'admin_getDataFromIpfs',
+			params: 3
+		}),
+		new web3._extend.Method({
+			name: 'getIpfsFileNameByIndex',
+			call: 'admin_getIpfsFileNameByIndex',
+			params: 3
+		}),
+		new web3._extend.Method({
+			name: 'getIpfsFileQuantity',
+			call: 'admin_getIpfsFileQuantity',
+			params: 2
+		}),
+		new web3._extend.Method({
 			name: 'sleepBlocks',
 			call: 'admin_sleepBlocks',
 			params: 2

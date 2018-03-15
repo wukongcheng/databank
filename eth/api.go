@@ -37,6 +37,9 @@ import (
 	"github.com/xcareteam/xci/rpc"
 	"github.com/xcareteam/xci/trie"
 	"github.com/xcareteam/xci/contracts/whitelist"
+	"github.com/xcareteam/xci/contracts/ipfs"
+	"github.com/ipfs/go-ipfs-api"
+	"bytes"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum full node-related
@@ -272,6 +275,88 @@ func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase 
 	}
 
 	return did, nil
+}
+
+func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase string, fileName string, data string) (common.Hash, error) {
+
+	//TODO just for prototype
+	s := shell.NewShell("localhost:5001")
+
+	mhash, err := s.Add(strings.NewReader(data))
+	if err != nil{
+		return common.Hash{}, err
+	}
+
+	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	tx, err := ipfs.AddNewIpfsUrl(fileName,mhash)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase string, fileName string) (string, error) {
+
+	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return "", err
+	}
+
+	url, err := ipfs.GetIpfsUrl(address,fileName)
+	if err != nil {
+		return "", err
+	}
+
+	//TODO just for prototype
+	ipfsShell := shell.NewShell("localhost:5001")
+
+	rc, err := ipfsShell.Cat(url)
+
+	if err != nil{
+		return "", err
+	}
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(rc)
+
+	return buf.String(), nil
+}
+
+func (api *PrivateAdminAPI) GetIpfsFileQuantity(address common.Address, passphrase string) (*big.Int, error) {
+
+	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return nil, err
+	}
+
+	quantity, err := ipfs.GetFileQuantity(address)
+	if err != nil {
+		return nil, err
+	}
+	return quantity, nil
+}
+
+func (api *PrivateAdminAPI) GetIpfsFileNameByIndex(address common.Address, passphrase string, index *big.Int) (string, error) {
+
+	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return "", err
+	}
+
+	fileList, err := ipfs.GetFileNameByIndex(address,index)
+	if err != nil {
+		return "", err
+	}
+	return fileList, nil
 }
 
 // ImportChain imports a blockchain from a local file.
