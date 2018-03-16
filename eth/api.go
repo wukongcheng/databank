@@ -40,6 +40,8 @@ import (
 	"github.com/xcareteam/xci/contracts/ipfs"
 	"github.com/ipfs/go-ipfs-api"
 	"bytes"
+	"github.com/spf13/viper"
+	"github.com/pkg/errors"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum full node-related
@@ -279,10 +281,19 @@ func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase 
 
 func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase string, fileName string, data string) (common.Hash, error) {
 
-	//TODO just for prototype
-	s := shell.NewShell("localhost:5001")
+	var ipfsUrl string
+	if viper.IsSet("ipfs.url") {
+		url := viper.GetString("ipfs.url")
+		if url != "" {
+			ipfsUrl = url
+		} else {
+			return common.Hash{}, errors.New("Ipfs url missing")
+		}
+	}
 
-	mhash, err := s.Add(strings.NewReader(data))
+	ipfsShell := shell.NewShell(ipfsUrl)
+
+	mhash, err := ipfsShell.Add(strings.NewReader(data))
 	if err != nil{
 		return common.Hash{}, err
 	}
@@ -314,8 +325,17 @@ func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase s
 		return "", err
 	}
 
-	//TODO just for prototype
-	ipfsShell := shell.NewShell("localhost:5001")
+	var ipfsUrl string
+	if viper.IsSet("ipfs.url") {
+		url := viper.GetString("ipfs.url")
+		if url != "" {
+			ipfsUrl = url
+		} else {
+			return "", errors.New("Ipfs url missing")
+		}
+	}
+
+	ipfsShell := shell.NewShell(ipfsUrl)
 
 	rc, err := ipfsShell.Cat(url)
 
