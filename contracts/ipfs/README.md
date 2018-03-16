@@ -37,7 +37,7 @@ admin.getDataFromIpfs({your account},{passphrase},{ipfsEndpoint},{filename})
 ```
 
 This module status is still experimental. To use this module, you have to follow these steps:
-* Run xci geth
+* Run xci geth and ipfs node
 * Deploy ipfs.sol on xci maunally
 * Get the contract deploy address, and replace the old value TestNetAddress in /contract/ipfs/ipfs.go
 * Compile a new xci geth
