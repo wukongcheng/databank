@@ -21,7 +21,7 @@ We provide four interfaces here. To call this functions, your need to provide yo
 
 * Save file to IPFS. You need encode your file by base64 schemes. The fileName should be unique, or your calling will be failed.
 ```shell
-admin.saveDataToIpfs({your account},{passphrase},{filename},{your data, base64 encode})
+admin.saveDataToIpfs({your account},{passphrase},{ipfsEndpoint},{filename},{your data, base64 encode})
 ```
 * Get how many files the specific account has submitted
 ```shell
@@ -33,7 +33,7 @@ admin.getIpfsFileNameByIndex({your account},{passphrase},{your file index})
 ```
 * Get file data from IPFS.
 ```shell
-admin.getDataFromIpfs({your account},{passphrase},{filename})
+admin.getDataFromIpfs({your account},{passphrase},{ipfsEndpoint},{filename})
 ```
 
 This module status is still experimental. To use this module, you have to follow these steps:

@@ -152,12 +152,12 @@ web3._extend({
 		new web3._extend.Method({
 			name: 'saveDataToIpfs',
 			call: 'admin_saveDataToIpfs',
-			params: 4
+			params: 5
 		}),
 		new web3._extend.Method({
 			name: 'getDataFromIpfs',
 			call: 'admin_getDataFromIpfs',
-			params: 3
+			params: 4
 		}),
 		new web3._extend.Method({
 			name: 'getIpfsFileNameByIndex',
