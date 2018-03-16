@@ -277,12 +277,11 @@ func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase 
 	return did, nil
 }
 
-func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase string, fileName string, data string) (common.Hash, error) {
+func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase string, ipfsEndpoint, fileName string, data string) (common.Hash, error) {
 
-	//TODO just for prototype
-	s := shell.NewShell("localhost:5001")
+	ipfsShell := shell.NewShell(ipfsEndpoint)
 
-	mhash, err := s.Add(strings.NewReader(data))
+	mhash, err := ipfsShell.Add(strings.NewReader(data))
 	if err != nil{
 		return common.Hash{}, err
 	}
@@ -301,7 +300,7 @@ func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase st
 	return tx.Hash(), nil
 }
 
-func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase string, fileName string) (string, error) {
+func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase string, ipfsEndpoint,fileName string) (string, error) {
 
 	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
 
@@ -314,8 +313,7 @@ func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase s
 		return "", err
 	}
 
-	//TODO just for prototype
-	ipfsShell := shell.NewShell("localhost:5001")
+	ipfsShell := shell.NewShell(ipfsEndpoint)
 
 	rc, err := ipfsShell.Cat(url)
 
