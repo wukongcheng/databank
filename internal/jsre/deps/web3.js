@@ -5365,6 +5365,27 @@ var methods = function () {
         inputFormatter: [null]
     });
 
+    var commitXciData = new Method({
+        name: 'commitXciData',
+        call: 'eth_commitXciData',
+        params: 5,
+        inputFormatter: [null]
+    });
+
+    var getXciDataLength = new Method({
+        name: 'getXciDataLength',
+        call: 'eth_getXciDataLength',
+        params: 3,
+        inputFormatter: [null]
+    });
+
+    var getXciData = new Method({
+        name: 'getXciData',
+        call: 'eth_getXciData',
+        params: 4,
+        inputFormatter: [null]
+    });
+
     var sendTransaction = new Method({
         name: 'sendTransaction',
         call: 'eth_sendTransaction',
@@ -5447,6 +5468,9 @@ var methods = function () {
         call,
         estimateGas,
         sendRawTransaction,
+        commitXciData,
+        getXciDataLength,
+        getXciData,
         signTransaction,
         sendTransaction,
         sign,

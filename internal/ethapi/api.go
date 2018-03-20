@@ -1233,6 +1233,24 @@ func (s *PublicTransactionPoolAPI) SendRawTransaction(ctx context.Context, encod
 	return submitTransaction(ctx, s.b, tx)
 }
 
+// commitXciData will add the signed transaction to the transaction pool.
+// The sender is responsible for signing the transaction and using the correct nonce.
+func (s *PublicTransactionPoolAPI) CommitXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return s.b.CommitXciData(address,passphrase,ipfsEndpoint,did,data)
+}
+
+// commitXciData will add the signed transaction to the transaction pool.
+// The sender is responsible for signing the transaction and using the correct nonce.
+func (s *PublicTransactionPoolAPI) GetXciDataLength(ctx context.Context, address common.Address, passphrase string, did string) (*big.Int, error) {
+	return s.b.GetXciDataLength(address,passphrase,did)
+}
+
+// commitXciData will add the signed transaction to the transaction pool.
+// The sender is responsible for signing the transaction and using the correct nonce.
+func (s *PublicTransactionPoolAPI) GetXciData(ctx context.Context, address common.Address, passphrase string, did string, index *big.Int) (*big.Int, []byte, error) {
+	return s.b.GetXciData(address,passphrase,did,index)
+}
+
 // Sign calculates an ECDSA signature for:
 // keccack256("\x19Ethereum Signed Message:\n" + len(message) + message).
 //

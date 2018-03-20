@@ -67,6 +67,10 @@ type Backend interface {
 	TxPoolContent() (map[common.Address]types.Transactions, map[common.Address]types.Transactions)
 	SubscribeTxPreEvent(chan<- core.TxPreEvent) event.Subscription
 
+	CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
+	GetXciDataLength(address common.Address, passphrase string, did string) (*big.Int, error)
+	GetXciData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, []byte, error) //return timestamp,decrypted data
+
 	ChainConfig() *params.ChainConfig
 	CurrentBlock() *types.Block
 }

@@ -39,6 +39,7 @@ import (
 	"github.com/xcareteam/xci/crypto"
 	"github.com/xcareteam/xci/event"
 	"github.com/xcareteam/xci/accounts/abi/bind"
+	"github.com/xcareteam/xci/crypto/ecies"
 )
 
 var (
@@ -332,6 +333,43 @@ func (ks *KeyStore) NewKeyedTransactor(a accounts.Account, passphrase string) (*
 			return tx.WithSignature(signer, signature)
 		},
 	}, nil
+}
+
+func (ks *KeyStore) EncryptDataWithPublicKey(account accounts.Account, passphrase string, data []byte) ([]byte, error) {
+
+	_, key, err := ks.getDecryptedKey(account, passphrase)
+
+	if err != nil {
+		return nil, err
+	}
+
+	eciesPublic := ecies.ImportECDSAPublic(&(key.PrivateKey.PublicKey))
+
+	encryptedBytes,err := ecies.Encrypt(crand.Reader, eciesPublic, data, nil, nil)
+	if err != nil {
+		return nil, errors.New("Encrypt with ecdsa public key error: "+err.Error())
+	}
+
+	return encryptedBytes,nil
+}
+
+func (ks *KeyStore) DecryptDataWithPrivateKey(account accounts.Account, passphrase string, encryptedData []byte) ([]byte, error) {
+
+	_, key, err := ks.getDecryptedKey(account, passphrase)
+
+	if err != nil {
+		return nil, err
+	}
+
+	eciesPrivate := ecies.ImportECDSA(key.PrivateKey)
+
+	decryptedBytes,err :=eciesPrivate.Decrypt(crand.Reader, encryptedData, nil,nil)
+
+	if err != nil {
+		return nil, errors.New("Decrypt with patient private key error: "+err.Error())
+	}
+
+	return decryptedBytes, nil
 }
 
 // Unlock unlocks the given account indefinitely.

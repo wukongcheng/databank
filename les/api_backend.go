@@ -133,6 +133,18 @@ func (b *LesApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.txPool.SubscribeTxPreEvent(ch)
 }
 
+func (b *LesApiBackend) CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return common.Hash{},nil;
+}
+
+func (b *LesApiBackend) GetXciDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
+	return nil,nil;
+}
+
+func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, []byte, error) {
+	return nil,nil,nil;
+}
+
 func (b *LesApiBackend) SubscribeChainEvent(ch chan<- core.ChainEvent) event.Subscription {
 	return b.eth.blockchain.SubscribeChainEvent(ch)
 }
