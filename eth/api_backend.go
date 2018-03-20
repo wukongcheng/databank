@@ -37,6 +37,7 @@ import (
 	"github.com/ipfs/go-ipfs-api"
 	"bytes"
 	"github.com/xcareteam/xci/contracts/xcdata"
+	"fmt"
 )
 
 // EthApiBackend implements ethapi.Backend for full nodes
@@ -232,7 +233,7 @@ func (b *EthApiBackend) GetXciDataLength(address common.Address, passphrase stri
 	return length, nil
 }
 
-func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, []byte, error) {
+func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) (*big.Int, []byte, error) {
 
 	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
 
@@ -240,18 +241,31 @@ func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, di
 		return nil, nil, err
 	}
 
-	timestamp, encryptedData, err := xcData.GetData(did,index)
+	timestamp, ipfsHash, err := xcData.GetData(did,index)
 	if err != nil {
 		return nil,nil,err
 	}
+
+	url := fmt.Sprintf("/ipfs/%s",ipfsHash)
+
+	ipfsShell := shell.NewShell(ipfsEndpoint)
+
+	rc, err := ipfsShell.Cat(url)
+
+	if err != nil{
+		return nil,nil, err
+	}
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(rc)
 
 	account := accounts.Account{Address: address}
 
 	wallet,err :=b.eth.accountManager.Find(account)
 
-	decryptiedData,err := wallet.DecryptDataWithPrivateKey(account,passphrase,[]byte(encryptedData))
+	decryptedData,err := wallet.DecryptDataWithPrivateKey(account,passphrase,[]byte(buf.String()))
 
-	return timestamp,decryptiedData,nil
+	return timestamp,decryptedData,nil
 }
 
 func (b *EthApiBackend) Downloader() *downloader.Downloader {

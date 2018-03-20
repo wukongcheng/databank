@@ -5369,21 +5369,28 @@ var methods = function () {
         name: 'commitXciData',
         call: 'eth_commitXciData',
         params: 5,
-        inputFormatter: [null]
+        inputFormatter: [formatters.inputAddressFormatter,null,null,null,null]
     });
 
     var getXciDataLength = new Method({
         name: 'getXciDataLength',
         call: 'eth_getXciDataLength',
         params: 3,
-        inputFormatter: [null]
+        inputFormatter: [utils.toDecimal.inputAddressFormatter,null,null]
     });
 
     var getXciData = new Method({
         name: 'getXciData',
         call: 'eth_getXciData',
-        params: 4,
-        inputFormatter: [null]
+        params: 5,
+        inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
+    });
+
+    var getXciDataTimestamp = new Method({
+        name: 'getXciDataTimestamp',
+        call: 'eth_getXciDataTimestamp',
+        params: 5,
+        inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
     });
 
     var sendTransaction = new Method({
@@ -5471,6 +5478,7 @@ var methods = function () {
         commitXciData,
         getXciDataLength,
         getXciData,
+        getXciDataTimestamp,
         signTransaction,
         sendTransaction,
         sign,

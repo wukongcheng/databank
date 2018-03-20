@@ -141,7 +141,7 @@ func (b *LesApiBackend) GetXciDataLength(address common.Address, passphrase stri
 	return nil,nil;
 }
 
-func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, []byte, error) {
+func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) (*big.Int, []byte, error) {
 	return nil,nil,nil;
 }
 
