@@ -31,5 +31,3 @@ pki:
                          organization: XCIBlockchain
                          country: China
 
-ipfs:
-          url: "localhost:5001"

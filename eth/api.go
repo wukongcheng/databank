@@ -37,6 +37,7 @@ import (
 	"github.com/xcareteam/xci/rpc"
 	"github.com/xcareteam/xci/trie"
 	"github.com/xcareteam/xci/contracts/whitelist"
+	"github.com/xcareteam/xci/contracts/xcdata"
 	"github.com/xcareteam/xci/contracts/ipfs"
 	"github.com/ipfs/go-ipfs-api"
 	"bytes"
@@ -275,6 +276,52 @@ func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase 
 	}
 
 	return did, nil
+}
+
+
+func (api *PrivateAdminAPI) XCDataCommitData(address common.Address, passphrase string, did string, datahash string) (common.Hash, error) {
+
+	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	tx, err := xcData.CommitData(did, datahash)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (api *PrivateAdminAPI) XCDataGetDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
+
+	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return nil, err
+	}
+
+	len, err := xcData.GetDataLength(did)
+	if err != nil {
+		return nil, err
+	}
+
+	return len, nil
+}
+
+func (api *PrivateAdminAPI) XCDataGetData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
+
+	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return nil, "", err
+	}
+
+	time, data, err := xcData.GetData(did, index)
+	if err != nil {
+		return nil, "", err
+	}
+
+	return time, data, nil
 }
 
 func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase string, ipfsEndpoint, fileName string, data string) (common.Hash, error) {
