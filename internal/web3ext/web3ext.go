@@ -150,6 +150,21 @@ web3._extend({
 			params: 3
 		}),
 		new web3._extend.Method({
+			name: 'xcdataCommitData',
+			call: 'admin_xCDataCommitData',
+			params: 4
+		}),
+		new web3._extend.Method({
+			name: 'xcdataGetDataLength',
+			call: 'admin_cCDataGetDataLength',
+			params: 3
+		}),
+		new web3._extend.Method({
+			name: 'xcdataGetData',
+			call: 'admin_cCDataGetData',
+			params: 4
+		}),
+		new web3._extend.Method({
 			name: 'saveDataToIpfs',
 			call: 'admin_saveDataToIpfs',
 			params: 5
