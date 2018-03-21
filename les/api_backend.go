@@ -141,8 +141,12 @@ func (b *LesApiBackend) GetXciDataLength(address common.Address, passphrase stri
 	return nil,nil;
 }
 
-func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) (*big.Int, []byte, error) {
-	return nil,nil,nil;
+func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+	return nil,nil;
+}
+
+func (b *LesApiBackend) GetXciDataTimestampAndHash(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
+	return nil,"",nil;
 }
 
 func (b *LesApiBackend) SubscribeChainEvent(ch chan<- core.ChainEvent) event.Subscription {

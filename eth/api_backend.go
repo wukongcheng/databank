@@ -233,18 +233,9 @@ func (b *EthApiBackend) GetXciDataLength(address common.Address, passphrase stri
 	return length, nil
 }
 
-func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) (*big.Int, []byte, error) {
+func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
 
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
-
-	if err != nil {
-		return nil, nil, err
-	}
-
-	timestamp, ipfsHash, err := xcData.GetData(did,index)
-	if err != nil {
-		return nil,nil,err
-	}
+	_, ipfsHash, err := b.GetXciDataTimestampAndHash(address,passphrase,did,index)
 
 	url := fmt.Sprintf("/ipfs/%s",ipfsHash)
 
@@ -253,7 +244,7 @@ func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ip
 	rc, err := ipfsShell.Cat(url)
 
 	if err != nil{
-		return nil,nil, err
+		return nil, err
 	}
 
 	buf := new(bytes.Buffer)
@@ -265,7 +256,22 @@ func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ip
 
 	decryptedData,err := wallet.DecryptDataWithPrivateKey(account,passphrase,[]byte(buf.String()))
 
-	return timestamp,decryptedData,nil
+	return decryptedData,nil
+}
+
+func (b *EthApiBackend) GetXciDataTimestampAndHash(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	timestamp, ipfsHash, err := xcData.GetData(did,index)
+	if err != nil {
+		return nil,"",err
+	}
+	return timestamp, ipfsHash, nil
 }
 
 func (b *EthApiBackend) Downloader() *downloader.Downloader {

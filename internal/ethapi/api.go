@@ -1248,12 +1248,12 @@ func (s *PublicTransactionPoolAPI) GetXciDataLength(ctx context.Context, address
 // commitXciData will add the signed transaction to the transaction pool.
 // The sender is responsible for signing the transaction and using the correct nonce.
 func (s *PublicTransactionPoolAPI) GetXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
-	_,decryptedData,err := s.b.GetXciData(address,passphrase,ipfsEndpoint,did,index)
+	decryptedData,err := s.b.GetXciData(address,passphrase,ipfsEndpoint,did,index)
 	return decryptedData,err
 }
 
-func (s *PublicTransactionPoolAPI) GetXciDataTimestamp(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) (*big.Int, error) {
-	timestamp,_,err := s.b.GetXciData(address,passphrase,ipfsEndpoint,did,index)
+func (s *PublicTransactionPoolAPI) GetXciDataTimestamp(ctx context.Context, address common.Address, passphrase string, did string, index *big.Int) (*big.Int, error) {
+	timestamp,_,err := s.b.GetXciDataTimestampAndHash(address,passphrase,did,index)
 	return timestamp,err
 }
 

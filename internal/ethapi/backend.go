@@ -69,7 +69,8 @@ type Backend interface {
 
 	CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
 	GetXciDataLength(address common.Address, passphrase string, did string) (*big.Int, error)
-	GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) (*big.Int, []byte, error)
+	GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error)
+	GetXciDataTimestampAndHash(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error)
 
 	ChainConfig() *params.ChainConfig
 	CurrentBlock() *types.Block

@@ -5376,7 +5376,8 @@ var methods = function () {
         name: 'getXciDataLength',
         call: 'eth_getXciDataLength',
         params: 3,
-        inputFormatter: [utils.toDecimal.inputAddressFormatter,null,null]
+        inputFormatter: [utils.toDecimal.inputAddressFormatter,null,null],
+        outputFormatter: utils.toDecimal
     });
 
     var getXciData = new Method({
@@ -5389,8 +5390,9 @@ var methods = function () {
     var getXciDataTimestamp = new Method({
         name: 'getXciDataTimestamp',
         call: 'eth_getXciDataTimestamp',
-        params: 5,
-        inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
+        params: 4,
+        inputFormatter: [formatters.inputAddressFormatter,null,null,utils.toDecimal],
+        outputFormatter: utils.toDecimal
     });
 
     var sendTransaction = new Method({
