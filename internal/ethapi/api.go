@@ -1233,30 +1233,6 @@ func (s *PublicTransactionPoolAPI) SendRawTransaction(ctx context.Context, encod
 	return submitTransaction(ctx, s.b, tx)
 }
 
-// commitXciData will add the signed transaction to the transaction pool.
-// The sender is responsible for signing the transaction and using the correct nonce.
-func (s *PublicTransactionPoolAPI) CommitXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
-	return s.b.CommitXciData(address,passphrase,ipfsEndpoint,did,data)
-}
-
-// commitXciData will add the signed transaction to the transaction pool.
-// The sender is responsible for signing the transaction and using the correct nonce.
-func (s *PublicTransactionPoolAPI) GetXciDataLength(ctx context.Context, address common.Address, passphrase string, did string) (*big.Int, error) {
-	return s.b.GetXciDataLength(address,passphrase,did)
-}
-
-// commitXciData will add the signed transaction to the transaction pool.
-// The sender is responsible for signing the transaction and using the correct nonce.
-func (s *PublicTransactionPoolAPI) GetXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
-	decryptedData,err := s.b.GetXciData(address,passphrase,ipfsEndpoint,did,index)
-	return decryptedData,err
-}
-
-func (s *PublicTransactionPoolAPI) GetXciDataTimestamp(ctx context.Context, address common.Address, passphrase string, did string, index *big.Int) (*big.Int, error) {
-	timestamp,_,err := s.b.GetXciDataTimestampAndHash(address,passphrase,did,index)
-	return timestamp,err
-}
-
 // Sign calculates an ECDSA signature for:
 // keccack256("\x19Ethereum Signed Message:\n" + len(message) + message).
 //
@@ -1379,6 +1355,40 @@ func (s *PublicTransactionPoolAPI) Resend(ctx context.Context, sendArgs SendTxAr
 	}
 
 	return common.Hash{}, fmt.Errorf("Transaction %#x not found", matchTx.Hash())
+}
+
+
+// PublicXcareAPI exposes methods for the RPC interface
+type PublicXcareAPI struct {
+	b         Backend
+}
+
+// NewPublicTransactionPoolAPI creates a new RPC service with methods specific for the transaction pool.
+func NewPublicXcareAPI(b Backend) *PublicXcareAPI {
+	return &PublicXcareAPI{b}
+}
+
+// commitXciData will add a native contract xcdata transaction to the transaction pool.
+// The xcdata contract wrapper is responsible for signing the transaction and using the correct nonce.
+func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return s.b.CommitXciData(address,passphrase,ipfsEndpoint,did,data)
+}
+
+// GetXciDataLength gets the data length of the specific did
+func (s *PublicXcareAPI) GetXciDataLength(ctx context.Context, address common.Address, passphrase string, did string) (*big.Int, error) {
+	return s.b.GetXciDataLength(address,passphrase,did)
+}
+
+// GetXciData gets the data of the specific did and index
+func (s *PublicXcareAPI) GetXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+	decryptedData,err := s.b.GetXciData(address,passphrase,ipfsEndpoint,did,index)
+	return decryptedData,err
+}
+
+// GetXciDataTimestamp gets the timestamp of the specific did and index
+func (s *PublicXcareAPI) GetXciDataTimestamp(ctx context.Context, address common.Address, passphrase string, did string, index *big.Int) (*big.Int, error) {
+	timestamp,_,err := s.b.GetXciDataTimestampAndHash(address,passphrase,did,index)
+	return timestamp,err
 }
 
 // PublicDebugAPI is the collection of Ethereum APIs exposed over the public

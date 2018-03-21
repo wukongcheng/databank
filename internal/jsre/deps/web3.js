@@ -2511,6 +2511,7 @@ var Iban = require('./web3/iban');
 var Eth = require('./web3/methods/eth');
 var DB = require('./web3/methods/db');
 var Shh = require('./web3/methods/shh');
+var Xcare = require('./web3/methods/xcare');
 var Net = require('./web3/methods/net');
 var Personal = require('./web3/methods/personal');
 var Swarm = require('./web3/methods/swarm');
@@ -2533,6 +2534,7 @@ function Web3 (provider) {
     this.eth = new Eth(this);
     this.db = new DB(this);
     this.shh = new Shh(this);
+    this.xcare = new Xcare(this);
     this.net = new Net(this);
     this.personal = new Personal(this);
     this.bzz = new Swarm(this);
@@ -2632,7 +2634,7 @@ Web3.prototype.createBatch = function () {
 module.exports = Web3;
 
 
-},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web3/batch":24,"./web3/extend":28,"./web3/httpprovider":32,"./web3/iban":33,"./web3/ipcprovider":34,"./web3/methods/db":37,"./web3/methods/eth":38,"./web3/methods/net":39,"./web3/methods/personal":40,"./web3/methods/shh":41,"./web3/methods/swarm":42,"./web3/property":45,"./web3/requestmanager":46,"./web3/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
+},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web3/batch":24,"./web3/extend":28,"./web3/httpprovider":32,"./web3/iban":33,"./web3/ipcprovider":34,"./web3/methods/db":37,"./web3/methods/eth":38,"./web3/methods/net":39,"./web3/methods/personal":40,"./web3/methods/shh":41,"./web3/methods/swarm":42,"./web3/property":45,"./web3/requestmanager":46,"./web3/settings":47,"./web3/methods/xcare":87, "bignumber.js":"bignumber.js",}],23:[function(require,module,exports){
 /*
     This file is part of web3.js.
 
@@ -5365,36 +5367,6 @@ var methods = function () {
         inputFormatter: [null]
     });
 
-    var commitXciData = new Method({
-        name: 'commitXciData',
-        call: 'eth_commitXciData',
-        params: 5,
-        inputFormatter: [formatters.inputAddressFormatter,null,null,null,null]
-    });
-
-    var getXciDataLength = new Method({
-        name: 'getXciDataLength',
-        call: 'eth_getXciDataLength',
-        params: 3,
-        inputFormatter: [utils.toDecimal.inputAddressFormatter,null,null],
-        outputFormatter: utils.toDecimal
-    });
-
-    var getXciData = new Method({
-        name: 'getXciData',
-        call: 'eth_getXciData',
-        params: 5,
-        inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
-    });
-
-    var getXciDataTimestamp = new Method({
-        name: 'getXciDataTimestamp',
-        call: 'eth_getXciDataTimestamp',
-        params: 4,
-        inputFormatter: [formatters.inputAddressFormatter,null,null,utils.toDecimal],
-        outputFormatter: utils.toDecimal
-    });
-
     var sendTransaction = new Method({
         name: 'sendTransaction',
         call: 'eth_sendTransaction',
@@ -5477,10 +5449,6 @@ var methods = function () {
         call,
         estimateGas,
         sendRawTransaction,
-        commitXciData,
-        getXciDataLength,
-        getXciData,
-        getXciDataTimestamp,
         signTransaction,
         sendTransaction,
         sign,
@@ -5873,8 +5841,90 @@ var methods = function () {
 
 module.exports = Shh;
 
+},{"../filter":29,"../method":36,"./watches":43}],87:[function(require,module,exports){
+//},{"../method":36,"../property":45,"../filter":29,"./watches":43}],87:[function(require,module,exports){
+/*
+    This file is part of web3.js.
 
-},{"../filter":29,"../method":36,"./watches":43}],42:[function(require,module,exports){
+    web3.js is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    web3.js is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** @file xcare.js
+ * @authors:
+ *   Haoyang Liu <liuhaoyang@xcare.ink>
+ * @date 2018
+ */
+
+var Method = require('../method');
+var utils = require('../utils/utils');
+var formatters = require('../formatters');
+//var Filter = require('../filter');
+//var watches = require('./watches');
+
+var Xcare = function (web3) {
+    this._requestManager = web3._requestManager;
+
+    var self = this;
+
+    methods().forEach(function(method) {
+        method.attachToObject(self);
+        method.setRequestManager(self._requestManager);
+    });
+};
+
+//xcare.prototype.newMessageFilter = function (options, callback, filterCreationErrorCallback) {
+//    return new Filter(options, 'xcare', this._requestManager, watches.xcare(), null, callback, filterCreationErrorCallback);
+//};
+
+var methods = function () {
+
+    return [
+        new Method({
+            name: 'commitXciData',
+            call: 'xcare_commitXciData',
+            params: 5,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,null,null]
+        }),
+
+        new Method({
+            name: 'getXciDataLength',
+            call: 'xcare_getXciDataLength',
+            params: 3,
+            inputFormatter: [utils.toDecimal.inputAddressFormatter,null,null],
+            outputFormatter: utils.toDecimal
+        }),
+
+        new Method({
+            name: 'getXciData',
+            call: 'xcare_getXciData',
+            params: 5,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
+        }),
+
+        new Method({
+            name: 'getXciDataTimestamp',
+            call: 'xcare_getXciDataTimestamp',
+            params: 4,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,utils.toDecimal],
+            outputFormatter: utils.toDecimal
+        })
+    ];
+};
+
+module.exports = Xcare;
+
+
+},{"../formatters":30,"../utils/utils":20,"../filter":29,"../method":36,"./watches":43}],42:[function(require,module,exports){
 /*
     This file is part of web3.js.
 
