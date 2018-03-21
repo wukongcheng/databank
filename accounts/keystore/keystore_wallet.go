@@ -151,3 +151,11 @@ func (w *keystoreWallet) NewKeyedTransactor(account accounts.Account, passphrase
 	// Account seems valid, request the keystore to sign
 	return w.keystore.NewKeyedTransactor(account, passphrase)
 }
+
+func (w *keystoreWallet)EncryptDataWithPublicKey(account accounts.Account, passphrase string, data []byte) ([]byte, error) {
+	return w.keystore.EncryptDataWithPublicKey(account,passphrase,data)
+}
+
+func (w *keystoreWallet)DecryptDataWithPrivateKey(account accounts.Account, passphrase string, encryptedData []byte) ([]byte, error) {
+	return w.keystore.DecryptDataWithPrivateKey(account,passphrase,encryptedData)
+}

@@ -13,7 +13,7 @@ import (
 
 var (
 	MainNetAddress = common.HexToAddress("0x314159265dD8dbb310642f98f50C066173C1259b")
-	TestNetAddress = common.HexToAddress("0x211a2664a5c785f32ce392f48aaecaf461239b9e")
+	TestNetAddress = common.HexToAddress("0xdb571079af66edbb1a56d22809584d39c20001d9")
 )
 
 type XCData struct {

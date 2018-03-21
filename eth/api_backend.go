@@ -34,6 +34,10 @@ import (
 	"github.com/xcareteam/xci/event"
 	"github.com/xcareteam/xci/params"
 	"github.com/xcareteam/xci/rpc"
+	"github.com/ipfs/go-ipfs-api"
+	"bytes"
+	"github.com/xcareteam/xci/contracts/xcdata"
+	"fmt"
 )
 
 // EthApiBackend implements ethapi.Backend for full nodes
@@ -182,6 +186,92 @@ func (b *EthApiBackend) TxPoolContent() (map[common.Address]types.Transactions, 
 
 func (b *EthApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Subscription {
 	return b.eth.TxPool().SubscribeTxPreEvent(ch)
+}
+
+func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+
+	account := accounts.Account{Address: address}
+
+	wallet,err :=b.eth.accountManager.Find(account)
+
+	encryptiedData,err := wallet.EncryptDataWithPublicKey(account,passphrase,data)
+
+	ipfsShell := shell.NewShell(ipfsEndpoint)
+
+	mhash, err := ipfsShell.Add(bytes.NewReader(encryptiedData))
+	if err != nil{
+		return common.Hash{}, err
+	}
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	tx, err := xcData.CommitData(did, mhash)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (b *EthApiBackend) GetXciDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return nil, err
+	}
+
+	length, err := xcData.GetDataLength(did)
+	if err != nil {
+		return nil, err
+	}
+
+	return length, nil
+}
+
+func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+
+	_, ipfsHash, err := b.GetXciDataTimestampAndHash(address,passphrase,did,index)
+
+	url := fmt.Sprintf("/ipfs/%s",ipfsHash)
+
+	ipfsShell := shell.NewShell(ipfsEndpoint)
+
+	rc, err := ipfsShell.Cat(url)
+
+	if err != nil{
+		return nil, err
+	}
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(rc)
+
+	account := accounts.Account{Address: address}
+
+	wallet,err :=b.eth.accountManager.Find(account)
+
+	decryptedData,err := wallet.DecryptDataWithPrivateKey(account,passphrase,[]byte(buf.String()))
+
+	return decryptedData,nil
+}
+
+func (b *EthApiBackend) GetXciDataTimestampAndHash(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+
+	if err != nil {
+		return nil, "", err
+	}
+
+	timestamp, ipfsHash, err := xcData.GetData(did,index)
+	if err != nil {
+		return nil,"",err
+	}
+	return timestamp, ipfsHash, nil
 }
 
 func (b *EthApiBackend) Downloader() *downloader.Downloader {
