@@ -8,6 +8,8 @@ import (
 	"github.com/xcareteam/xci/core"
 	"github.com/xcareteam/xci/crypto"
 	"math/big"
+	"github.com/xcareteam/xci/crypto/ecies"
+	"crypto/rand"
 )
 
 var (
@@ -32,7 +34,16 @@ func TestGetXCData(t *testing.T) {
 	}
 	contractBackend.Commit()
 
-	if _, err := xcdata.CommitData("unit_id1", "0xd7ac1f48c345561d6a273765b84b33454d3a8f5d"); err != nil {
+	AESKey := "12345678123456781234567812345678" //256bit
+
+	eciesPrivate := ecies.ImportECDSA(key)
+
+	encryptedAESKeyBytes,err := ecies.Encrypt(rand.Reader, &eciesPrivate.PublicKey, []byte(AESKey), nil, nil)
+	if err != nil {
+		t.Fatalf("Encrypt with doctor public key error %v", err.Error())
+	}
+
+	if _, err := xcdata.CommitData("unit_id1", "0xd7ac1f48c345561d6a273765b84b33454d3a8f5d",encryptedAESKeyBytes); err != nil {
 		t.Fatalf("can't commit new data: %v", err)
 	}
 	contractBackend.Commit()
@@ -46,12 +57,21 @@ func TestGetXCData(t *testing.T) {
 		t.Fatalf("GetDataLength error, expected %v, got %v", 1, len)
 	}
 
-	_, hash, err := xcdata.GetData("unit_id1", big.NewInt(0))
+	_, hash,AESKeyBytes, err := xcdata.GetData("unit_id1", big.NewInt(0))
 	if err != nil {
 		t.Fatalf("can't get data: %v", err)
 	}
 
 	if hash != "0xd7ac1f48c345561d6a273765b84b33454d3a8f5d" {
 		t.Fatalf("GetData error, expected %v, got %v", "0xd7ac1f48c345561d6a273765b84b33454d3a8f5d", hash)
+	}
+
+	decryptedAESKey, err :=eciesPrivate.Decrypt(rand.Reader, AESKeyBytes, nil,nil)
+	if err != nil {
+		t.Fatalf("Decrypt with patient private key error: %+v",err.Error())
+	}
+
+	if string(decryptedAESKey[:]) != AESKey {
+		t.Fatalf("Decrypt with patient private key error: %+v",err.Error())
 	}
 }

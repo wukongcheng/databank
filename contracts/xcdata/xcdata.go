@@ -71,14 +71,14 @@ func GetXCData(accMng *accounts.Manager, backend bind.ContractBackend, address c
 	return contract, nil
 }
 
-func (self *XCData) CommitData(did string, datahash string) (*types.Transaction, error) {
-	return self.Contract.CommitData(&self.TransactOpts, did, datahash)
+func (self *XCData) CommitData(did string, datahash string, encryptedAESKey []byte) (*types.Transaction, error) {
+	return self.Contract.CommitData(&self.TransactOpts, did, datahash, encryptedAESKey)
 }
 
 func (self *XCData) GetDataLength(did string) (*big.Int, error) {
 	return self.Contract.GetDataLength(&self.CallOpts, did);
 }
 
-func (self *XCData) GetData(did string, index *big.Int) (*big.Int, string, error) {
+func (self *XCData) GetData(did string, index *big.Int) (*big.Int, string, []byte, error) {
 	return self.Contract.GetData(&self.CallOpts, did, index);
 }
