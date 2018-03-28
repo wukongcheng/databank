@@ -278,7 +278,7 @@ func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase 
 	return did, nil
 }
 
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) XCDataCommitData(address common.Address, passphrase string, did string, datahash string) (common.Hash, error) {
 
 	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
@@ -286,14 +286,14 @@ func (api *PrivateAdminAPI) XCDataCommitData(address common.Address, passphrase 
 		return common.Hash{}, err
 	}
 
-	tx, err := xcData.CommitData(did, datahash)
+	tx, err := xcData.CommitData(did, datahash, nil)
 	if err != nil {
 		return common.Hash{}, err
 	}
 
 	return tx.Hash(), nil
 }
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) XCDataGetDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
 
 	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
@@ -308,7 +308,7 @@ func (api *PrivateAdminAPI) XCDataGetDataLength(address common.Address, passphra
 
 	return len, nil
 }
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) XCDataGetData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
 
 	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
@@ -316,14 +316,14 @@ func (api *PrivateAdminAPI) XCDataGetData(address common.Address, passphrase str
 		return nil, "", err
 	}
 
-	time, data, err := xcData.GetData(did, index)
+	time, data, _, err := xcData.GetData(did, index)
 	if err != nil {
 		return nil, "", err
 	}
 
 	return time, data, nil
 }
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase string, ipfsEndpoint, fileName string, data string) (common.Hash, error) {
 
 	ipfsShell := shell.NewShell(ipfsEndpoint)
@@ -346,7 +346,7 @@ func (api *PrivateAdminAPI) SaveDataToIpfs(address common.Address, passphrase st
 
 	return tx.Hash(), nil
 }
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase string, ipfsEndpoint,fileName string) (string, error) {
 
 	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
@@ -373,7 +373,7 @@ func (api *PrivateAdminAPI) GetDataFromIpfs(address common.Address, passphrase s
 
 	return buf.String(), nil
 }
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) GetIpfsFileQuantity(address common.Address, passphrase string) (*big.Int, error) {
 
 	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)
@@ -388,7 +388,7 @@ func (api *PrivateAdminAPI) GetIpfsFileQuantity(address common.Address, passphra
 	}
 	return quantity, nil
 }
-
+//TODO deprecated interface
 func (api *PrivateAdminAPI) GetIpfsFileNameByIndex(address common.Address, passphrase string, index *big.Int) (string, error) {
 
 	ipfs,err := ipfs.GetNewIPFS(api.eth.accountManager,NewContractBackend(api.eth.ApiBackend), address, passphrase)

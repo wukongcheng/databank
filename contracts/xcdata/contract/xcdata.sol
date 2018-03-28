@@ -68,7 +68,7 @@ contract XCData {
     }
 
     //TODO, how to ensure the AES key has been re-encrypted by counterparty public key
-    //TODO, In theroy, patient can hack xci and use
+    //TODO, In theroy, patient can hack xci and use wrong public key deliberately
     function autherizeData(address to, string did, uint256 index, bytes encryptedAESKey) external {
         address owner = _xcOwner[did];
 

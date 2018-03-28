@@ -1387,7 +1387,7 @@ func (s *PublicXcareAPI) GetXciData(ctx context.Context, address common.Address,
 
 // GetXciDataTimestamp gets the timestamp of the specific did and index
 func (s *PublicXcareAPI) GetXciDataTimestamp(ctx context.Context, address common.Address, passphrase string, did string, index *big.Int) (*big.Int, error) {
-	timestamp,_,err := s.b.GetXciDataTimestampAndHash(address,passphrase,did,index)
+	timestamp,_,_,err := s.b.GetXciDataTimestampAndHash(address,passphrase,did,index)
 	return timestamp,err
 }
 
