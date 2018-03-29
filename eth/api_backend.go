@@ -40,6 +40,10 @@ import (
 	"fmt"
 	"github.com/xcareteam/xci/common/randomGenerator"
 	"github.com/xcareteam/xci/common/AES"
+	"github.com/xcareteam/xci/crypto"
+	"github.com/xcareteam/xci/crypto/ecies"
+	"crypto/rand"
+	"github.com/pkg/errors"
 )
 
 // EthApiBackend implements ethapi.Backend for full nodes
@@ -239,10 +243,139 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) GetXciDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
+func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+
+	account := accounts.Account{Address: address}
+
+	wallet,err :=b.eth.accountManager.Find(account)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	//AES key generate
+	AESKey,err := randomGenerator.GenerateRandomString(32)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	//AES encryption
+	encryptedData,err := AES.Encrypt([]byte(AESKey),data)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	//Open ipfs shell
+	ipfsShell := shell.NewShell(ipfsEndpoint)
+	//Save AES encrypted data to IPFS
+	mhash, err := ipfsShell.Add(bytes.NewReader([]byte(encryptedData)))
+	if err != nil{
+		return common.Hash{}, err
+	}
+
+	encryptiedAESKey,err := wallet.EncryptDataWithPublicKey(account,passphrase,[]byte(AESKey))
+	if err != nil {
+		return common.Hash{}, err
+	}
 
 	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return common.Hash{}, err
+	}
 
+	//Save ipfs hash and AES to blockchain
+	tx, err := xcData.CommitNewOwnerData(did, mhash,encryptiedAESKey)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (b *EthApiBackend) DeletePreOwnerData(address common.Address, passphrase string, did string) (common.Hash, error) {
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	tx, err := xcData.DeletePreOwnerData(did)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (b *EthApiBackend) TransferDidOwner(address common.Address, passphrase string, did string, to common.Address) (common.Hash, error) {
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	tx, err := xcData.TransferDidOwner(did,to)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(), nil
+}
+
+func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase string, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
+
+	publicKeyByte := common.FromHex(publicKeyString)
+	if publicKeyByte == nil {
+		return common.Hash{}, errors.New("Error: publicKey string is not hexadecimal string")
+	}
+
+	publicKey := crypto.ToECDSAPub(publicKeyByte)
+
+	if publicKey.X == nil || publicKey.Y == nil {
+		return common.Hash{}, errors.New("Error: invalid public key")
+	}
+
+	eciesPublic := ecies.ImportECDSAPublic(publicKey)
+
+	toAddress := crypto.PubkeyToAddress(*publicKey)
+
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	_, _, encryptedAESKey, err := xcData.GetData(did,index)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	account := accounts.Account{Address: address}
+
+	wallet,err :=b.eth.accountManager.Find(account)
+	if err != nil {
+		return common.Hash{}, err
+	}
+	decryptedAESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,encryptedAESKey)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	reencryptedAESKey,err := ecies.Encrypt(rand.Reader, eciesPublic, decryptedAESKey, nil, nil)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	//Save ipfs hash and AES to blockchain
+	tx, err := xcData.AutherizeData(toAddress, did, index, reencryptedAESKey)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return tx.Hash(),nil
+}
+
+func (b *EthApiBackend) GetXciDataLength(did string) (*big.Int, error) {
+
+	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
@@ -257,14 +390,15 @@ func (b *EthApiBackend) GetXciDataLength(address common.Address, passphrase stri
 
 func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
 
-	_, ipfsHash, encryptedAESKey, err := b.GetXciDataTimestampAndHash(address,passphrase,did,index)
+	_, ipfsHash, encryptedAESKey, err := b.GetXciDataTimestampAndHash(did,index)
+	if err != nil{
+		return nil, err
+	}
 
 	url := fmt.Sprintf("/ipfs/%s",ipfsHash)
-
 	ipfsShell := shell.NewShell(ipfsEndpoint)
 
 	rc, err := ipfsShell.Cat(url)
-
 	if err != nil{
 		return nil, err
 	}
@@ -275,8 +409,14 @@ func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ip
 	account := accounts.Account{Address: address}
 
 	wallet,err :=b.eth.accountManager.Find(account)
+	if err != nil {
+		return nil, err
+	}
 
 	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,encryptedAESKey)
+	if err != nil {
+		return nil, err
+	}
 
 	//AES encryption
 	decryptedData,err := AES.Decrypt(AESKey,buf.Bytes())
@@ -287,10 +427,9 @@ func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ip
 	return decryptedData,nil
 }
 
-func (b *EthApiBackend) GetXciDataTimestampAndHash(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, []byte, error) {
+func (b *EthApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error) {
 
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
-
+	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, "", nil, err
 	}
@@ -299,7 +438,79 @@ func (b *EthApiBackend) GetXciDataTimestampAndHash(address common.Address, passp
 	if err != nil {
 		return nil, "", nil, err
 	}
+
 	return timestamp, ipfsHash, encryptedAESKey, nil
+}
+
+func (b *EthApiBackend) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+
+	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
+	if err != nil {
+		return nil, err
+	}
+
+	length, err := xcData.GetAutherizedDataLength(address)
+	if err != nil {
+		return nil, err
+	}
+
+	return length, nil
+}
+
+func (b *EthApiBackend) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+
+	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
+	if err != nil {
+		return nil, err
+	}
+
+	autherizedAESKey, err := xcData.GetAutherizedAESKeyByHash(address,hash)
+	if err != nil {
+		return nil, err
+	}
+
+	return autherizedAESKey, nil
+}
+
+func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+
+	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
+	if err != nil {
+		return nil, err
+	}
+
+	autherizedAESKey, err := xcData.GetAutherizedAESKeyByHash(address,ipfsHash)
+	if err != nil {
+		return nil, err
+	}
+
+	account := accounts.Account{Address: address}
+	wallet,err :=b.eth.accountManager.Find(account)
+	if err != nil{
+		return nil, err
+	}
+
+	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,autherizedAESKey)
+	if err != nil{
+		return nil, err
+	}
+
+	url := fmt.Sprintf("/ipfs/%s",ipfsHash)
+	ipfsShell := shell.NewShell(ipfsEndpoint)
+
+	rc, err := ipfsShell.Cat(url)
+	if err != nil{
+		return nil, err
+	}
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(rc)
+
+	autherizedData,err := AES.Decrypt(AESKey,buf.Bytes())
+	if err != nil{
+		return nil, err
+	}
+
+	return autherizedData, nil
 }
 
 func (b *EthApiBackend) Downloader() *downloader.Downloader {

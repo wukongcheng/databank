@@ -1374,9 +1374,25 @@ func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Addre
 	return s.b.CommitXciData(address,passphrase,ipfsEndpoint,did,data)
 }
 
+func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return s.b.CommitNewOwnerData(address,passphrase,ipfsEndpoint,did,data)
+}
+
+func (s *PublicXcareAPI) DeletePreOwnerData(ctx context.Context, address common.Address, passphrase string, did string) (common.Hash, error) {
+	return s.b.DeletePreOwnerData(address,passphrase,did)
+}
+
+func (s *PublicXcareAPI) TransferDidOwner(ctx context.Context, address common.Address, passphrase string, did string, to common.Address) (common.Hash, error) {
+	return s.b.TransferDidOwner(address,passphrase,did,to)
+}
+
+func (s *PublicXcareAPI) AuthorizeXcdata(ctx context.Context, address common.Address, passphrase string, publicKey string, did string, index *big.Int) (common.Hash, error) {
+	return s.b.AuthorizeXcdata(address,passphrase,publicKey,did,index)
+}
+
 // GetXciDataLength gets the data length of the specific did
-func (s *PublicXcareAPI) GetXciDataLength(ctx context.Context, address common.Address, passphrase string, did string) (*big.Int, error) {
-	return s.b.GetXciDataLength(address,passphrase,did)
+func (s *PublicXcareAPI) GetXciDataLength(ctx context.Context, did string) (*big.Int, error) {
+	return s.b.GetXciDataLength(did)
 }
 
 // GetXciData gets the data of the specific did and index
@@ -1386,9 +1402,21 @@ func (s *PublicXcareAPI) GetXciData(ctx context.Context, address common.Address,
 }
 
 // GetXciDataTimestamp gets the timestamp of the specific did and index
-func (s *PublicXcareAPI) GetXciDataTimestamp(ctx context.Context, address common.Address, passphrase string, did string, index *big.Int) (*big.Int, error) {
-	timestamp,_,_,err := s.b.GetXciDataTimestampAndHash(address,passphrase,did,index)
+func (s *PublicXcareAPI) GetXciDataTimestamp(ctx context.Context, did string, index *big.Int) (*big.Int, error) {
+	timestamp,_,_,err := s.b.GetXciDataTimestampAndHash(did,index)
 	return timestamp,err
+}
+
+func (s *PublicXcareAPI) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+	return s.b.GetAutherizedDataLength(address)
+}
+
+func (s *PublicXcareAPI) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+	return s.b.GetAutherizedAESKeyByHash(address,hash)
+}
+
+func (s *PublicXcareAPI) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+	return s.b.GetAutherizedData(address,passphrase,ipfsEndpoint,ipfsHash)
 }
 
 // PublicDebugAPI is the collection of Ethereum APIs exposed over the public

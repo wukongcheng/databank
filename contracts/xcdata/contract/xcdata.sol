@@ -12,10 +12,14 @@ contract XCData {
         Data[] list;
     }
 
+    event Autherize(address to, string datahash);
+
     address _owner;
     mapping (string => DataList) _xcData;
-    mapping (address => DataList) _AutherizedData;
     mapping (string => address) _xcOwner;
+
+    mapping (address => mapping (string => bytes)) _HashToAutherizedAESKey;
+    mapping (address => uint256) _AutherizedDataLength;
 
     function XCData () public {
         _owner = msg.sender;
@@ -73,17 +77,23 @@ contract XCData {
         address owner = _xcOwner[did];
 
         require(owner != address(0));
+        require(owner != to);
         require(msg.sender == owner);
 
-        _AutherizedData[to].list.push(Data(_xcData[did].list[index].timestamp, _xcData[did].list[index].datahash,encryptedAESKey));
+        uint256 count = _AutherizedDataLength[to];
+
+        _HashToAutherizedAESKey[to][_xcData[did].list[index].datahash]=encryptedAESKey;
+        _AutherizedDataLength[to]=count+1;
+
+        Autherize(to,_xcData[did].list[index].datahash);
     }
 
-    function getAutherizeDataLength(address addr) external view returns (uint256) {
-        return _AutherizedData[addr].list.length;
+    function getAutherizedDataLength(address addr) external view returns (uint256) {
+        return _AutherizedDataLength[addr];
     }
 
-    function getAutherizeData(address addr, uint256 index) external view returns (uint256, string, bytes) {
-        return (_AutherizedData[addr].list[index].timestamp, _AutherizedData[addr].list[index].datahash,_AutherizedData[addr].list[index].encryptedAESKey);
+    function getAutherizedAESKeyByHash(address addr, string datahash) external view returns (bytes) {
+        return _HashToAutherizedAESKey[addr][datahash];
     }
 
     function deletePreOwnerData(string did) external {

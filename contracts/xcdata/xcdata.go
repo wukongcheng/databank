@@ -13,7 +13,7 @@ import (
 
 var (
 	MainNetAddress = common.HexToAddress("0x314159265dD8dbb310642f98f50C066173C1259b")
-	TestNetAddress = common.HexToAddress("0xd125a19b1a609594eecde753d106e3d3992a0645")
+	TestNetAddress = common.HexToAddress("0x9a01f7353392d5ea0312995f06c911722de6ce2c")
 )
 
 type XCData struct {
@@ -71,8 +71,34 @@ func GetXCData(accMng *accounts.Manager, backend bind.ContractBackend, address c
 	return contract, nil
 }
 
+func GetXCDataReadOnly(backend bind.ContractBackend) (*XCData, error) {
+
+	contract, err := NewXCData(&bind.TransactOpts{}, TestNetAddress, backend)
+	if err != nil {
+		return nil, err
+	}
+
+	return contract, nil
+}
+
 func (self *XCData) CommitData(did string, datahash string, encryptedAESKey []byte) (*types.Transaction, error) {
 	return self.Contract.CommitData(&self.TransactOpts, did, datahash, encryptedAESKey)
+}
+
+func (self *XCData) CommitNewOwnerData(did string, datahash string, encryptedAESKey []byte) (*types.Transaction, error) {
+	return self.Contract.CommitNewOwnerData(&self.TransactOpts, did, datahash ,encryptedAESKey);
+}
+
+func (self *XCData) DeletePreOwnerData(did string) (*types.Transaction, error) {
+	return self.Contract.DeletePreOwnerData(&self.TransactOpts, did);
+}
+
+func (self *XCData) TransferDidOwner(did string, to common.Address) (*types.Transaction, error) {
+	return self.Contract.TransferDidOwner(&self.TransactOpts, did, to);
+}
+
+func (self *XCData) AutherizeData(to common.Address, did string, index *big.Int, encryptedAESKey []byte) (*types.Transaction, error) {
+	return self.Contract.AutherizeData(&self.TransactOpts, to, did, index ,encryptedAESKey);
 }
 
 func (self *XCData) GetDataLength(did string) (*big.Int, error) {
@@ -81,4 +107,12 @@ func (self *XCData) GetDataLength(did string) (*big.Int, error) {
 
 func (self *XCData) GetData(did string, index *big.Int) (*big.Int, string, []byte, error) {
 	return self.Contract.GetData(&self.CallOpts, did, index);
+}
+
+func (self *XCData) GetAutherizedDataLength(addr common.Address) (*big.Int, error) {
+	return self.Contract.GetAutherizedDataLength(&self.CallOpts, addr);
+}
+
+func (self *XCData) GetAutherizedAESKeyByHash(addr common.Address, datahash string) ([]byte, error) {
+	return self.Contract.GetAutherizedAESKeyByHash(&self.CallOpts, addr,datahash);
 }
