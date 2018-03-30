@@ -221,7 +221,8 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 
 	ipfsInfo := strings.Split(ipfsEndpoint, ":")
 	if len(ipfsInfo)!=5 {
-		return common.Hash{}, errors.New("ipfsEndpoint syntax error, expected syntax: localhost:5001:9094:2:3, Here we suppose ipfs and ipfs-cluter are on the same host, 2 is replicationFactorMin and 3 is replicationFactorMax")
+		return common.Hash{}, errors.New("ipfsEndpoint syntax error, expected syntax: localhost:5001:9094:2:3, Here we suppose ipfs and ipfs-cluter are on the same host." +
+			"5001 is ipfs service port and 9094 is ipfs cluster service port. 2 is replicationFactorMin and 3 is replicationFactorMax")
 	}
 	ipfsHost := ipfsInfo[0]
 	ipfsPort := ipfsInfo[1]
@@ -258,7 +259,7 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 	if err != nil {
 		return common.Hash{}, err
 	}
-
+	//TODO Currently we don't import any mechanism to charge for requesting replication or incentive for providing storage, Laster we will do more development here.
 	err = ipfsClusterClient.Pin(ci,replicationFactorMin,replicationFactorMax,"")
 	if err != nil {
 		return common.Hash{}, err
@@ -270,6 +271,7 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 		return common.Hash{}, err
 	}
 
+	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypt private. Later we will optimize this to improve TPS
 	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
 
 	if err != nil {
@@ -307,7 +309,8 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase st
 
 	ipfsInfo := strings.Split(ipfsEndpoint, ":")
 	if len(ipfsInfo)!=5 {
-		return common.Hash{}, errors.New("ipfsEndpoint syntax error, expected syntax: localhost:5001:9094:2:3, Here we suppose ipfs and ipfs-cluter are on the same host, 2 is replicationFactorMin and 3 is replicationFactorMax")
+		return common.Hash{}, errors.New("ipfsEndpoint syntax error, expected syntax: localhost:5001:9094:2:3, Here we suppose ipfs and ipfs-cluter are on the same host." +
+			"5001 is ipfs service port and 9094 is ipfs cluster service port. 2 is replicationFactorMin and 3 is replicationFactorMax")
 	}
 	ipfsHost := ipfsInfo[0]
 	ipfsPort := ipfsInfo[1]
@@ -344,7 +347,7 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase st
 	if err != nil {
 		return common.Hash{}, err
 	}
-
+	//TODO Currently we don't import any mechanism to charge for requesting replication or incentive for providing storage, Laster we will do more development here.
 	err = ipfsClusterClient.Pin(ci,replicationFactorMin,replicationFactorMax,"")
 	if err != nil {
 		return common.Hash{}, err
@@ -354,7 +357,7 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase st
 	if err != nil {
 		return common.Hash{}, err
 	}
-
+	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypting private key. Later we will optimize this to improve TPS
 	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
 	if err != nil {
 		return common.Hash{}, err
@@ -415,7 +418,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase strin
 	eciesPublic := ecies.ImportECDSAPublic(publicKey)
 
 	toAddress := crypto.PubkeyToAddress(*publicKey)
-
+	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypting private key. Later we will optimize this to improve TPS
 	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
 	if err != nil {
 		return common.Hash{}, err
@@ -567,7 +570,7 @@ func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase str
 	if err != nil{
 		return nil, err
 	}
-
+	//TODO Decrypting private key cost much time. Later we will optimize this to improve TPS
 	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,autherizedAESKey)
 	if err != nil{
 		return nil, err
