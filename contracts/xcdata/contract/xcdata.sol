@@ -12,7 +12,8 @@ contract XCData {
         Data[] list;
     }
 
-    event Autherize(address to, string datahash);
+    event NewCommitData(address indexed from, string did, string datahash);
+    event Autherize(address indexed to, string datahash);
 
     address _owner;
     mapping (string => DataList) _xcData;
@@ -40,6 +41,8 @@ contract XCData {
         }
 
         _xcData[did].list.push(Data(now, datahash,encryptedAESKey));
+
+        NewCommitData(msg.sender,did,datahash);
     }
 
     function getDataLength(string did) external view returns(uint256) {

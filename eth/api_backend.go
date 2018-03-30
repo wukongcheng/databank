@@ -44,6 +44,10 @@ import (
 	"github.com/xcareteam/xci/crypto/ecies"
 	"crypto/rand"
 	"github.com/pkg/errors"
+	"strings"
+	"strconv"
+	"github.com/ipfs/ipfs-cluster/api/rest/client"
+	"github.com/ipfs/go-cid"
 )
 
 // EthApiBackend implements ethapi.Backend for full nodes
@@ -215,11 +219,48 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 		return common.Hash{}, err
 	}
 
+	ipfsInfo := strings.Split(ipfsEndpoint, ":")
+	if len(ipfsInfo)!=5 {
+		return common.Hash{}, errors.New("ipfsEndpoint syntax error, expected syntax: localhost:5001:9094:2:3, Here we suppose ipfs and ipfs-cluter are on the same host, 2 is replicationFactorMin and 3 is replicationFactorMax")
+	}
+	ipfsHost := ipfsInfo[0]
+	ipfsPort := ipfsInfo[1]
+	ipfsClusterPort := ipfsInfo[2]
+
+	replicationFactorMin,err := strconv.Atoi(ipfsInfo[3])
+	if err != nil {
+		return common.Hash{}, err
+	}
+	replicationFactorMax,err := strconv.Atoi(ipfsInfo[4])
+	if err != nil {
+		return common.Hash{}, err
+	}
 	//Open ipfs shell
-	ipfsShell := shell.NewShell(ipfsEndpoint)
+	ipfsShell := shell.NewShell(ipfsHost+":"+ipfsPort)
 	//Save AES encrypted data to IPFS
 	mhash, err := ipfsShell.Add(bytes.NewReader([]byte(encryptedData)))
 	if err != nil{
+		return common.Hash{}, err
+	}
+
+	cfg := &client.Config{
+		Host:              ipfsHost,
+		Port:              ipfsClusterPort,
+		DisableKeepAlives: false,
+	}
+
+	ipfsClusterClient, err := client.NewClient(cfg)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	ci,err := cid.Decode(mhash)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	err = ipfsClusterClient.Pin(ci,replicationFactorMin,replicationFactorMax,"")
+	if err != nil {
 		return common.Hash{}, err
 	}
 
@@ -264,11 +305,48 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase st
 		return common.Hash{}, err
 	}
 
+	ipfsInfo := strings.Split(ipfsEndpoint, ":")
+	if len(ipfsInfo)!=5 {
+		return common.Hash{}, errors.New("ipfsEndpoint syntax error, expected syntax: localhost:5001:9094:2:3, Here we suppose ipfs and ipfs-cluter are on the same host, 2 is replicationFactorMin and 3 is replicationFactorMax")
+	}
+	ipfsHost := ipfsInfo[0]
+	ipfsPort := ipfsInfo[1]
+	ipfsClusterPort := ipfsInfo[2]
+
+	replicationFactorMin,err := strconv.Atoi(ipfsInfo[3])
+	if err != nil {
+		return common.Hash{}, err
+	}
+	replicationFactorMax,err := strconv.Atoi(ipfsInfo[4])
+	if err != nil {
+		return common.Hash{}, err
+	}
 	//Open ipfs shell
-	ipfsShell := shell.NewShell(ipfsEndpoint)
+	ipfsShell := shell.NewShell(ipfsHost+":"+ipfsPort)
 	//Save AES encrypted data to IPFS
 	mhash, err := ipfsShell.Add(bytes.NewReader([]byte(encryptedData)))
 	if err != nil{
+		return common.Hash{}, err
+	}
+
+	cfg := &client.Config{
+		Host:              ipfsHost,
+		Port:              ipfsClusterPort,
+		DisableKeepAlives: false,
+	}
+
+	ipfsClusterClient, err := client.NewClient(cfg)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	ci,err := cid.Decode(mhash)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	err = ipfsClusterClient.Pin(ci,replicationFactorMin,replicationFactorMax,"")
+	if err != nil {
 		return common.Hash{}, err
 	}
 

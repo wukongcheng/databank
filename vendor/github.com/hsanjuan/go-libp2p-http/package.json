@@ -1,0 +1,30 @@
+{
+  "author": "hsanjuan",
+  "bugs": {
+    "url": "https://github.com/hsanjuan/go-libp2p-http"
+  },
+  "gx": {
+    "dvcsimport": "github.com/hsanjuan/go-libp2p-http"
+  },
+  "gxDependencies": [
+    {
+      "author": "whyrusleeping",
+      "hash": "QmNh1kGFFdsPu79KNSaL4NUKUPb4Eiz4KHdMtFY6664RDp",
+      "name": "go-libp2p",
+      "version": "5.0.14"
+    },
+    {
+      "author": "hsanjuan",
+      "hash": "Qmdah9QB8iqQcehRbEqwmVnvGwDKd91oC8LUgdQNFu8gCY",
+      "name": "go-libp2p-gostream",
+      "version": "0.0.5"
+    }
+  ],
+  "gxVersion": "0.10.0",
+  "language": "go",
+  "license": "MIT",
+  "name": "go-libp2p-http",
+  "releaseCmd": "git commit -a -m \"gx publish $VERSION\"",
+  "version": "1.0.1"
+}
+
