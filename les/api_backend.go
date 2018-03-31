@@ -134,19 +134,47 @@ func (b *LesApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 }
 
 func (b *LesApiBackend) CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
-	return common.Hash{},nil;
+	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) GetXciDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
-	return nil,nil;
+func (b *LesApiBackend) CommitNewOwnerData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return common.Hash{},nil
+}
+
+func (b *LesApiBackend) DeletePreOwnerData(address common.Address, passphrase string, did string) (common.Hash, error) {
+	return common.Hash{},nil
+}
+
+func (b *LesApiBackend) TransferDidOwner(address common.Address, passphrase string, did string, to common.Address) (common.Hash, error) {
+	return common.Hash{},nil
+}
+
+func (b *LesApiBackend) AuthorizeXcdata(address common.Address, passphrase string, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
+	return common.Hash{},nil
+}
+
+func (b *LesApiBackend) GetXciDataLength(did string) (*big.Int, error) {
+	return nil,nil
 }
 
 func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
-	return nil,nil;
+	return nil,nil
 }
 
-func (b *LesApiBackend) GetXciDataTimestampAndHash(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
-	return nil,"",nil;
+func (b *LesApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error) {
+	return nil,"",nil,nil
+}
+
+func (b *LesApiBackend) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+	return nil,nil
+}
+
+func (b *LesApiBackend) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+	return nil,nil
+}
+
+func (b *LesApiBackend) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+	return nil,nil
 }
 
 func (b *LesApiBackend) SubscribeChainEvent(ch chan<- core.ChainEvent) event.Subscription {
