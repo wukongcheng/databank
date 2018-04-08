@@ -446,7 +446,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase strin
 	}
 
 	//Save ipfs hash and AES to blockchain
-	tx, err := xcData.AutherizeData(toAddress, did, index, reencryptedAESKey)
+	tx, err := xcData.AuthorizeData(toAddress, did, index, reencryptedAESKey)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -523,14 +523,14 @@ func (b *EthApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (
 	return timestamp, ipfsHash, encryptedAESKey, nil
 }
 
-func (b *EthApiBackend) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+func (b *EthApiBackend) GetAuthorizedDataLength(address common.Address) (*big.Int, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
 
-	length, err := xcData.GetAutherizedDataLength(address)
+	length, err := xcData.GetAuthorizedDataLength(address)
 	if err != nil {
 		return nil, err
 	}
@@ -538,29 +538,29 @@ func (b *EthApiBackend) GetAutherizedDataLength(address common.Address) (*big.In
 	return length, nil
 }
 
-func (b *EthApiBackend) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+func (b *EthApiBackend) GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
 
-	autherizedAESKey, err := xcData.GetAutherizedAESKeyByHash(address,hash)
+	authorizedAESKey, err := xcData.GetAuthorizedAESKeyByHash(address,hash)
 	if err != nil {
 		return nil, err
 	}
 
-	return autherizedAESKey, nil
+	return authorizedAESKey, nil
 }
 
-func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+func (b *EthApiBackend) GetAuthorizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
 
-	autherizedAESKey, err := xcData.GetAutherizedAESKeyByHash(address,ipfsHash)
+	authorizedAESKey, err := xcData.GetAuthorizedAESKeyByHash(address,ipfsHash)
 	if err != nil {
 		return nil, err
 	}
@@ -571,7 +571,7 @@ func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase str
 		return nil, err
 	}
 	//TODO Decrypting private key cost much time. Later we will optimize this to improve TPS
-	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,autherizedAESKey)
+	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,authorizedAESKey)
 	if err != nil{
 		return nil, err
 	}
@@ -586,12 +586,12 @@ func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase str
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(rc)
 
-	autherizedData,err := AES.Decrypt(AESKey,buf.Bytes())
+	authorizedData,err := AES.Decrypt(AESKey,buf.Bytes())
 	if err != nil{
 		return nil, err
 	}
 
-	return autherizedData, nil
+	return authorizedData, nil
 }
 
 func (b *EthApiBackend) Downloader() *downloader.Downloader {

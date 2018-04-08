@@ -13,14 +13,14 @@ contract XCData {
     }
 
     event NewCommitData(address indexed from, string did, string datahash);
-    event Autherize(address indexed to, string datahash);
+    event Authorize(address indexed to, string datahash);
 
     address _owner;
     mapping (string => DataList) _xcData;
     mapping (string => address) _xcOwner;
 
-    mapping (address => mapping (string => bytes)) _HashToAutherizedAESKey;
-    mapping (address => uint256) _AutherizedDataLength;
+    mapping (address => mapping (string => bytes)) _HashToAuthorizedAESKey;
+    mapping (address => uint256) _AuthorizedDataLength;
 
     function XCData () public {
         _owner = msg.sender;
@@ -76,27 +76,27 @@ contract XCData {
 
     //TODO, how to ensure the AES key has been re-encrypted by counterparty public key
     //TODO, In theroy, patient can hack xci and use wrong public key deliberately
-    function autherizeData(address to, string did, uint256 index, bytes encryptedAESKey) external {
+    function authorizeData(address to, string did, uint256 index, bytes encryptedAESKey) external {
         address owner = _xcOwner[did];
 
         require(owner != address(0));
         require(owner != to);
         require(msg.sender == owner);
 
-        uint256 count = _AutherizedDataLength[to];
+        uint256 count = _AuthorizedDataLength[to];
 
-        _HashToAutherizedAESKey[to][_xcData[did].list[index].datahash]=encryptedAESKey;
-        _AutherizedDataLength[to]=count+1;
+        _HashToAuthorizedAESKey[to][_xcData[did].list[index].datahash]=encryptedAESKey;
+        _AuthorizedDataLength[to]=count+1;
 
-        Autherize(to,_xcData[did].list[index].datahash);
+        Authorize(to,_xcData[did].list[index].datahash);
     }
 
-    function getAutherizedDataLength(address addr) external view returns (uint256) {
-        return _AutherizedDataLength[addr];
+    function getAuthorizedDataLength(address addr) external view returns (uint256) {
+        return _AuthorizedDataLength[addr];
     }
 
-    function getAutherizedAESKeyByHash(address addr, string datahash) external view returns (bytes) {
-        return _HashToAutherizedAESKey[addr][datahash];
+    function getAuthorizedAESKeyByHash(address addr, string datahash) external view returns (bytes) {
+        return _HashToAuthorizedAESKey[addr][datahash];
     }
 
     function deletePreOwnerData(string did) external {

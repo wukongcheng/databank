@@ -76,9 +76,9 @@ type Backend interface {
 	GetXciDataLength(did string) (*big.Int, error)
 	GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error)
 	GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error)
-	GetAutherizedDataLength(address common.Address) (*big.Int, error)
-	GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error)
-	GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error)
+	GetAuthorizedDataLength(address common.Address) (*big.Int, error)
+	GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error)
+	GetAuthorizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error)
 
 	ChainConfig() *params.ChainConfig
 	CurrentBlock() *types.Block

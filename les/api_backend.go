@@ -165,15 +165,15 @@ func (b *LesApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (
 	return nil,"",nil,nil
 }
 
-func (b *LesApiBackend) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+func (b *LesApiBackend) GetAuthorizedDataLength(address common.Address) (*big.Int, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+func (b *LesApiBackend) GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+func (b *LesApiBackend) GetAuthorizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
 	return nil,nil
 }
 

@@ -1407,16 +1407,16 @@ func (s *PublicXcareAPI) GetXciDataTimestamp(ctx context.Context, did string, in
 	return timestamp,err
 }
 
-func (s *PublicXcareAPI) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
-	return s.b.GetAutherizedDataLength(address)
+func (s *PublicXcareAPI) GetAuthorizedDataLength(address common.Address) (*big.Int, error) {
+	return s.b.GetAuthorizedDataLength(address)
 }
 
-func (s *PublicXcareAPI) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
-	return s.b.GetAutherizedAESKeyByHash(address,hash)
+func (s *PublicXcareAPI) GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+	return s.b.GetAuthorizedAESKeyByHash(address,hash)
 }
 
-func (s *PublicXcareAPI) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
-	return s.b.GetAutherizedData(address,passphrase,ipfsEndpoint,ipfsHash)
+func (s *PublicXcareAPI) GetAuthorizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+	return s.b.GetAuthorizedData(address,passphrase,ipfsEndpoint,ipfsHash)
 }
 
 // PublicDebugAPI is the collection of Ethereum APIs exposed over the public

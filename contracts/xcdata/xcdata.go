@@ -97,8 +97,8 @@ func (self *XCData) TransferDidOwner(did string, to common.Address) (*types.Tran
 	return self.Contract.TransferDidOwner(&self.TransactOpts, did, to);
 }
 
-func (self *XCData) AutherizeData(to common.Address, did string, index *big.Int, encryptedAESKey []byte) (*types.Transaction, error) {
-	return self.Contract.AutherizeData(&self.TransactOpts, to, did, index ,encryptedAESKey);
+func (self *XCData) AuthorizeData(to common.Address, did string, index *big.Int, encryptedAESKey []byte) (*types.Transaction, error) {
+	return self.Contract.AuthorizeData(&self.TransactOpts, to, did, index ,encryptedAESKey);
 }
 
 func (self *XCData) GetDataLength(did string) (*big.Int, error) {
@@ -109,10 +109,10 @@ func (self *XCData) GetData(did string, index *big.Int) (*big.Int, string, []byt
 	return self.Contract.GetData(&self.CallOpts, did, index);
 }
 
-func (self *XCData) GetAutherizedDataLength(addr common.Address) (*big.Int, error) {
-	return self.Contract.GetAutherizedDataLength(&self.CallOpts, addr);
+func (self *XCData) GetAuthorizedDataLength(addr common.Address) (*big.Int, error) {
+	return self.Contract.GetAuthorizedDataLength(&self.CallOpts, addr);
 }
 
-func (self *XCData) GetAutherizedAESKeyByHash(addr common.Address, datahash string) ([]byte, error) {
-	return self.Contract.GetAutherizedAESKeyByHash(&self.CallOpts, addr,datahash);
+func (self *XCData) GetAuthorizedAESKeyByHash(addr common.Address, datahash string) ([]byte, error) {
+	return self.Contract.GetAuthorizedAESKeyByHash(&self.CallOpts, addr,datahash);
 }

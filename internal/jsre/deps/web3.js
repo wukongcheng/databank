@@ -5948,23 +5948,23 @@ var methods = function () {
         }),
 
         new Method({
-            name: 'getAutherizedDataLength',
-            call: 'xcare_getAutherizedDataLength',
+            name: 'getAuthorizedDataLength',
+            call: 'xcare_getAuthorizedDataLength',
             params: 1,
             inputFormatter: [null],
             outputFormatter: utils.toDecimal
         }),
 
         new Method({
-            name: 'getAutherizedAESKeyByHash',
-            call: 'xcare_getAutherizedAESKeyByHash',
+            name: 'getAuthorizedAESKeyByHash',
+            call: 'xcare_getAuthorizedAESKeyByHash',
             params: 2,
             inputFormatter: [null,utils.toDecimal]
         }),
 
         new Method({
-            name: 'getAutherizedData',
-            call: 'xcare_getAutherizedData',
+            name: 'getAuthorizedData',
+            call: 'xcare_getAuthorizedData',
             params: 4,
             inputFormatter: [formatters.inputAddressFormatter,null,null,null]
         }),
