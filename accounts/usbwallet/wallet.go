@@ -566,10 +566,14 @@ func (w *wallet) NewKeyedTransactor(account accounts.Account, passphrase string)
 	return nil, nil
 }
 
-func (w *wallet)EncryptDataWithPublicKey(account accounts.Account, passphrase string, data []byte) ([]byte, error) {
-	return w.EncryptDataWithPublicKey(account,passphrase,data)
+func (w *wallet) NewUnlockedKeyedTransactor(account accounts.Account) (*bind.TransactOpts, error) {
+	return nil, nil
 }
 
-func (w *wallet)DecryptDataWithPrivateKey(account accounts.Account, passphrase string, encryptedData []byte) ([]byte, error) {
-	return w.DecryptDataWithPrivateKey(account,passphrase,encryptedData)
+func (w *wallet)EncryptDataWithPublicKey(account accounts.Account, data []byte) ([]byte, error) {
+	return w.EncryptDataWithPublicKey(account,data)
+}
+
+func (w *wallet)DecryptDataWithPrivateKey(account accounts.Account, encryptedData []byte) ([]byte, error) {
+	return w.DecryptDataWithPrivateKey(account,encryptedData)
 }

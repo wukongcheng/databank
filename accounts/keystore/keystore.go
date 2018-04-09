@@ -335,15 +335,42 @@ func (ks *KeyStore) NewKeyedTransactor(a accounts.Account, passphrase string) (*
 	}, nil
 }
 
-func (ks *KeyStore) EncryptDataWithPublicKey(account accounts.Account, passphrase string, data []byte) ([]byte, error) {
+func (ks *KeyStore) NewUnlockedKeyedTransactor(a accounts.Account) (*bind.TransactOpts, error) {
 
-	_, key, err := ks.getDecryptedKey(account, passphrase)
+	ks.mu.RLock()
+	defer ks.mu.RUnlock()
 
-	if err != nil {
-		return nil, err
+	unlockedKey, found := ks.unlocked[a.Address]
+	if !found {
+		return nil, ErrLocked
 	}
 
-	eciesPublic := ecies.ImportECDSAPublic(&(key.PrivateKey.PublicKey))
+	return &bind.TransactOpts{
+		From: a.Address,
+		Signer: func(signer types.Signer, address common.Address, tx *types.Transaction) (*types.Transaction, error) {
+			if address != a.Address {
+				return nil, errors.New("not authorized to sign this account")
+			}
+			signature, err := crypto.Sign(signer.Hash(tx).Bytes(), unlockedKey.PrivateKey)
+			if err != nil {
+				return nil, err
+			}
+			return tx.WithSignature(signer, signature)
+		},
+	}, nil
+}
+
+func (ks *KeyStore) EncryptDataWithPublicKey(account accounts.Account, data []byte) ([]byte, error) {
+
+	ks.mu.RLock()
+	defer ks.mu.RUnlock()
+
+	unlockedKey, found := ks.unlocked[account.Address]
+	if !found {
+		return nil, ErrLocked
+	}
+
+	eciesPublic := ecies.ImportECDSAPublic(&(unlockedKey.PrivateKey.PublicKey))
 
 	encryptedBytes,err := ecies.Encrypt(crand.Reader, eciesPublic, data, nil, nil)
 	if err != nil {
@@ -353,15 +380,17 @@ func (ks *KeyStore) EncryptDataWithPublicKey(account accounts.Account, passphras
 	return encryptedBytes,nil
 }
 
-func (ks *KeyStore) DecryptDataWithPrivateKey(account accounts.Account, passphrase string, encryptedData []byte) ([]byte, error) {
+func (ks *KeyStore) DecryptDataWithPrivateKey(account accounts.Account, encryptedData []byte) ([]byte, error) {
 
-	_, key, err := ks.getDecryptedKey(account, passphrase)
+	ks.mu.RLock()
+	defer ks.mu.RUnlock()
 
-	if err != nil {
-		return nil, err
+	unlockedKey, found := ks.unlocked[account.Address]
+	if !found {
+		return nil, ErrLocked
 	}
 
-	eciesPrivate := ecies.ImportECDSA(key.PrivateKey)
+	eciesPrivate := ecies.ImportECDSA(unlockedKey.PrivateKey)
 
 	decryptedBytes,err :=eciesPrivate.Decrypt(crand.Reader, encryptedData, nil,nil)
 

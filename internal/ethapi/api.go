@@ -1370,24 +1370,24 @@ func NewPublicXcareAPI(b Backend) *PublicXcareAPI {
 
 // commitXciData will add a native contract xcdata transaction to the transaction pool.
 // The xcdata contract wrapper is responsible for signing the transaction and using the correct nonce.
-func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
-	return s.b.CommitXciData(address,passphrase,ipfsEndpoint,did,data)
+func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return s.b.CommitXciData(address,ipfsEndpoint,did,data)
 }
 
-func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
-	return s.b.CommitNewOwnerData(address,passphrase,ipfsEndpoint,did,data)
+func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	return s.b.CommitNewOwnerData(address,ipfsEndpoint,did,data)
 }
 
-func (s *PublicXcareAPI) DeletePreOwnerData(ctx context.Context, address common.Address, passphrase string, did string) (common.Hash, error) {
-	return s.b.DeletePreOwnerData(address,passphrase,did)
+func (s *PublicXcareAPI) DeletePreOwnerData(ctx context.Context, address common.Address, did string) (common.Hash, error) {
+	return s.b.DeletePreOwnerData(address,did)
 }
 
-func (s *PublicXcareAPI) TransferDidOwner(ctx context.Context, address common.Address, passphrase string, did string, to common.Address) (common.Hash, error) {
-	return s.b.TransferDidOwner(address,passphrase,did,to)
+func (s *PublicXcareAPI) TransferDidOwner(ctx context.Context, address common.Address, did string, to common.Address) (common.Hash, error) {
+	return s.b.TransferDidOwner(address,did,to)
 }
 
-func (s *PublicXcareAPI) AuthorizeXcdata(ctx context.Context, address common.Address, passphrase string, publicKey string, did string, index *big.Int) (common.Hash, error) {
-	return s.b.AuthorizeXcdata(address,passphrase,publicKey,did,index)
+func (s *PublicXcareAPI) AuthorizeXcdata(ctx context.Context, address common.Address, publicKey string, did string, index *big.Int) (common.Hash, error) {
+	return s.b.AuthorizeXcdata(address,publicKey,did,index)
 }
 
 // GetXciDataLength gets the data length of the specific did
@@ -1396,8 +1396,8 @@ func (s *PublicXcareAPI) GetXciDataLength(ctx context.Context, did string) (*big
 }
 
 // GetXciData gets the data of the specific did and index
-func (s *PublicXcareAPI) GetXciData(ctx context.Context, address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
-	decryptedData,err := s.b.GetXciData(address,passphrase,ipfsEndpoint,did,index)
+func (s *PublicXcareAPI) GetXciData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+	decryptedData,err := s.b.GetXciData(address,ipfsEndpoint,did,index)
 	return decryptedData,err
 }
 
@@ -1415,8 +1415,8 @@ func (s *PublicXcareAPI) GetAuthorizedAESKeyByHash(address common.Address, hash 
 	return s.b.GetAuthorizedAESKeyByHash(address,hash)
 }
 
-func (s *PublicXcareAPI) GetAuthorizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
-	return s.b.GetAuthorizedData(address,passphrase,ipfsEndpoint,ipfsHash)
+func (s *PublicXcareAPI) GetAuthorizedData(address common.Address, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+	return s.b.GetAuthorizedData(address,ipfsEndpoint,ipfsHash)
 }
 
 // PublicDebugAPI is the collection of Ethereum APIs exposed over the public

@@ -13,7 +13,7 @@ import (
 
 var (
 	MainNetAddress = common.HexToAddress("0x314159265dD8dbb310642f98f50C066173C1259b")
-	TestNetAddress = common.HexToAddress("0xf0abf8eed4a5c3bea3ef735a72e7f1d53a0e3f55")
+	TestNetAddress = common.HexToAddress("0x500f1d53588c1c517fd4cfe09034c1fb0d04592e")
 )
 
 type XCData struct {
@@ -50,7 +50,7 @@ func DeployXCData(transactOpts *bind.TransactOpts, contractBackend bind.Contract
 	return xcdataAddr, xcdata, nil
 }
 
-func GetXCData(accMng *accounts.Manager, backend bind.ContractBackend, address common.Address, passphrase string) (*XCData, error) {
+func GetXCData(accMng *accounts.Manager, backend bind.ContractBackend, address common.Address) (*XCData, error) {
 
 	account := accounts.Account{Address: address}
 	wallet, err := accMng.Find(account)
@@ -58,7 +58,7 @@ func GetXCData(accMng *accounts.Manager, backend bind.ContractBackend, address c
 		return nil, err
 	}
 
-	transactOpts, err := wallet.NewKeyedTransactor(account, passphrase)
+	transactOpts, err := wallet.NewUnlockedKeyedTransactor(account)
 	if err != nil {
 		return nil, err
 	}
