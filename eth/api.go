@@ -281,7 +281,7 @@ func (api *PrivateAdminAPI) WhitelistGetNode(address common.Address, passphrase 
 //TODO deprecated interface
 func (api *PrivateAdminAPI) XCDataCommitData(address common.Address, passphrase string, did string, datahash string) (common.Hash, error) {
 
-	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address,0)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -296,7 +296,7 @@ func (api *PrivateAdminAPI) XCDataCommitData(address common.Address, passphrase 
 //TODO deprecated interface
 func (api *PrivateAdminAPI) XCDataGetDataLength(address common.Address, passphrase string, did string) (*big.Int, error) {
 
-	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address,0)
 	if err != nil {
 		return nil, err
 	}
@@ -311,7 +311,7 @@ func (api *PrivateAdminAPI) XCDataGetDataLength(address common.Address, passphra
 //TODO deprecated interface
 func (api *PrivateAdminAPI) XCDataGetData(address common.Address, passphrase string, did string, index *big.Int) (*big.Int, string, error) {
 
-	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address, passphrase)
+	xcData, err := xcdata.GetXCData(api.eth.accountManager, NewContractBackend(api.eth.ApiBackend), address,0)
 	if err != nil {
 		return nil, "", err
 	}

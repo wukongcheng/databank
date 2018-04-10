@@ -152,10 +152,22 @@ func (w *keystoreWallet) NewKeyedTransactor(account accounts.Account, passphrase
 	return w.keystore.NewKeyedTransactor(account, passphrase)
 }
 
-func (w *keystoreWallet)EncryptDataWithPublicKey(account accounts.Account, passphrase string, data []byte) ([]byte, error) {
-	return w.keystore.EncryptDataWithPublicKey(account,passphrase,data)
+func (w *keystoreWallet) NewUnlockedKeyedTransactor(account accounts.Account, nonce uint64) (*bind.TransactOpts, error) {
+	// Make sure the requested account is contained within
+	if account.Address != w.account.Address {
+		return nil, accounts.ErrUnknownAccount
+	}
+	if account.URL != (accounts.URL{}) && account.URL != w.account.URL {
+		return nil, accounts.ErrUnknownAccount
+	}
+	// Account seems valid, request the keystore to sign
+	return w.keystore.NewUnlockedKeyedTransactor(account,nonce)
 }
 
-func (w *keystoreWallet)DecryptDataWithPrivateKey(account accounts.Account, passphrase string, encryptedData []byte) ([]byte, error) {
-	return w.keystore.DecryptDataWithPrivateKey(account,passphrase,encryptedData)
+func (w *keystoreWallet)EncryptDataWithPublicKey(account accounts.Account, data []byte) ([]byte, error) {
+	return w.keystore.EncryptDataWithPublicKey(account,data)
+}
+
+func (w *keystoreWallet)DecryptDataWithPrivateKey(account accounts.Account, encryptedData []byte) ([]byte, error) {
+	return w.keystore.DecryptDataWithPrivateKey(account,encryptedData)
 }
