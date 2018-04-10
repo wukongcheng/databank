@@ -5892,36 +5892,36 @@ var methods = function () {
         new Method({
             name: 'commitXciData',
             call: 'xcare_commitXciData',
-            params: 5,
-            inputFormatter: [formatters.inputAddressFormatter,null,null,null,null]
+            params: 4,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,null]
         }),
 
         new Method({
             name: 'commitNewOwnerData',
             call: 'xcare_commitNewOwnerData',
-            params: 5,
-            inputFormatter: [formatters.inputAddressFormatter,null,null,null,null]
+            params: 4,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,null]
         }),
 
         new Method({
             name: 'deletePreOwnerData',
             call: 'xcare_deletePreOwnerData',
-            params: 3,
-            inputFormatter: [formatters.inputAddressFormatter,null,null]
+            params: 2,
+            inputFormatter: [formatters.inputAddressFormatter,null]
         }),
 
         new Method({
             name: 'transferDidOwner',
             call: 'xcare_transferDidOwner',
-            params: 4,
-            inputFormatter: [formatters.inputAddressFormatter,null,null,formatters.inputAddressFormatter]
+            params: 3,
+            inputFormatter: [formatters.inputAddressFormatter,null,formatters.inputAddressFormatter]
         }),
 
         new Method({
             name: 'authorizeXcdata',
             call: 'xcare_authorizeXcdata',
-            params: 5,
-            inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
+            params: 4,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,utils.toDecimal]
         }),
 
         new Method({
@@ -5935,8 +5935,8 @@ var methods = function () {
         new Method({
             name: 'getXciData',
             call: 'xcare_getXciData',
-            params: 5,
-            inputFormatter: [formatters.inputAddressFormatter,null,null,null,utils.toDecimal]
+            params: 4,
+            inputFormatter: [formatters.inputAddressFormatter,null,null,utils.toDecimal]
         }),
 
         new Method({
@@ -5948,25 +5948,25 @@ var methods = function () {
         }),
 
         new Method({
-            name: 'getAutherizedDataLength',
-            call: 'xcare_getAutherizedDataLength',
+            name: 'getAuthorizedDataLength',
+            call: 'xcare_getAuthorizedDataLength',
             params: 1,
             inputFormatter: [null],
             outputFormatter: utils.toDecimal
         }),
 
         new Method({
-            name: 'getAutherizedAESKeyByHash',
-            call: 'xcare_getAutherizedAESKeyByHash',
+            name: 'getAuthorizedAESKeyByHash',
+            call: 'xcare_getAuthorizedAESKeyByHash',
             params: 2,
             inputFormatter: [null,utils.toDecimal]
         }),
 
         new Method({
-            name: 'getAutherizedData',
-            call: 'xcare_getAutherizedData',
-            params: 4,
-            inputFormatter: [formatters.inputAddressFormatter,null,null,null]
+            name: 'getAuthorizedData',
+            call: 'xcare_getAuthorizedData',
+            params: 3,
+            inputFormatter: [formatters.inputAddressFormatter,null,null]
         }),
     ];
 };

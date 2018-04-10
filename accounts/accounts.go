@@ -130,9 +130,11 @@ type Wallet interface {
 
 	NewKeyedTransactor(account Account, passphrase string) (*bind.TransactOpts, error)
 
-	EncryptDataWithPublicKey(account Account, passphrase string, data []byte) ([]byte, error)
+	NewUnlockedKeyedTransactor(account Account, nonce uint64) (*bind.TransactOpts, error)
 
-	DecryptDataWithPrivateKey(account Account, passphrase string, encryptedData []byte) ([]byte, error)
+	EncryptDataWithPublicKey(account Account, data []byte) ([]byte, error)
+
+	DecryptDataWithPrivateKey(account Account, encryptedData []byte) ([]byte, error)
 }
 
 // Backend is a "wallet provider" that may contain a batch of accounts they can

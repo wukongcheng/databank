@@ -198,7 +198,7 @@ func (b *EthApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.TxPool().SubscribeTxPreEvent(ch)
 }
 
-func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *EthApiBackend) CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 
 	account := accounts.Account{Address: address}
 
@@ -265,14 +265,14 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 		return common.Hash{}, err
 	}
 
-	encryptiedAESKey,err := wallet.EncryptDataWithPublicKey(account,passphrase,[]byte(AESKey))
+	encryptiedAESKey,err := wallet.EncryptDataWithPublicKey(account,[]byte(AESKey))
 
 	if err != nil {
 		return common.Hash{}, err
 	}
 
 	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypt private. Later we will optimize this to improve TPS
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 
 	if err != nil {
 		return common.Hash{}, err
@@ -286,7 +286,7 @@ func (b *EthApiBackend) CommitXciData(address common.Address, passphrase string,
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *EthApiBackend) CommitNewOwnerData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 
 	account := accounts.Account{Address: address}
 
@@ -353,12 +353,12 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase st
 		return common.Hash{}, err
 	}
 
-	encryptiedAESKey,err := wallet.EncryptDataWithPublicKey(account,passphrase,[]byte(AESKey))
+	encryptiedAESKey,err := wallet.EncryptDataWithPublicKey(account,[]byte(AESKey))
 	if err != nil {
 		return common.Hash{}, err
 	}
 	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypting private key. Later we will optimize this to improve TPS
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -372,9 +372,9 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, passphrase st
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) DeletePreOwnerData(address common.Address, passphrase string, did string) (common.Hash, error) {
+func (b *EthApiBackend) DeletePreOwnerData(address common.Address, nonce uint64, did string) (common.Hash, error) {
 
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -387,9 +387,9 @@ func (b *EthApiBackend) DeletePreOwnerData(address common.Address, passphrase st
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) TransferDidOwner(address common.Address, passphrase string, did string, to common.Address) (common.Hash, error) {
+func (b *EthApiBackend) TransferDidOwner(address common.Address, nonce uint64, did string, to common.Address) (common.Hash, error) {
 
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -402,7 +402,7 @@ func (b *EthApiBackend) TransferDidOwner(address common.Address, passphrase stri
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase string, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
+func (b *EthApiBackend) AuthorizeXcdata(address common.Address, nonce uint64, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
 
 	publicKeyByte := common.FromHex(publicKeyString)
 	if publicKeyByte == nil {
@@ -419,7 +419,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase strin
 
 	toAddress := crypto.PubkeyToAddress(*publicKey)
 	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypting private key. Later we will optimize this to improve TPS
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, passphrase)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -435,7 +435,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase strin
 	if err != nil {
 		return common.Hash{}, err
 	}
-	decryptedAESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,encryptedAESKey)
+	decryptedAESKey,err := wallet.DecryptDataWithPrivateKey(account,encryptedAESKey)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -446,7 +446,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, passphrase strin
 	}
 
 	//Save ipfs hash and AES to blockchain
-	tx, err := xcData.AutherizeData(toAddress, did, index, reencryptedAESKey)
+	tx, err := xcData.AuthorizeData(toAddress, did, index, reencryptedAESKey)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -469,7 +469,7 @@ func (b *EthApiBackend) GetXciDataLength(did string) (*big.Int, error) {
 	return length, nil
 }
 
-func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+func (b *EthApiBackend) GetXciData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
 
 	_, ipfsHash, encryptedAESKey, err := b.GetXciDataTimestampAndHash(did,index)
 	if err != nil{
@@ -494,7 +494,7 @@ func (b *EthApiBackend) GetXciData(address common.Address, passphrase string, ip
 		return nil, err
 	}
 
-	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,encryptedAESKey)
+	AESKey,err := wallet.DecryptDataWithPrivateKey(account,encryptedAESKey)
 	if err != nil {
 		return nil, err
 	}
@@ -523,14 +523,14 @@ func (b *EthApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (
 	return timestamp, ipfsHash, encryptedAESKey, nil
 }
 
-func (b *EthApiBackend) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+func (b *EthApiBackend) GetAuthorizedDataLength(address common.Address) (*big.Int, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
 
-	length, err := xcData.GetAutherizedDataLength(address)
+	length, err := xcData.GetAuthorizedDataLength(address)
 	if err != nil {
 		return nil, err
 	}
@@ -538,29 +538,29 @@ func (b *EthApiBackend) GetAutherizedDataLength(address common.Address) (*big.In
 	return length, nil
 }
 
-func (b *EthApiBackend) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+func (b *EthApiBackend) GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
 
-	autherizedAESKey, err := xcData.GetAutherizedAESKeyByHash(address,hash)
+	authorizedAESKey, err := xcData.GetAuthorizedAESKeyByHash(address,hash)
 	if err != nil {
 		return nil, err
 	}
 
-	return autherizedAESKey, nil
+	return authorizedAESKey, nil
 }
 
-func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+func (b *EthApiBackend) GetAuthorizedData(address common.Address, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
 		return nil, err
 	}
 
-	autherizedAESKey, err := xcData.GetAutherizedAESKeyByHash(address,ipfsHash)
+	authorizedAESKey, err := xcData.GetAuthorizedAESKeyByHash(address,ipfsHash)
 	if err != nil {
 		return nil, err
 	}
@@ -571,7 +571,7 @@ func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase str
 		return nil, err
 	}
 	//TODO Decrypting private key cost much time. Later we will optimize this to improve TPS
-	AESKey,err := wallet.DecryptDataWithPrivateKey(account,passphrase,autherizedAESKey)
+	AESKey,err := wallet.DecryptDataWithPrivateKey(account,authorizedAESKey)
 	if err != nil{
 		return nil, err
 	}
@@ -586,12 +586,12 @@ func (b *EthApiBackend) GetAutherizedData(address common.Address, passphrase str
 	buf := new(bytes.Buffer)
 	buf.ReadFrom(rc)
 
-	autherizedData,err := AES.Decrypt(AESKey,buf.Bytes())
+	authorizedData,err := AES.Decrypt(AESKey,buf.Bytes())
 	if err != nil{
 		return nil, err
 	}
 
-	return autherizedData, nil
+	return authorizedData, nil
 }
 
 func (b *EthApiBackend) Downloader() *downloader.Downloader {

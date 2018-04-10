@@ -133,23 +133,23 @@ func (b *LesApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.txPool.SubscribeTxPreEvent(ch)
 }
 
-func (b *LesApiBackend) CommitXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *LesApiBackend) CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) CommitNewOwnerData(address common.Address, passphrase string, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *LesApiBackend) CommitNewOwnerData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) DeletePreOwnerData(address common.Address, passphrase string, did string) (common.Hash, error) {
+func (b *LesApiBackend) DeletePreOwnerData(address common.Address, nonce uint64, did string) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) TransferDidOwner(address common.Address, passphrase string, did string, to common.Address) (common.Hash, error) {
+func (b *LesApiBackend) TransferDidOwner(address common.Address, nonce uint64, did string, to common.Address) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) AuthorizeXcdata(address common.Address, passphrase string, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
+func (b *LesApiBackend) AuthorizeXcdata(address common.Address, nonce uint64, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
@@ -157,7 +157,7 @@ func (b *LesApiBackend) GetXciDataLength(did string) (*big.Int, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetXciData(address common.Address, passphrase string, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+func (b *LesApiBackend) GetXciData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
 	return nil,nil
 }
 
@@ -165,15 +165,15 @@ func (b *LesApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (
 	return nil,"",nil,nil
 }
 
-func (b *LesApiBackend) GetAutherizedDataLength(address common.Address) (*big.Int, error) {
+func (b *LesApiBackend) GetAuthorizedDataLength(address common.Address) (*big.Int, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetAutherizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
+func (b *LesApiBackend) GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetAutherizedData(address common.Address, passphrase string, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
+func (b *LesApiBackend) GetAuthorizedData(address common.Address, ipfsEndpoint string, ipfsHash string) ([]byte, error) {
 	return nil,nil
 }
 
