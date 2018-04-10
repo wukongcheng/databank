@@ -198,7 +198,7 @@ func (b *EthApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.TxPool().SubscribeTxPreEvent(ch)
 }
 
-func (b *EthApiBackend) CommitXciData(address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *EthApiBackend) CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 
 	account := accounts.Account{Address: address}
 
@@ -272,7 +272,7 @@ func (b *EthApiBackend) CommitXciData(address common.Address, ipfsEndpoint strin
 	}
 
 	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypt private. Later we will optimize this to improve TPS
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 
 	if err != nil {
 		return common.Hash{}, err
@@ -286,7 +286,7 @@ func (b *EthApiBackend) CommitXciData(address common.Address, ipfsEndpoint strin
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) CommitNewOwnerData(address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *EthApiBackend) CommitNewOwnerData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 
 	account := accounts.Account{Address: address}
 
@@ -358,7 +358,7 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, ipfsEndpoint 
 		return common.Hash{}, err
 	}
 	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypting private key. Later we will optimize this to improve TPS
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -372,9 +372,9 @@ func (b *EthApiBackend) CommitNewOwnerData(address common.Address, ipfsEndpoint 
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) DeletePreOwnerData(address common.Address, did string) (common.Hash, error) {
+func (b *EthApiBackend) DeletePreOwnerData(address common.Address, nonce uint64, did string) (common.Hash, error) {
 
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -387,9 +387,9 @@ func (b *EthApiBackend) DeletePreOwnerData(address common.Address, did string) (
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) TransferDidOwner(address common.Address, did string, to common.Address) (common.Hash, error) {
+func (b *EthApiBackend) TransferDidOwner(address common.Address, nonce uint64, did string, to common.Address) (common.Hash, error) {
 
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -402,7 +402,7 @@ func (b *EthApiBackend) TransferDidOwner(address common.Address, did string, to 
 	return tx.Hash(), nil
 }
 
-func (b *EthApiBackend) AuthorizeXcdata(address common.Address, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
+func (b *EthApiBackend) AuthorizeXcdata(address common.Address, nonce uint64, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
 
 	publicKeyByte := common.FromHex(publicKeyString)
 	if publicKeyByte == nil {
@@ -419,7 +419,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, publicKeyString 
 
 	toAddress := crypto.PubkeyToAddress(*publicKey)
 	//TODO Each time we call this API, we have to read keystore, which will cost much time in decrypting private key. Later we will optimize this to improve TPS
-	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address)
+	xcData,err := xcdata.GetXCData(b.eth.accountManager, NewContractBackend(b.eth.ApiBackend), address, nonce)
 	if err != nil {
 		return common.Hash{}, err
 	}

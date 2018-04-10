@@ -335,7 +335,7 @@ func (ks *KeyStore) NewKeyedTransactor(a accounts.Account, passphrase string) (*
 	}, nil
 }
 
-func (ks *KeyStore) NewUnlockedKeyedTransactor(a accounts.Account) (*bind.TransactOpts, error) {
+func (ks *KeyStore) NewUnlockedKeyedTransactor(a accounts.Account, nonce uint64) (*bind.TransactOpts, error) {
 
 	ks.mu.RLock()
 	defer ks.mu.RUnlock()
@@ -347,6 +347,7 @@ func (ks *KeyStore) NewUnlockedKeyedTransactor(a accounts.Account) (*bind.Transa
 
 	return &bind.TransactOpts{
 		From: a.Address,
+		Nonce: big.NewInt(int64(nonce)),
 		Signer: func(signer types.Signer, address common.Address, tx *types.Transaction) (*types.Transaction, error) {
 			if address != a.Address {
 				return nil, errors.New("not authorized to sign this account")

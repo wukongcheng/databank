@@ -566,7 +566,7 @@ func (w *wallet) NewKeyedTransactor(account accounts.Account, passphrase string)
 	return nil, nil
 }
 
-func (w *wallet) NewUnlockedKeyedTransactor(account accounts.Account) (*bind.TransactOpts, error) {
+func (w *wallet) NewUnlockedKeyedTransactor(account accounts.Account, nonce uint64) (*bind.TransactOpts, error) {
 	return nil, nil
 }
 

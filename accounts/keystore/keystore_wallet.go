@@ -152,7 +152,7 @@ func (w *keystoreWallet) NewKeyedTransactor(account accounts.Account, passphrase
 	return w.keystore.NewKeyedTransactor(account, passphrase)
 }
 
-func (w *keystoreWallet) NewUnlockedKeyedTransactor(account accounts.Account) (*bind.TransactOpts, error) {
+func (w *keystoreWallet) NewUnlockedKeyedTransactor(account accounts.Account, nonce uint64) (*bind.TransactOpts, error) {
 	// Make sure the requested account is contained within
 	if account.Address != w.account.Address {
 		return nil, accounts.ErrUnknownAccount
@@ -161,7 +161,7 @@ func (w *keystoreWallet) NewUnlockedKeyedTransactor(account accounts.Account) (*
 		return nil, accounts.ErrUnknownAccount
 	}
 	// Account seems valid, request the keystore to sign
-	return w.keystore.NewUnlockedKeyedTransactor(account)
+	return w.keystore.NewUnlockedKeyedTransactor(account,nonce)
 }
 
 func (w *keystoreWallet)EncryptDataWithPublicKey(account accounts.Account, data []byte) ([]byte, error) {

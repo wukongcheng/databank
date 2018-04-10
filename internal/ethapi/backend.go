@@ -68,11 +68,11 @@ type Backend interface {
 	SubscribeTxPreEvent(chan<- core.TxPreEvent) event.Subscription
 
 	//XCARE API
-	CommitXciData(address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
-	CommitNewOwnerData(address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
-	DeletePreOwnerData(address common.Address, did string) (common.Hash, error)
-	TransferDidOwner(address common.Address,  did string, to common.Address) (common.Hash, error)
-	AuthorizeXcdata(address common.Address, publicKeyString string, did string, index *big.Int) (common.Hash, error)
+	CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
+	CommitNewOwnerData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
+	DeletePreOwnerData(address common.Address, nonce uint64, did string) (common.Hash, error)
+	TransferDidOwner(address common.Address, nonce uint64,  did string, to common.Address) (common.Hash, error)
+	AuthorizeXcdata(address common.Address, nonce uint64, publicKeyString string, did string, index *big.Int) (common.Hash, error)
 	GetXciDataLength(did string) (*big.Int, error)
 	GetXciData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error)
 	GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error)

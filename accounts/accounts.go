@@ -130,7 +130,7 @@ type Wallet interface {
 
 	NewKeyedTransactor(account Account, passphrase string) (*bind.TransactOpts, error)
 
-	NewUnlockedKeyedTransactor(account Account) (*bind.TransactOpts, error)
+	NewUnlockedKeyedTransactor(account Account, nonce uint64) (*bind.TransactOpts, error)
 
 	EncryptDataWithPublicKey(account Account, data []byte) ([]byte, error)
 

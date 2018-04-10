@@ -1371,23 +1371,43 @@ func NewPublicXcareAPI(b Backend) *PublicXcareAPI {
 // commitXciData will add a native contract xcdata transaction to the transaction pool.
 // The xcdata contract wrapper is responsible for signing the transaction and using the correct nonce.
 func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
-	return s.b.CommitXciData(address,ipfsEndpoint,did,data)
+	nonce, err := s.b.GetPoolNonce(ctx, address)
+	if err != nil {
+		return common.Hash{},err
+	}
+	return s.b.CommitXciData(address,nonce,ipfsEndpoint,did,data)
 }
 
 func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
-	return s.b.CommitNewOwnerData(address,ipfsEndpoint,did,data)
+	nonce, err := s.b.GetPoolNonce(ctx, address)
+	if err != nil {
+		return common.Hash{},err
+	}
+	return s.b.CommitNewOwnerData(address,nonce,ipfsEndpoint,did,data)
 }
 
 func (s *PublicXcareAPI) DeletePreOwnerData(ctx context.Context, address common.Address, did string) (common.Hash, error) {
-	return s.b.DeletePreOwnerData(address,did)
+	nonce, err := s.b.GetPoolNonce(ctx, address)
+	if err != nil {
+		return common.Hash{},err
+	}
+	return s.b.DeletePreOwnerData(address,nonce,did)
 }
 
 func (s *PublicXcareAPI) TransferDidOwner(ctx context.Context, address common.Address, did string, to common.Address) (common.Hash, error) {
-	return s.b.TransferDidOwner(address,did,to)
+	nonce, err := s.b.GetPoolNonce(ctx, address)
+	if err != nil {
+		return common.Hash{},err
+	}
+	return s.b.TransferDidOwner(address,nonce,did,to)
 }
 
 func (s *PublicXcareAPI) AuthorizeXcdata(ctx context.Context, address common.Address, publicKey string, did string, index *big.Int) (common.Hash, error) {
-	return s.b.AuthorizeXcdata(address,publicKey,did,index)
+	nonce, err := s.b.GetPoolNonce(ctx, address)
+	if err != nil {
+		return common.Hash{},err
+	}
+	return s.b.AuthorizeXcdata(address,nonce,publicKey,did,index)
 }
 
 // GetXciDataLength gets the data length of the specific did

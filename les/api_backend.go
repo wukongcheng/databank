@@ -133,23 +133,23 @@ func (b *LesApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.txPool.SubscribeTxPreEvent(ch)
 }
 
-func (b *LesApiBackend) CommitXciData(address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *LesApiBackend) CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) CommitNewOwnerData(address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *LesApiBackend) CommitNewOwnerData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) DeletePreOwnerData(address common.Address, did string) (common.Hash, error) {
+func (b *LesApiBackend) DeletePreOwnerData(address common.Address, nonce uint64, did string) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) TransferDidOwner(address common.Address, did string, to common.Address) (common.Hash, error) {
+func (b *LesApiBackend) TransferDidOwner(address common.Address, nonce uint64, did string, to common.Address) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) AuthorizeXcdata(address common.Address, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
+func (b *LesApiBackend) AuthorizeXcdata(address common.Address, nonce uint64, publicKeyString string, did string, index *big.Int) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
