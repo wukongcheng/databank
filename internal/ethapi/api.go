@@ -1361,16 +1361,19 @@ func (s *PublicTransactionPoolAPI) Resend(ctx context.Context, sendArgs SendTxAr
 // PublicXcareAPI exposes methods for the RPC interface
 type PublicXcareAPI struct {
 	b         Backend
+	nonceLock *AddrLocker
 }
 
 // NewPublicTransactionPoolAPI creates a new RPC service with methods specific for the transaction pool.
-func NewPublicXcareAPI(b Backend) *PublicXcareAPI {
-	return &PublicXcareAPI{b}
+func NewPublicXcareAPI(b Backend, nonceLock *AddrLocker) *PublicXcareAPI {
+	return &PublicXcareAPI{b,nonceLock}
 }
 
 // commitXciData will add a native contract xcdata transaction to the transaction pool.
 // The xcdata contract wrapper is responsible for signing the transaction and using the correct nonce.
 func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	s.nonceLock.LockAddr(address)
+	defer s.nonceLock.UnlockAddr(address)
 	nonce, err := s.b.GetPoolNonce(ctx, address)
 	if err != nil {
 		return common.Hash{},err
@@ -1379,6 +1382,8 @@ func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Addre
 }
 
 func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+	s.nonceLock.LockAddr(address)
+	defer s.nonceLock.UnlockAddr(address)
 	nonce, err := s.b.GetPoolNonce(ctx, address)
 	if err != nil {
 		return common.Hash{},err
@@ -1387,6 +1392,8 @@ func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.
 }
 
 func (s *PublicXcareAPI) DeletePreOwnerData(ctx context.Context, address common.Address, did string) (common.Hash, error) {
+	s.nonceLock.LockAddr(address)
+	defer s.nonceLock.UnlockAddr(address)
 	nonce, err := s.b.GetPoolNonce(ctx, address)
 	if err != nil {
 		return common.Hash{},err
@@ -1395,6 +1402,8 @@ func (s *PublicXcareAPI) DeletePreOwnerData(ctx context.Context, address common.
 }
 
 func (s *PublicXcareAPI) TransferDidOwner(ctx context.Context, address common.Address, did string, to common.Address) (common.Hash, error) {
+	s.nonceLock.LockAddr(address)
+	defer s.nonceLock.UnlockAddr(address)
 	nonce, err := s.b.GetPoolNonce(ctx, address)
 	if err != nil {
 		return common.Hash{},err
@@ -1403,6 +1412,8 @@ func (s *PublicXcareAPI) TransferDidOwner(ctx context.Context, address common.Ad
 }
 
 func (s *PublicXcareAPI) AuthorizeXcdata(ctx context.Context, address common.Address, publicKey string, did string, index *big.Int) (common.Hash, error) {
+	s.nonceLock.LockAddr(address)
+	defer s.nonceLock.UnlockAddr(address)
 	nonce, err := s.b.GetPoolNonce(ctx, address)
 	if err != nil {
 		return common.Hash{},err
