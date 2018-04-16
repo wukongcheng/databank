@@ -5959,7 +5959,7 @@ var methods = function () {
             name: 'getAuthorizedAESKeyByHash',
             call: 'xcare_getAuthorizedAESKeyByHash',
             params: 2,
-            inputFormatter: [null,utils.toDecimal]
+            inputFormatter: [null,null]
         }),
 
         new Method({

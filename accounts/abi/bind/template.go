@@ -427,8 +427,8 @@ const tmplSourceJava = `
 
 package {{.Package}};
 
-import org.ethereum.geth.*;
-import org.ethereum.geth.internal.*;
+import org.ethereum.xcare.*;
+import org.ethereum.xcare.internal.*;
 
 {{range $contract := .Contracts}}
 	public class {{.Type}} {

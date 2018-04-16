@@ -13,7 +13,9 @@ contract XCData {
     }
 
     event NewCommitData(address indexed from, string did, string datahash);
-    event Authorize(address indexed to, string datahash);
+    event Authorize(address indexed from, address indexed to, string datahash);
+    event TransferDid(address indexed from, string did, address indexed to);
+    event DeleteDid(address indexed from, string did);
 
     address _owner;
     mapping (string => DataList) _xcData;
@@ -63,6 +65,8 @@ contract XCData {
         require(msg.sender == owner);
 
         _xcOwner[did] = to;
+
+        TransferDid(msg.sender,did,to);
     }
 
     function commitNewOwnerData(string did, string datahash, bytes encryptedAESKey) external {
@@ -88,7 +92,7 @@ contract XCData {
         _HashToAuthorizedAESKey[to][_xcData[did].list[index].datahash]=encryptedAESKey;
         _AuthorizedDataLength[to]=count+1;
 
-        Authorize(to,_xcData[did].list[index].datahash);
+        Authorize(msg.sender,to,_xcData[did].list[index].datahash);
     }
 
     function getAuthorizedDataLength(address addr) external view returns (uint256) {
@@ -103,5 +107,7 @@ contract XCData {
         require(_xcOwner[did] == msg.sender);
 
         delete _xcData[did];
+
+        DeleteDid(msg.sender,did);
     }
 }
