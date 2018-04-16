@@ -129,7 +129,7 @@ func GetAPIs(apiBackend Backend) []rpc.API {
 		}, {
 			Namespace: "xcare",
 			Version:   "1.0",
-			Service:   NewPublicXcareAPI(apiBackend),
+			Service:   NewPublicXcareAPI(apiBackend,nonceLock),
 			Public:    true,
 		},
 	}
