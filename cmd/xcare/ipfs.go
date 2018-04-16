@@ -55,7 +55,7 @@ func ipfsAddFile(ctx *cli.Context) error {
 	args := ctx.Args()
 
 	if len(args) != 1 {
-		utils.Fatalf(`Usage: geth ipfs add <file path>`)
+		utils.Fatalf(`Usage: xcare ipfs add <file path>`)
 	}
 
 	filePath := args[0]
@@ -79,7 +79,7 @@ func ipfsCat(ctx *cli.Context) error {
 
 	args := ctx.Args()
 	if len(args) != 1 {
-		utils.Fatalf(`Usage: geth ipfs cat <file hash>`)
+		utils.Fatalf(`Usage: xcare ipfs cat <file hash>`)
 	}
 
 	hash := args[0]
@@ -105,7 +105,7 @@ func ipfsGetFile(ctx *cli.Context) error {
 
 	args := ctx.Args()
 	if len(args) != 2 {
-		utils.Fatalf(`Usage: geth ipfs get <file hash> <targe file path>`)
+		utils.Fatalf(`Usage: xcare ipfs get <file hash> <targe file path>`)
 	}
 
 	hash := args[0]

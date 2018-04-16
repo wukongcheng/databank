@@ -12,9 +12,9 @@ GOBIN = $(shell pwd)/build/bin
 GO ?= latest
 
 geth:
-	build/env.sh go run build/ci.go install ./cmd/geth
+	build/env.sh go run build/ci.go install ./cmd/xcare
 	@echo "Done building."
-	@echo "Run \"$(GOBIN)/geth\" to launch geth."
+	@echo "Run \"$(GOBIN)/xcare\" to launch geth."
 
 pki:
 	build/env.sh go run build/ci.go install ./crypto/caserver
