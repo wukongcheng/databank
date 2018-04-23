@@ -12,7 +12,7 @@ contract XCData {
         Data[] list;
     }
 
-    event NewCommitData(address indexed from, string did, string datahash);
+    event NewCommitData(address indexed from, string did, string datahash, uint256 to);
     event Authorize(address indexed from, address indexed to, string datahash);
     event TransferDid(address indexed from, string did, address indexed to);
     event DeleteDid(address indexed from, string did);
@@ -44,7 +44,9 @@ contract XCData {
 
         _xcData[did].list.push(Data(now, datahash,encryptedAESKey));
 
-        NewCommitData(msg.sender,did,datahash);
+        uint256 index = _xcData[did].list.length;
+
+        NewCommitData(msg.sender,did,datahash,index);
     }
 
     function getDataLength(string did) external view returns(uint256) {
@@ -76,6 +78,10 @@ contract XCData {
         require(msg.sender == owner);
 
         _xcData[did].list.push(Data(now, datahash, encryptedAESKey));
+
+        uint256 index = _xcData[did].list.length;
+
+        NewCommitData(msg.sender,did,datahash,index);
     }
 
     //TODO, how to ensure the AES key has been re-encrypted by counterparty public key
