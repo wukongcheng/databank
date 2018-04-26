@@ -12,7 +12,7 @@ contract XCData {
         Data[] list;
     }
 
-    event NewCommitData(address indexed from, string did, string datahash, uint256 to);
+    event NewCommitData(address indexed from, string did, string datahash, uint256 index);
     event Authorize(address indexed from, address indexed to, string datahash);
     event TransferDid(address indexed from, string did, address indexed to);
     event DeleteDid(address indexed from, string did);
@@ -46,7 +46,7 @@ contract XCData {
 
         uint256 index = _xcData[did].list.length;
 
-        NewCommitData(msg.sender,did,datahash,index);
+        NewCommitData(msg.sender,did,datahash,index-1);
     }
 
     function getDataLength(string did) external view returns(uint256) {
@@ -81,7 +81,7 @@ contract XCData {
 
         uint256 index = _xcData[did].list.length;
 
-        NewCommitData(msg.sender,did,datahash,index);
+        NewCommitData(msg.sender,did,datahash,index-1);
     }
 
     //TODO, how to ensure the AES key has been re-encrypted by counterparty public key
