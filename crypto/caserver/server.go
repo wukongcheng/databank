@@ -1,5 +1,5 @@
 
-// The XCI is free software: you can redistribute it and/or modify
+// The databank is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
@@ -14,9 +14,9 @@ import (
 	"github.com/op/go-logging"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	pb "github.com/xcareteam/xci/crypto/caserver/ca/protos"
+	pb "github.com/wukongcheng/databank/crypto/caserver/ca/protos"
 	"log"
-	"github.com/xcareteam/xci/crypto/caserver/ca"
+	"github.com/wukongcheng/databank/crypto/caserver/ca"
 	"os"
 	"strings"
 	"github.com/spf13/viper"

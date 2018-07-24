@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 var (

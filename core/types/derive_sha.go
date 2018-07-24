@@ -19,9 +19,9 @@ package types
 import (
 	"bytes"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/rlp"
-	"github.com/xcareteam/xci/trie"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/rlp"
+	"github.com/wukongcheng/databank/trie"
 )
 
 type DerivableList interface {

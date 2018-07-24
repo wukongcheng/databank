@@ -26,8 +26,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/log"
 )
 
 // nodeDockerfile is the Dockerfile required to run an Ethereum node.

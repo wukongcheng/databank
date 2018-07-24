@@ -19,8 +19,8 @@ package les
 import (
 	"time"
 
-	"github.com/xcareteam/xci/common/bitutil"
-	"github.com/xcareteam/xci/light"
+	"github.com/wukongcheng/databank/common/bitutil"
+	"github.com/wukongcheng/databank/light"
 )
 
 const (

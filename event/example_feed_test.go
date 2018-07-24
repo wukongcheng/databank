@@ -19,7 +19,7 @@ package event_test
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/event"
+	"github.com/wukongcheng/databank/event"
 )
 
 func ExampleFeed_acknowledgedEvents() {

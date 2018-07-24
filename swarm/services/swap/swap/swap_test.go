@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 type testInPayment struct {

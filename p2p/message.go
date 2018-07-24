@@ -25,9 +25,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 // Msg defines the structure of a p2p message.

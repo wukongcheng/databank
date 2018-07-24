@@ -21,7 +21,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 // Iterator for disassembled EVM instructions

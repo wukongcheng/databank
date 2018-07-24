@@ -19,8 +19,8 @@ package vm
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // StateDB is an EVM database for full state querying.

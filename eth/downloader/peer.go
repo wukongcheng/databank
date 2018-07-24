@@ -29,9 +29,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/log"
 )
 
 const (

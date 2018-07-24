@@ -19,10 +19,10 @@ package downloader
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/ethdb"
 )
 
 // FakePeer is a mock downloader peer that operates on a local database instance

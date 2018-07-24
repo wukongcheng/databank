@@ -19,7 +19,7 @@ package state
 import (
 	"sync"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 type account struct {

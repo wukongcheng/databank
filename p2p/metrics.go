@@ -21,7 +21,7 @@ package p2p
 import (
 	"net"
 
-	"github.com/xcareteam/xci/metrics"
+	"github.com/wukongcheng/databank/metrics"
 )
 
 var (

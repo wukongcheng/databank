@@ -28,9 +28,9 @@ import (
 	"strings"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/node"
-	"github.com/xcareteam/xci/p2p/discover"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/node"
+	"github.com/wukongcheng/databank/p2p/discover"
 )
 
 // DockerAdapter is a NodeAdapter which runs simulation nodes inside Docker

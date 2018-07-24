@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 // Hash represents the 32 byte Keccak256 hash of arbitrary data.

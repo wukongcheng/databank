@@ -30,9 +30,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/log"
 	"golang.org/x/crypto/ssh/terminal"
 )
 

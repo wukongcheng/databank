@@ -20,7 +20,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 /*

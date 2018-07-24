@@ -30,10 +30,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 var hashMatcher = regexp.MustCompile("^[0-9A-Fa-f]{64}")

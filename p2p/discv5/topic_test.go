@@ -21,8 +21,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/mclock"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/mclock"
 )
 
 func TestTopicRadius(t *testing.T) {

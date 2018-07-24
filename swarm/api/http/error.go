@@ -28,9 +28,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/swarm/api"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/swarm/api"
 )
 
 //templateMap holds a mapping of an HTTP error code to a template

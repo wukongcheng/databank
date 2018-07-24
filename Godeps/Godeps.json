@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/xcareteam/xci",
+	"ImportPath": "github.com/wukongcheng/databank",
 	"GoVersion": "go1.7",
 	"GodepVersion": "v80",
 	"Deps": [

@@ -26,8 +26,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/xcareteam/xci/common/bitutil"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/common/bitutil"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 // bloomIndexes represents the bit indexes inside the bloom filter that belong

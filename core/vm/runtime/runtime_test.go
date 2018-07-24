@@ -21,11 +21,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xcareteam/xci/accounts/abi"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/accounts/abi"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/ethdb"
 )
 
 func TestDefaults(t *testing.T) {

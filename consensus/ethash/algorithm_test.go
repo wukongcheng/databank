@@ -25,9 +25,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // Tests that verification caches can be correctly generated.

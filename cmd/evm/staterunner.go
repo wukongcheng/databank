@@ -23,10 +23,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/tests"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/tests"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

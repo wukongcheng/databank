@@ -23,7 +23,7 @@ import (
 	"os"
 	"runtime/trace"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // StartGoTrace turns on tracing, writing to the given file.

@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/xcareteam/xci/metrics"
+	"github.com/wukongcheng/databank/metrics"
 )
 
 // a regexp for extracting the unit from time.Duration.String

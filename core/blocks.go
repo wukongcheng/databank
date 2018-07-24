@@ -16,7 +16,7 @@
 
 package core
 
-import "github.com/xcareteam/xci/common"
+import "github.com/wukongcheng/databank/common"
 
 // BadHashes represent a set of manually tracked bad hashes (usually hard forks)
 var BadHashes = map[common.Hash]bool{

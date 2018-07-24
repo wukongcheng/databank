@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/xcareteam/xci/cmd/utils"
+	"github.com/wukongcheng/databank/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

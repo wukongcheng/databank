@@ -21,7 +21,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 /*

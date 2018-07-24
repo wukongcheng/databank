@@ -20,9 +20,9 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/rlp"
-	"github.com/xcareteam/xci/trie"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/rlp"
+	"github.com/wukongcheng/databank/trie"
 )
 
 // NodeIterator is an iterator to traverse the entire state trie post-order,

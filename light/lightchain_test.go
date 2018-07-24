@@ -21,12 +21,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/params"
 )
 
 // So we can deterministically seed different blockchains

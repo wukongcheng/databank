@@ -20,8 +20,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // senderFromServer is a types.Signer that remembers the sender address returned by the RPC

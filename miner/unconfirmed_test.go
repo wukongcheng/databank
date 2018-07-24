@@ -19,8 +19,8 @@ package miner
 import (
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // noopHeaderRetriever is an implementation of headerRetriever that always

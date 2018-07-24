@@ -19,7 +19,7 @@ package downloader
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // peerDropFn is a callback type for dropping a peer detected as malicious.

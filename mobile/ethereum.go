@@ -21,8 +21,8 @@ package geth
 import (
 	"errors"
 
-	ethereum "github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/common"
+	ethereum "github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/common"
 )
 
 // Subscription represents an event subscription where events are

@@ -22,8 +22,8 @@ package node
 import (
 	"reflect"
 
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 // NoopService is a trivial implementation of the Service interface.

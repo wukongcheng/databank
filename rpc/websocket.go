@@ -27,7 +27,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 	"golang.org/x/net/websocket"
 	"gopkg.in/fatih/set.v0"
 )

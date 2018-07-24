@@ -31,9 +31,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/crypto/secp256k1"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/crypto/secp256k1"
 )
 
 const NodeIDBits = 512

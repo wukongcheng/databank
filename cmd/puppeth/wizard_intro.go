@@ -26,7 +26,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // makeWizard creates and returns a new puppeth wizard.

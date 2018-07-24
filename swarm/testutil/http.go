@@ -22,9 +22,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/xcareteam/xci/swarm/api"
-	httpapi "github.com/xcareteam/xci/swarm/api/http"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/swarm/api"
+	httpapi "github.com/wukongcheng/databank/swarm/api/http"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 func NewTestSwarmServer(t *testing.T) *TestSwarmServer {

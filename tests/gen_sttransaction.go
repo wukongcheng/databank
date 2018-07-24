@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/common/math"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/common/math"
 )
 
 var _ = (*stTransactionMarshaling)(nil)

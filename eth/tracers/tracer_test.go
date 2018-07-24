@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/params"
 )
 
 type account struct{}

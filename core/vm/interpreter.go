@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/params"
 )
 
 // Config are the configuration options for the Interpreter

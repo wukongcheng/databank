@@ -24,8 +24,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/p2p"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/p2p"
 )
 
 // Tests that datadirs can be successfully created, be them manually configured

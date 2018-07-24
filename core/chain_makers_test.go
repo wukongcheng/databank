@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/params"
 )
 
 func ExampleGenerateChain() {

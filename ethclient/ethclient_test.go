@@ -16,7 +16,7 @@
 
 package ethclient
 
-import "github.com/xcareteam/xci"
+import "github.com/wukongcheng/databank"
 
 // Verify that Client implements the ethereum interfaces.
 var (

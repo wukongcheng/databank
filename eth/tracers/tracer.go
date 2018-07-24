@@ -25,11 +25,11 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
 	duktape "gopkg.in/olebedev/go-duktape.v3"
 )
 

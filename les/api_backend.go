@@ -20,21 +20,21 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/bloombits"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/eth/gasprice"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/light"
-	"github.com/xcareteam/xci/params"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/bloombits"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/eth/gasprice"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/light"
+	"github.com/wukongcheng/databank/params"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 type LesApiBackend struct {
@@ -133,7 +133,7 @@ func (b *LesApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.txPool.SubscribeTxPreEvent(ch)
 }
 
-func (b *LesApiBackend) CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *LesApiBackend) CommitdatabankData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 	return common.Hash{},nil
 }
 
@@ -153,15 +153,15 @@ func (b *LesApiBackend) AuthorizeXcdata(address common.Address, nonce uint64, pu
 	return common.Hash{},nil
 }
 
-func (b *LesApiBackend) GetXciDataLength(did string) (*big.Int, error) {
+func (b *LesApiBackend) GetdatabankDataLength(did string) (*big.Int, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetXciData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+func (b *LesApiBackend) GetdatabankData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
 	return nil,nil
 }
 
-func (b *LesApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error) {
+func (b *LesApiBackend) GetdatabankDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error) {
 	return nil,"",nil,nil
 }
 

@@ -21,8 +21,8 @@ import (
 
 	"sync/atomic"
 
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/log"
 )
 
 type CpuAgent struct {

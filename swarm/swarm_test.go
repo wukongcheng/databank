@@ -19,7 +19,7 @@ package swarm
 import (
 	"testing"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 func TestParseEnsAPIAddress(t *testing.T) {

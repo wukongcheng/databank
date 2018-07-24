@@ -24,9 +24,9 @@ import (
 	"io"
 	"sync"
 
-	"github.com/xcareteam/xci/bmt"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto/sha3"
+	"github.com/wukongcheng/databank/bmt"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto/sha3"
 )
 
 type Hasher func() hash.Hash

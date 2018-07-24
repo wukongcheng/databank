@@ -20,9 +20,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/log"
 )
 
 // secureKeyPrefix is the database key prefix used to store trie node preimages.

@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 // destinations stores one map per contract (keyed by hash of code).

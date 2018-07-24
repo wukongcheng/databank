@@ -25,8 +25,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/xcareteam/xci/swarm/api"
-	"github.com/xcareteam/xci/swarm/testutil"
+	"github.com/wukongcheng/databank/swarm/api"
+	"github.com/wukongcheng/databank/swarm/testutil"
 )
 
 // TestClientUploadDownloadRaw test uploading and downloading raw data to swarm

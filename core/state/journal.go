@@ -19,7 +19,7 @@ package state
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 type journalEntry interface {

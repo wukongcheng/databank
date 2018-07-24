@@ -25,7 +25,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 	"github.com/jackpal/go-nat-pmp"
 )
 

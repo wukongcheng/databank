@@ -21,9 +21,9 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 var (

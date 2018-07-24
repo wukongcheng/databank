@@ -27,8 +27,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 func tmpKeyStoreIface(t *testing.T, encrypted bool) (dir string, ks keyStore) {

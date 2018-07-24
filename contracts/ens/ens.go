@@ -23,11 +23,11 @@ package ens
 import (
 	"strings"
 
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/contracts/ens/contract"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/contracts/ens/contract"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 var (

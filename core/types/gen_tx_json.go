@@ -7,8 +7,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
 )
 
 var _ = (*txdataMarshaling)(nil)

@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/node"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/node"
+	"github.com/wukongcheng/databank/rpc"
 	"github.com/gizak/termui"
 	"gopkg.in/urfave/cli.v1"
 )

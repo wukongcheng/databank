@@ -19,10 +19,10 @@ package core
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/params"
 )
 
 // BlockValidator is responsible for validating block headers, uncles and

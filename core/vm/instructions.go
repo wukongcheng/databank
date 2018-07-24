@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/params"
 )
 
 var (

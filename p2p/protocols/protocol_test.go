@@ -23,10 +23,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/p2p/simulations/adapters"
-	p2ptest "github.com/xcareteam/xci/p2p/testing"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/simulations/adapters"
+	p2ptest "github.com/wukongcheng/databank/p2p/testing"
 )
 
 // handshake message type

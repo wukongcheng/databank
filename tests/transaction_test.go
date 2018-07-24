@@ -20,7 +20,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/params"
 )
 
 func TestTransaction(t *testing.T) {

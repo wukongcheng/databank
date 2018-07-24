@@ -5890,8 +5890,8 @@ var methods = function () {
 
     return [
         new Method({
-            name: 'commitXciData',
-            call: 'xcare_commitXciData',
+            name: 'commitdatabankData',
+            call: 'xcare_commitdatabankData',
             params: 4,
             inputFormatter: [formatters.inputAddressFormatter,null,null,null]
         }),
@@ -5925,23 +5925,23 @@ var methods = function () {
         }),
 
         new Method({
-            name: 'getXciDataLength',
-            call: 'xcare_getXciDataLength',
+            name: 'getdatabankDataLength',
+            call: 'xcare_getdatabankDataLength',
             params: 1,
             inputFormatter: [null],
             outputFormatter: utils.toDecimal
         }),
 
         new Method({
-            name: 'getXciData',
-            call: 'xcare_getXciData',
+            name: 'getdatabankData',
+            call: 'xcare_getdatabankData',
             params: 4,
             inputFormatter: [formatters.inputAddressFormatter,null,null,utils.toDecimal]
         }),
 
         new Method({
-            name: 'getXciDataTimestamp',
-            call: 'xcare_getXciDataTimestamp',
+            name: 'getdatabankDataTimestamp',
+            call: 'xcare_getdatabankDataTimestamp',
             params: 2,
             inputFormatter: [null,utils.toDecimal],
             outputFormatter: utils.toDecimal
@@ -5996,7 +5996,7 @@ module.exports = Xcare;
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  *
- * Reference: https://github.com/xcareteam/xci/blob/swarm/internal/web3ext/web3ext.go#L33
+ * Reference: https://github.com/wukongcheng/databank/blob/swarm/internal/web3ext/web3ext.go#L33
  */
 
 "use strict";

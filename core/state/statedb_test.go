@@ -30,9 +30,9 @@ import (
 
 	check "gopkg.in/check.v1"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/ethdb"
 )
 
 // Tests that updating a state trie does not leak any database writes prior to
@@ -119,7 +119,7 @@ func TestIntermediateLeaks(t *testing.T) {
 
 // TestCopy tests that copying a statedb object indeed makes the original and
 // the copy independent of each other. This test is a regression test against
-// https://github.com/xcareteam/xci/pull/15549.
+// https://github.com/wukongcheng/databank/pull/15549.
 func TestCopy(t *testing.T) {
 	// Create a random state test to copy and modify "independently"
 	db, _ := ethdb.NewMemDatabase()

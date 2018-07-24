@@ -24,14 +24,14 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/params"
 )
 
 // Test fork of length N starting from block i
@@ -1196,7 +1196,7 @@ func TestEIP161AccountRemoval(t *testing.T) {
 // tests that under weird reorg conditions the blockchain and its internal header-
 // chain return the same latest block/header.
 //
-// https://github.com/xcareteam/xci/pull/15941
+// https://github.com/wukongcheng/databank/pull/15941
 func TestBlockchainHeaderchainReorgConsistency(t *testing.T) {
 	// Generate a canonical chain to act as the main dataset
 	engine := ethash.NewFaker()

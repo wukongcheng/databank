@@ -27,8 +27,8 @@ import (
 	"testing/quick"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 func ExampleNewNode() {

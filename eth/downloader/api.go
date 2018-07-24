@@ -20,9 +20,9 @@ import (
 	"context"
 	"sync"
 
-	ethereum "github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/rpc"
+	ethereum "github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 // PublicDownloaderAPI provides an API which gives information about the current synchronisation status.

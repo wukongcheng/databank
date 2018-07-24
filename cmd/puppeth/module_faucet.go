@@ -26,8 +26,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/log"
 )
 
 // faucetDockerfile is the Dockerfile required to build an faucet container to

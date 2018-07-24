@@ -23,9 +23,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/accounts/usbwallet"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/accounts/usbwallet"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/rpc"
 	"github.com/robertkrimen/otto"
 )
 

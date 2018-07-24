@@ -22,7 +22,7 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 // In this example, our client whishes to track the latest 'block number'

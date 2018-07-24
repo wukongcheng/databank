@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // Tests that batched bloom bits are correctly rotated from the input bloom

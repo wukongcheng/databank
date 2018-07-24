@@ -22,8 +22,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // NotFound is returned by API methods if the requested item does not exist.

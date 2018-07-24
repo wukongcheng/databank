@@ -29,7 +29,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/params"
 )
 
 var (

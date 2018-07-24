@@ -26,8 +26,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/internal/jsre/deps"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/internal/jsre/deps"
 	"github.com/robertkrimen/otto"
 )
 

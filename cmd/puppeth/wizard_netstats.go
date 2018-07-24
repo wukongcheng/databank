@@ -23,8 +23,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/log"
 	"github.com/olekukonko/tablewriter"
 )
 

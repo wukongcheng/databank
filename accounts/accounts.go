@@ -20,11 +20,11 @@ package accounts
 import (
 	"math/big"
 
-	ethereum "github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/accounts/abi/bind"
+	ethereum "github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
 )
 
 // Account represents an Ethereum account located at a specific location defined

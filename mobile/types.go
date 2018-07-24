@@ -23,9 +23,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 // A Nonce is a 64-bit hash which proves (combined with the mix-hash) that

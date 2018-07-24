@@ -20,8 +20,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/log"
 )
 
 // deployFaucet queries the user for various input on deploying a faucet, after

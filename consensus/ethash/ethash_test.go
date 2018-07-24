@@ -24,7 +24,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // Tests that ethash works correctly in test mode.
@@ -44,7 +44,7 @@ func TestTestMode(t *testing.T) {
 }
 
 // This test checks that cache lru logic doesn't crash under load.
-// It reproduces https://github.com/xcareteam/xci/issues/14943
+// It reproduces https://github.com/wukongcheng/databank/issues/14943
 func TestCacheFileEvict(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "ethash-test")
 	if err != nil {

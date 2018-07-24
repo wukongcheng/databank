@@ -22,8 +22,8 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/p2p/nat"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/p2p/nat"
 )
 
 const (

@@ -20,9 +20,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/light"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/light"
 )
 
 const (

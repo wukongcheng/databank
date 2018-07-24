@@ -20,8 +20,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/ethdb"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

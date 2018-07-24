@@ -26,10 +26,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/xcareteam/xci/cmd/internal/browser"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/cmd/internal/browser"
+	"github.com/wukongcheng/databank/params"
 
-	"github.com/xcareteam/xci/cmd/utils"
+	"github.com/wukongcheng/databank/cmd/utils"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
@@ -41,7 +41,7 @@ var bugCommand = cli.Command{
 	Category:  "MISCELLANEOUS COMMANDS",
 }
 
-const issueUrl = "https://github.com/xcareteam/xci/issues/new"
+const issueUrl = "https://github.com/wukongcheng/databank/issues/new"
 
 // reportBug reports a bug by opening a new URL to the go-ethereum GH issue
 // tracker and setting default values as the issue body.

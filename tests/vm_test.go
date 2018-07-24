@@ -19,7 +19,7 @@ package tests
 import (
 	"testing"
 
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 func TestVM(t *testing.T) {

@@ -20,8 +20,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 // Tests that transactions can be added to strict lists and list contents and

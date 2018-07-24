@@ -1,11 +1,11 @@
 package ipfs
 
 import (
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/contracts/ipfs/contract"
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/contracts/ipfs/contract"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/accounts"
 	"math/big"
 )
 

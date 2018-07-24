@@ -22,10 +22,10 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/log"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

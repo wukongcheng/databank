@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 // ContractRef is a reference to the contract's backing object

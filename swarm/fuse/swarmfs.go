@@ -17,7 +17,7 @@
 package fuse
 
 import (
-	"github.com/xcareteam/xci/swarm/api"
+	"github.com/wukongcheng/databank/swarm/api"
 	"sync"
 	"time"
 )

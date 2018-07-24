@@ -34,8 +34,8 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 type allocItem struct{ Addr, Balance *big.Int }

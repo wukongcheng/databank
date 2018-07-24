@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/p2p/simulations/adapters"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/simulations/adapters"
 )
 
 // TestNetworkSimulation creates a multi-node simulation network with each node

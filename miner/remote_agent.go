@@ -23,11 +23,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/log"
 )
 
 type hashrate struct {

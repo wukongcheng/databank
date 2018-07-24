@@ -42,7 +42,7 @@ import (
 	"fmt"
 	"hash"
 
-	ethcrypto "github.com/xcareteam/xci/crypto"
+	ethcrypto "github.com/wukongcheng/databank/crypto"
 )
 
 var (

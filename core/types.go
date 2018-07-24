@@ -17,9 +17,9 @@
 package core
 
 import (
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 // Validator is an interface which defines the standard for block validation. It

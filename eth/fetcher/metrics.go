@@ -19,7 +19,7 @@
 package fetcher
 
 import (
-	"github.com/xcareteam/xci/metrics"
+	"github.com/wukongcheng/databank/metrics"
 )
 
 var (

@@ -21,11 +21,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/xcareteam/xci/contracts/chequebook"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/swarm/network/kademlia"
-	"github.com/xcareteam/xci/swarm/services/swap"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/contracts/chequebook"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/swarm/network/kademlia"
+	"github.com/wukongcheng/databank/swarm/services/swap"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 /*

@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 //go:generate gencodec -type Log -field-override logMarshaling -out gen_log_json.go

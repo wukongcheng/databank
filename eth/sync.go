@@ -21,11 +21,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p/discover"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p/discover"
 )
 
 const (

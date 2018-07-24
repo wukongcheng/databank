@@ -20,7 +20,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/xcareteam/xci/core/asm"
+	"github.com/wukongcheng/databank/core/asm"
 )
 
 func Compile(fn string, src []byte, debug bool) (string, error) {

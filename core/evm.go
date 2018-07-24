@@ -19,10 +19,10 @@ package core
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 // ChainContext supports retrieving headers and consensus parameters from the

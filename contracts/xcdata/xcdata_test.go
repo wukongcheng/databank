@@ -3,12 +3,12 @@ package xcdata
 import (
 	"testing"
 
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/accounts/abi/bind/backends"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/accounts/abi/bind/backends"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/crypto"
 	"math/big"
-	"github.com/xcareteam/xci/crypto/ecies"
+	"github.com/wukongcheng/databank/crypto/ecies"
 	"crypto/rand"
 )
 

@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // deployDashboard queries the user for various input on deploying a web-service

@@ -22,8 +22,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/ethdb"
 )
 
 func TestIterator(t *testing.T) {

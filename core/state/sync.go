@@ -19,9 +19,9 @@ package state
 import (
 	"bytes"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/rlp"
-	"github.com/xcareteam/xci/trie"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/rlp"
+	"github.com/wukongcheng/databank/trie"
 )
 
 // NewStateSync create a new state trie download scheduler.

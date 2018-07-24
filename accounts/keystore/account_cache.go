@@ -27,9 +27,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/log"
 	"gopkg.in/fatih/set.v0"
 )
 

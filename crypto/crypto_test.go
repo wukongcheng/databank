@@ -25,7 +25,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 	"io"
 )
 

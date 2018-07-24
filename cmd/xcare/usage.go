@@ -24,8 +24,8 @@ import (
 
 	"strings"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/internal/debug"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/internal/debug"
 	"gopkg.in/urfave/cli.v1"
 )
 

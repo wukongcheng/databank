@@ -37,13 +37,13 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/xcareteam/xci/contracts/chequebook"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/p2p"
-	bzzswap "github.com/xcareteam/xci/swarm/services/swap"
-	"github.com/xcareteam/xci/swarm/services/swap/swap"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/contracts/chequebook"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/p2p"
+	bzzswap "github.com/wukongcheng/databank/swarm/services/swap"
+	"github.com/wukongcheng/databank/swarm/services/swap/swap"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 //metrics variables

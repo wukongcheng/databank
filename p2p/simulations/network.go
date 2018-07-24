@@ -24,11 +24,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/p2p/simulations/adapters"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/simulations/adapters"
 )
 
 var dialBanTimeout = 200 * time.Millisecond

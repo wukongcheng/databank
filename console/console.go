@@ -28,9 +28,9 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/xcareteam/xci/internal/jsre"
-	"github.com/xcareteam/xci/internal/web3ext"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/internal/jsre"
+	"github.com/wukongcheng/databank/internal/web3ext"
+	"github.com/wukongcheng/databank/rpc"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 	"github.com/robertkrimen/otto"

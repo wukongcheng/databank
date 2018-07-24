@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 //metrics variables

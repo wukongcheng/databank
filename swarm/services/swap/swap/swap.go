@@ -22,7 +22,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // SwAP Swarm Accounting Protocol with

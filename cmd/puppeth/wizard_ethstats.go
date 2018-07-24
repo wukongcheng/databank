@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // deployEthstats queries the user for various input on deploying an ethstats

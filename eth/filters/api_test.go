@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 func TestUnmarshalJSONNewFilterArgs(t *testing.T) {

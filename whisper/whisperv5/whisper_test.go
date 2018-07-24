@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 func TestWhisperBasic(t *testing.T) {

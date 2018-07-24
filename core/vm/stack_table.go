@@ -19,7 +19,7 @@ package vm
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/params"
 )
 
 func makeStackFunc(pop, push int) stackValidationFunc {

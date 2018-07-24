@@ -17,9 +17,9 @@
 package runtime
 
 import (
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 func NewEnv(cfg *Config) *vm.EVM {

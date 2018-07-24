@@ -24,12 +24,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/accounts/abi/bind/backends"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/contracts/chequebook/contract"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/accounts/abi/bind/backends"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/contracts/chequebook/contract"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 var (

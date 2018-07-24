@@ -26,11 +26,11 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/bitutil"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/crypto/sha3"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/bitutil"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/crypto/sha3"
+	"github.com/wukongcheng/databank/log"
 )
 
 const (

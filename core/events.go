@@ -17,8 +17,8 @@
 package core
 
 import (
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // TxPreEvent is posted when a transaction enters the transaction pool.

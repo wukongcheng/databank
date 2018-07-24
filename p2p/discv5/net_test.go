@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 func TestNetwork_Lookup(t *testing.T) {

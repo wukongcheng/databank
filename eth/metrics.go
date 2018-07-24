@@ -17,8 +17,8 @@
 package eth
 
 import (
-	"github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/p2p"
+	"github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/p2p"
 )
 
 var (

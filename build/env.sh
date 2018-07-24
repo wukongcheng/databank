@@ -10,11 +10,11 @@ fi
 # Create fake Go workspace if it doesn't exist yet.
 workspace="$PWD/build/_workspace"
 root="$PWD"
-ethdir="$workspace/src/github.com/xcareteam"
-if [ ! -L "$ethdir/xci" ]; then
+ethdir="$workspace/src/github.com/wukongcheng"
+if [ ! -L "$ethdir/databank" ]; then
     mkdir -p "$ethdir"
     cd "$ethdir"
-    ln -s ../../../../../. xci
+    ln -s ../../../../../. databank
     cd "$root"
 fi
 
@@ -23,8 +23,8 @@ GOPATH="$workspace"
 export GOPATH
 
 # Run the command inside the workspace.
-cd "$ethdir/xci"
-PWD="$ethdir/xci"
+cd "$ethdir/databank"
+PWD="$ethdir/databank"
 
 # Launch the arguments with the configured environment.
 exec "$@"

@@ -19,7 +19,7 @@ package bloombits
 import (
 	"errors"
 
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // errSectionOutOfBounds is returned if the user tried to add more bloom filters

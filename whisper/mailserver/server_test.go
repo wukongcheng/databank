@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
-	whisper "github.com/xcareteam/xci/whisper/whisperv6"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
+	whisper "github.com/wukongcheng/databank/whisper/whisperv6"
 )
 
 const powRequirement = 0.00001

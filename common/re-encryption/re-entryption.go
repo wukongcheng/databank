@@ -3,7 +3,7 @@ package re_encryption
 import (
 	"crypto/rand"
 	"errors"
-	"github.com/xcareteam/xci/crypto/ecies"
+	"github.com/wukongcheng/databank/crypto/ecies"
 	"crypto/ecdsa"
 )
 

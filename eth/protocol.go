@@ -21,11 +21,11 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 // Constants to match up protocol versions and messages

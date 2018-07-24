@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/xcareteam/xci/cmd/utils"
+	"github.com/wukongcheng/databank/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 	"github.com/ipfs/go-ipfs-api"
 	"fmt"

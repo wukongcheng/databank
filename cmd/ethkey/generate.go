@@ -23,9 +23,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/crypto"
 	"github.com/pborman/uuid"
 	"gopkg.in/urfave/cli.v1"
 )

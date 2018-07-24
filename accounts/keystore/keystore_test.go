@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/event"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/event"
 )
 
 var testSigData = make([]byte, 32)

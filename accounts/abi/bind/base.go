@@ -22,12 +22,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/accounts/abi"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/event"
+	"github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/accounts/abi"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/event"
 )
 
 // SignerFn is a signer function callback when a contract requires a method to

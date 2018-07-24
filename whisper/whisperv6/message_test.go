@@ -23,9 +23,9 @@ import (
 	mrand "math/rand"
 	"testing"
 
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 func generateMessageParams() (*MessageParams, error) {

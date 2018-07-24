@@ -5,7 +5,7 @@ package whisperv5
 import (
 	"encoding/json"
 
-	"github.com/xcareteam/xci/common/hexutil"
+	"github.com/wukongcheng/databank/common/hexutil"
 )
 
 var _ = (*criteriaOverride)(nil)

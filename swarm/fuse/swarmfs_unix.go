@@ -29,9 +29,9 @@ import (
 
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/swarm/api"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/swarm/api"
 )
 
 var (

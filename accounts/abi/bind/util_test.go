@@ -22,12 +22,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/accounts/abi/bind/backends"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/accounts/abi/bind/backends"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 var testKey, _ = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")

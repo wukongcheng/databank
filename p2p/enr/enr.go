@@ -35,9 +35,9 @@ import (
 	"io"
 	"sort"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/crypto/sha3"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/crypto/sha3"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 const SizeLimit = 300 // maximum encoded size of a node record in bytes

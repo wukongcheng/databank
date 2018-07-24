@@ -20,7 +20,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/xcareteam/xci/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/discover"
 )
 
 // Simulation provides a framework for running actions in a simulated network

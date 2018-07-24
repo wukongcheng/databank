@@ -19,9 +19,9 @@ package misc
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/params"
 )
 
 // VerifyForkHashes verifies that blocks conforming to network hard-forks do have

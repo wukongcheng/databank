@@ -25,7 +25,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 	"gopkg.in/fatih/set.v0"
 )
 

@@ -20,9 +20,9 @@ import (
 	"container/list"
 	"fmt"
 
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/event"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/event"
 )
 
 // Implement our EthTest Manager

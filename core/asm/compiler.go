@@ -23,8 +23,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 // Compiler contains information about the parsed source

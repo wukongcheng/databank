@@ -23,8 +23,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/xcareteam/xci/common/mclock"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common/mclock"
+	"github.com/wukongcheng/databank/log"
 )
 
 const (

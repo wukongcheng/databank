@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/log"
 )
 
 // deployNode creates a new node configuration based on some user input.

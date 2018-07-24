@@ -21,11 +21,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/params"
 )
 
 // Tests that simple header verification works, for both good and bad blocks.

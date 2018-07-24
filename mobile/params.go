@@ -21,9 +21,9 @@ package geth
 import (
 	"encoding/json"
 
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/p2p/discv5"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/p2p/discv5"
+	"github.com/wukongcheng/databank/params"
 )
 
 // MainnetGenesis returns the JSON spec to use for the main Ethereum network. It

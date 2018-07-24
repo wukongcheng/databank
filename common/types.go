@@ -23,8 +23,8 @@ import (
 	"math/rand"
 	"reflect"
 
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/crypto/sha3"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/crypto/sha3"
 )
 
 const (

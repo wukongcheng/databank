@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/metrics"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/metrics"
 )
 
 //metrics variables

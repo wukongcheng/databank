@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 func init() {

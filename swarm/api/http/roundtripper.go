@@ -20,17 +20,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/xcareteam/xci/issues/2040
+see https://github.com/wukongcheng/databank/issues/2040
 Usage:
 
 import (
- "github.com/xcareteam/xci/common/httpclient"
- "github.com/xcareteam/xci/swarm/api/http"
+ "github.com/wukongcheng/databank/common/httpclient"
+ "github.com/wukongcheng/databank/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally

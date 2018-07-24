@@ -22,7 +22,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

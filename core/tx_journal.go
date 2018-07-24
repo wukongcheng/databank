@@ -21,10 +21,10 @@ import (
 	"io"
 	"os"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 // errNoActiveJournal is returned if a transaction is attempted to be inserted

@@ -24,7 +24,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/metrics"
+	"github.com/wukongcheng/databank/metrics"
 )
 
 /*

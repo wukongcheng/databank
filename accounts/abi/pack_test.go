@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 func TestPack(t *testing.T) {

@@ -23,9 +23,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/ethdb"
 )
 
 func init() {

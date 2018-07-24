@@ -24,9 +24,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/p2p/netutil"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/netutil"
 )
 
 const (

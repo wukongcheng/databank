@@ -29,9 +29,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
 	"github.com/pborman/uuid"
 )
 

@@ -41,23 +41,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/eth"
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/ethclient"
-	"github.com/xcareteam/xci/ethstats"
-	"github.com/xcareteam/xci/les"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/node"
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/p2p/discv5"
-	"github.com/xcareteam/xci/p2p/nat"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/eth"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/ethclient"
+	"github.com/wukongcheng/databank/ethstats"
+	"github.com/wukongcheng/databank/les"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/node"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/discv5"
+	"github.com/wukongcheng/databank/p2p/nat"
+	"github.com/wukongcheng/databank/params"
 	"golang.org/x/net/websocket"
 )
 
@@ -450,7 +450,7 @@ func (f *faucet) apiHandler(conn *websocket.Conn) {
 		case *noauthFlag:
 			username, avatar, address, err = authNoAuth(msg.URL)
 		default:
-			err = errors.New("Something funky happened, please open an issue at https://github.com/xcareteam/xci/issues")
+			err = errors.New("Something funky happened, please open an issue at https://github.com/wukongcheng/databank/issues")
 		}
 		if err != nil {
 			if err = sendError(conn, err); err != nil {

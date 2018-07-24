@@ -21,10 +21,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/trie"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/trie"
 )
 
 // testAccount is the data associated with an account used by the state tests.

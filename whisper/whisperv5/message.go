@@ -27,10 +27,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/crypto/ecies"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/crypto/ecies"
+	"github.com/wukongcheng/databank/log"
 )
 
 // Options specifies the exact way a message should be wrapped into an Envelope.

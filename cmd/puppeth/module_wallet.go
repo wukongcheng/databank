@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // walletDockerfile is the Dockerfile required to run a web wallet.

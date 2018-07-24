@@ -25,8 +25,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/crypto"
 	"github.com/pborman/uuid"
 	"golang.org/x/crypto/pbkdf2"
 )

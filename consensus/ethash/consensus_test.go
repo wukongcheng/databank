@@ -23,9 +23,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/params"
 )
 
 type diffTest struct {

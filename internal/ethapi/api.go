@@ -25,21 +25,21 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/params"
-	"github.com/xcareteam/xci/rlp"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/params"
+	"github.com/wukongcheng/databank/rlp"
+	"github.com/wukongcheng/databank/rpc"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/util"
 )
@@ -421,7 +421,7 @@ func signHash(data []byte) []byte {
 //
 // The key used to calculate the signature is decrypted with the given password.
 //
-// https://github.com/xcareteam/xci/wiki/Management-APIs#personal_sign
+// https://github.com/wukongcheng/databank/wiki/Management-APIs#personal_sign
 func (s *PrivateAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr common.Address, passwd string) (hexutil.Bytes, error) {
 	// Look up the wallet containing the requested signer
 	account := accounts.Account{Address: addr}
@@ -448,7 +448,7 @@ func (s *PrivateAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr c
 // Note, the signature must conform to the secp256k1 curve R, S and V values, where
 // the V value must be be 27 or 28 for legacy reasons.
 //
-// https://github.com/xcareteam/xci/wiki/Management-APIs#personal_ecRecover
+// https://github.com/wukongcheng/databank/wiki/Management-APIs#personal_ecRecover
 func (s *PrivateAccountAPI) EcRecover(ctx context.Context, data, sig hexutil.Bytes) (common.Address, error) {
 	if len(sig) != 65 {
 		return common.Address{}, fmt.Errorf("signature must be 65 bytes long")
@@ -1369,16 +1369,16 @@ func NewPublicXcareAPI(b Backend, nonceLock *AddrLocker) *PublicXcareAPI {
 	return &PublicXcareAPI{b,nonceLock}
 }
 
-// commitXciData will add a native contract xcdata transaction to the transaction pool.
+// commitdatabankData will add a native contract xcdata transaction to the transaction pool.
 // The xcdata contract wrapper is responsible for signing the transaction and using the correct nonce.
-func (s *PublicXcareAPI) CommitXciData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (s *PublicXcareAPI) CommitdatabankData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 	s.nonceLock.LockAddr(address)
 	defer s.nonceLock.UnlockAddr(address)
 	nonce, err := s.b.GetPoolNonce(ctx, address)
 	if err != nil {
 		return common.Hash{},err
 	}
-	return s.b.CommitXciData(address,nonce,ipfsEndpoint,did,data)
+	return s.b.CommitdatabankData(address,nonce,ipfsEndpoint,did,data)
 }
 
 func (s *PublicXcareAPI) CommitNewOwnerData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
@@ -1421,20 +1421,20 @@ func (s *PublicXcareAPI) AuthorizeXcdata(ctx context.Context, address common.Add
 	return s.b.AuthorizeXcdata(address,nonce,publicKey,did,index)
 }
 
-// GetXciDataLength gets the data length of the specific did
-func (s *PublicXcareAPI) GetXciDataLength(ctx context.Context, did string) (*big.Int, error) {
-	return s.b.GetXciDataLength(did)
+// GetdatabankDataLength gets the data length of the specific did
+func (s *PublicXcareAPI) GetdatabankDataLength(ctx context.Context, did string) (*big.Int, error) {
+	return s.b.GetdatabankDataLength(did)
 }
 
-// GetXciData gets the data of the specific did and index
-func (s *PublicXcareAPI) GetXciData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
-	decryptedData,err := s.b.GetXciData(address,ipfsEndpoint,did,index)
+// GetdatabankData gets the data of the specific did and index
+func (s *PublicXcareAPI) GetdatabankData(ctx context.Context, address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+	decryptedData,err := s.b.GetdatabankData(address,ipfsEndpoint,did,index)
 	return decryptedData,err
 }
 
-// GetXciDataTimestamp gets the timestamp of the specific did and index
-func (s *PublicXcareAPI) GetXciDataTimestamp(ctx context.Context, did string, index *big.Int) (*big.Int, error) {
-	timestamp,_,_,err := s.b.GetXciDataTimestampAndHash(did,index)
+// GetdatabankDataTimestamp gets the timestamp of the specific did and index
+func (s *PublicXcareAPI) GetdatabankDataTimestamp(ctx context.Context, did string, index *big.Int) (*big.Int, error) {
+	timestamp,_,_,err := s.b.GetdatabankDataTimestampAndHash(did,index)
 	return timestamp,err
 }
 

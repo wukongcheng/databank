@@ -2,12 +2,12 @@
 
 ## Usage
 
-Full documentation for integrating IPFS with xci
+Full documentation for integrating IPFS with databank
 
 ## Development
 
-The SOL file in contract subdirectory implements an interface to access IPFS in xci. Through this interface, you can save file to ipfs
-and read files from ipfs, what is the most exciting thing is that you don't need to handle any thing about ipfs.
+The SOL file in contract subdirectory implements an interface to access IPFS in databank. Through this interface, you can save file to ipfs
+and read files from ipfs, what is the most edatabankting thing is that you don't need to handle any thing about ipfs.
 
 The solidity source code can be found at contract/ipfs.sol.
 
@@ -37,8 +37,8 @@ admin.getDataFromIpfs({your account},{passphrase},{ipfsEndpoint},{filename})
 ```
 
 This module status is still experimental. To use this module, you have to follow these steps:
-* Run xci geth and ipfs node
-* Deploy ipfs.sol on xci maunally
+* Run databank geth and ipfs node
+* Deploy ipfs.sol on databank maunally
 * Get the contract deploy address, and replace the old value TestNetAddress in /contract/ipfs/ipfs.go
-* Compile a new xci geth
-* Replace the running xci geth with the new one
+* Compile a new databank geth
+* Replace the running databank geth with the new one

@@ -24,8 +24,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/rlp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

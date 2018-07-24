@@ -36,14 +36,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/contracts/chequebook/contract"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/swarm/services/swap/swap"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/contracts/chequebook/contract"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/swarm/services/swap/swap"
 )
 
 // TODO(zelig): watch peer solvency and notify of bouncing cheques

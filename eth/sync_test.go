@@ -21,9 +21,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/p2p/discover"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/p2p/discover"
 )
 
 // Tests that fast sync gets disabled as soon as a real block is successfully

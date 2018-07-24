@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/crypto/sha3"
+	"github.com/wukongcheng/databank/crypto/sha3"
 )
 
 /*

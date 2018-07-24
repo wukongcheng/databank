@@ -23,8 +23,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 // from bcValidBlockTest.json, "SimpleTx"

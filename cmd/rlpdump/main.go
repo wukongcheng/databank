@@ -26,7 +26,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 var (

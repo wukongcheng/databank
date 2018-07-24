@@ -21,8 +21,8 @@ package geth
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/ethclient"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.

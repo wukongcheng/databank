@@ -27,12 +27,12 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/accounts/usbwallet/internal/trezor"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/accounts/usbwallet/internal/trezor"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/log"
 	"github.com/golang/protobuf/proto"
 )
 

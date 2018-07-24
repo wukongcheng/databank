@@ -22,9 +22,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

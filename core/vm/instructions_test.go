@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/params"
 )
 
 type twoOperandTest struct {

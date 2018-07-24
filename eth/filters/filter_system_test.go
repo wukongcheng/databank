@@ -25,16 +25,16 @@ import (
 	"testing"
 	"time"
 
-	ethereum "github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/bloombits"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/params"
-	"github.com/xcareteam/xci/rpc"
+	ethereum "github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/bloombits"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/params"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 type testBackend struct {

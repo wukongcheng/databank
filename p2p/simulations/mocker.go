@@ -24,8 +24,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p/discover"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p/discover"
 )
 
 //a map of mocker names to its function

@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/log"
 	"github.com/karalabe/hid"
 )
 

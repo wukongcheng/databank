@@ -21,10 +21,10 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/params"
 )
 
 var (

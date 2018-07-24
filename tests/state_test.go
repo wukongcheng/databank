@@ -22,7 +22,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/xcareteam/xci/core/vm"
+	"github.com/wukongcheng/databank/core/vm"
 )
 
 func TestState(t *testing.T) {

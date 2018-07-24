@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 // syncer parameters (global, not peer specific) default values

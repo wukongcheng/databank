@@ -19,8 +19,8 @@ package vm
 import (
 	"math/big"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/math"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/math"
 )
 
 // calculates the memory size required for a step

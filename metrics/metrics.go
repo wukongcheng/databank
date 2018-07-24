@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 )
 
 // Enabled is checked by the constructor functions for all of the

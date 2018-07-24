@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/console"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/console"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

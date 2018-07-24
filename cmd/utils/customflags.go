@@ -27,7 +27,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/xcareteam/xci/common/math"
+	"github.com/wukongcheng/databank/common/math"
 	"gopkg.in/urfave/cli.v1"
 )
 

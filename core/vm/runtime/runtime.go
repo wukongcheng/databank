@@ -21,12 +21,12 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/params"
 )
 
 // Config is a basic type specifying certain configuration flags for running

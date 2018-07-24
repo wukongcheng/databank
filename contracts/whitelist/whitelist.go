@@ -3,15 +3,15 @@ package whitelist
 //go:generate abigen --sol contract/whitelist.sol --pkg contract --out contract/whitelist.go
 
 import (
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/common"
-	//"github.com/xcareteam/xci/eth"
-	"github.com/xcareteam/xci/contracts/whitelist/contract"
-	"github.com/xcareteam/xci/core/types"
-	//"github.com/xcareteam/xci/node"
-	//"github.com/xcareteam/xci/internal/ethapi"
-	//"github.com/xcareteam/xci/les"
-	"github.com/xcareteam/xci/accounts"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/common"
+	//"github.com/wukongcheng/databank/eth"
+	"github.com/wukongcheng/databank/contracts/whitelist/contract"
+	"github.com/wukongcheng/databank/core/types"
+	//"github.com/wukongcheng/databank/node"
+	//"github.com/wukongcheng/databank/internal/ethapi"
+	//"github.com/wukongcheng/databank/les"
+	"github.com/wukongcheng/databank/accounts"
 )
 
 var (

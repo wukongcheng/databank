@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/xcareteam/xci/node"
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/node"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 // SampleService is a trivial network service that can be attached to a node for

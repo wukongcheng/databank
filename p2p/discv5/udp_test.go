@@ -27,9 +27,9 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 func init() {

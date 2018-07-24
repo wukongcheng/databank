@@ -26,12 +26,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/eth"
-	"github.com/xcareteam/xci/internal/jsre"
-	"github.com/xcareteam/xci/node"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/eth"
+	"github.com/wukongcheng/databank/internal/jsre"
+	"github.com/wukongcheng/databank/node"
 )
 
 const (

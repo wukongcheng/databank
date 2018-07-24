@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/rpc"
-	"github.com/xcareteam/xci/swarm"
-	"github.com/xcareteam/xci/swarm/api"
+	"github.com/wukongcheng/databank/rpc"
+	"github.com/wukongcheng/databank/swarm"
+	"github.com/wukongcheng/databank/swarm/api"
 
 	"github.com/docker/docker/pkg/reexec"
 )

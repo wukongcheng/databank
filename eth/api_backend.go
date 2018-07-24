@@ -20,28 +20,28 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/bloombits"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/eth/gasprice"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/params"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/bloombits"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/eth/gasprice"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/params"
+	"github.com/wukongcheng/databank/rpc"
 	"github.com/ipfs/go-ipfs-api"
 	"bytes"
-	"github.com/xcareteam/xci/contracts/xcdata"
+	"github.com/wukongcheng/databank/contracts/xcdata"
 	"fmt"
-	"github.com/xcareteam/xci/common/randomGenerator"
-	"github.com/xcareteam/xci/common/AES"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/crypto/ecies"
+	"github.com/wukongcheng/databank/common/randomGenerator"
+	"github.com/wukongcheng/databank/common/AES"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/crypto/ecies"
 	"crypto/rand"
 	"github.com/pkg/errors"
 	"strings"
@@ -198,7 +198,7 @@ func (b *EthApiBackend) SubscribeTxPreEvent(ch chan<- core.TxPreEvent) event.Sub
 	return b.eth.TxPool().SubscribeTxPreEvent(ch)
 }
 
-func (b *EthApiBackend) CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
+func (b *EthApiBackend) CommitdatabankData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error) {
 
 	account := accounts.Account{Address: address}
 
@@ -454,7 +454,7 @@ func (b *EthApiBackend) AuthorizeXcdata(address common.Address, nonce uint64, pu
 	return tx.Hash(),nil
 }
 
-func (b *EthApiBackend) GetXciDataLength(did string) (*big.Int, error) {
+func (b *EthApiBackend) GetdatabankDataLength(did string) (*big.Int, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {
@@ -469,9 +469,9 @@ func (b *EthApiBackend) GetXciDataLength(did string) (*big.Int, error) {
 	return length, nil
 }
 
-func (b *EthApiBackend) GetXciData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
+func (b *EthApiBackend) GetdatabankData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error) {
 
-	_, ipfsHash, encryptedAESKey, err := b.GetXciDataTimestampAndHash(did,index)
+	_, ipfsHash, encryptedAESKey, err := b.GetdatabankDataTimestampAndHash(did,index)
 	if err != nil{
 		return nil, err
 	}
@@ -508,7 +508,7 @@ func (b *EthApiBackend) GetXciData(address common.Address, ipfsEndpoint string, 
 	return decryptedData,nil
 }
 
-func (b *EthApiBackend) GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error) {
+func (b *EthApiBackend) GetdatabankDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error) {
 
 	xcData,err := xcdata.GetXCDataReadOnly(NewContractBackend(b.eth.ApiBackend))
 	if err != nil {

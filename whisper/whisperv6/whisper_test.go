@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 	"golang.org/x/crypto/pbkdf2"
 )
 

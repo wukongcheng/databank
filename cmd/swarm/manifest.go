@@ -24,9 +24,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/swarm/api"
-	swarm "github.com/xcareteam/xci/swarm/api/client"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/swarm/api"
+	swarm "github.com/wukongcheng/databank/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

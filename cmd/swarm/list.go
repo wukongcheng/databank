@@ -22,8 +22,8 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	swarm "github.com/xcareteam/xci/swarm/api/client"
+	"github.com/wukongcheng/databank/cmd/utils"
+	swarm "github.com/wukongcheng/databank/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

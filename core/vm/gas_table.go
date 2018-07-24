@@ -17,9 +17,9 @@
 package vm
 
 import (
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/params"
 )
 
 // memoryGasCosts calculates the quadratic gas for memory expansion. It does so

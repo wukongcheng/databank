@@ -24,7 +24,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/log"
 	set "gopkg.in/fatih/set.v0"
 )
 

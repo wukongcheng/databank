@@ -17,10 +17,10 @@
 package clique
 
 import (
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 // API is a user facing RPC API to allow controlling the signer and voting

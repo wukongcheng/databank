@@ -27,8 +27,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/xcareteam/xci/swarm/api"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/swarm/api"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 type fileInfo struct {

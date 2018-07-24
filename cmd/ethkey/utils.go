@@ -22,9 +22,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/console"
-	"github.com/xcareteam/xci/crypto"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/console"
+	"github.com/wukongcheng/databank/crypto"
 	"gopkg.in/urfave/cli.v1"
 )
 

@@ -3,11 +3,11 @@ package vote
 //go:generate abigen --sol contract/vote.sol --pkg contract --out contract/vote.go
 
 import (
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/contracts/vote/contract"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/accounts"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/contracts/vote/contract"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/accounts"
 	"math/big"
 )
 

@@ -1,7 +1,7 @@
 
-# XCI
+# databank
 
-XCI is a public blockchain for medical big data which is Ethereum-based with privacy protection, identity authentication and configurable consensus mechanism.
+databank is a public blockchain for medical big data which is Ethereum-based with privacy protection, identity authentication and configurable consensus mechanism.
 
 ## Features
 
@@ -22,7 +22,7 @@ Thank you for considering to help out with the source code! We welcome contribut
 
 ## License
 
-The XCI project is licensed under the
+The databank project is licensed under the
 [GNU General Public License v3.0], also included
 in our repository in the `COPYING` file.
 

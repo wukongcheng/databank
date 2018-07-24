@@ -21,17 +21,17 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/eth/downloader"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/params"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/eth/downloader"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/params"
+	"github.com/wukongcheng/databank/rpc"
 )
 
 // Backend interface provides the common API services (that are provided by
@@ -68,14 +68,14 @@ type Backend interface {
 	SubscribeTxPreEvent(chan<- core.TxPreEvent) event.Subscription
 
 	//XCARE API
-	CommitXciData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
+	CommitdatabankData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
 	CommitNewOwnerData(address common.Address, nonce uint64, ipfsEndpoint string, did string, data []byte) (common.Hash, error)
 	DeletePreOwnerData(address common.Address, nonce uint64, did string) (common.Hash, error)
 	TransferDidOwner(address common.Address, nonce uint64,  did string, to common.Address) (common.Hash, error)
 	AuthorizeXcdata(address common.Address, nonce uint64, publicKeyString string, did string, index *big.Int) (common.Hash, error)
-	GetXciDataLength(did string) (*big.Int, error)
-	GetXciData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error)
-	GetXciDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error)
+	GetdatabankDataLength(did string) (*big.Int, error)
+	GetdatabankData(address common.Address, ipfsEndpoint string, did string, index *big.Int) ([]byte, error)
+	GetdatabankDataTimestampAndHash(did string, index *big.Int) (*big.Int, string, []byte, error)
 	GetAuthorizedDataLength(address common.Address) (*big.Int, error)
 	GetAuthorizedAESKeyByHash(address common.Address, hash string) ([]byte, error)
 	GetAuthorizedData(address common.Address, ipfsEndpoint string, ipfsHash string) ([]byte, error)

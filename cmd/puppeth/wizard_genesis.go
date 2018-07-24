@@ -25,10 +25,10 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/params"
 )
 
 // makeGenesis creates a new genesis struct based on some user input.

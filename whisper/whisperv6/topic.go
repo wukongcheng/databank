@@ -19,8 +19,8 @@
 package whisperv6
 
 import (
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/hexutil"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/hexutil"
 )
 
 // TopicType represents a cryptographically secure, probabilistic partial

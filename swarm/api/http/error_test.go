@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xcareteam/xci/swarm/testutil"
+	"github.com/wukongcheng/databank/swarm/testutil"
 )
 
 func TestError(t *testing.T) {

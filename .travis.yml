@@ -1,5 +1,5 @@
 language: go
-go_import_path: github.com/xcareteam/xci
+go_import_path: github.com/wukongcheng/databank
 sudo: false
 matrix:
   include:

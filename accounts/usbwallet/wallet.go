@@ -25,13 +25,13 @@ import (
 	"sync"
 	"time"
 
-	ethereum "github.com/xcareteam/xci"
-	"github.com/xcareteam/xci/accounts"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/log"
+	ethereum "github.com/wukongcheng/databank"
+	"github.com/wukongcheng/databank/accounts"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/log"
 	"github.com/karalabe/hid"
-	"github.com/xcareteam/xci/accounts/abi/bind"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
 )
 
 // Maximum time between wallet health checks to detect USB unplugs.

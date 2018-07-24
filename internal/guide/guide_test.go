@@ -30,8 +30,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // Tests that the account management snippets work correctly.

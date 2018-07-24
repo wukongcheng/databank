@@ -25,10 +25,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/crypto/sha3"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p/discover"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/crypto/sha3"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p/discover"
 )
 
 func init() {

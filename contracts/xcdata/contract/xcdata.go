@@ -7,10 +7,10 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/xcareteam/xci/accounts/abi"
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
+	"github.com/wukongcheng/databank/accounts/abi"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
 )
 
 // XCDataABI is the input ABI used to generate the binding from.

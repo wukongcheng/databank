@@ -24,10 +24,10 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/consensus"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/consensus"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/log"
 )
 
 // Seal implements consensus.Engine, attempting to find a nonce that satisfies

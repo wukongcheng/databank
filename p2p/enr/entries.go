@@ -22,8 +22,8 @@ import (
 	"io"
 	"net"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 // Entry is implemented by known node record entry types.

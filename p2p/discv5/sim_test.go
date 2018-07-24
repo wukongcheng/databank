@@ -28,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 )
 
 // In this test, nodes try to randomly resolve each other.

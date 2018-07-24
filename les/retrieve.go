@@ -26,7 +26,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xcareteam/xci/common/mclock"
+	"github.com/wukongcheng/databank/common/mclock"
 )
 
 var (

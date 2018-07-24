@@ -26,11 +26,11 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/swarm/api"
-	swarm "github.com/xcareteam/xci/swarm/api/client"
-	"github.com/xcareteam/xci/swarm/storage"
-	"github.com/xcareteam/xci/swarm/testutil"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/swarm/api"
+	swarm "github.com/wukongcheng/databank/swarm/api/client"
+	"github.com/wukongcheng/databank/swarm/storage"
+	"github.com/wukongcheng/databank/swarm/testutil"
 )
 
 func TestBzzGetPath(t *testing.T) {

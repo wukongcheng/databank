@@ -23,7 +23,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xcareteam/xci/common/hexutil"
+	"github.com/wukongcheng/databank/common/hexutil"
 	"gopkg.in/fatih/set.v0"
 )
 

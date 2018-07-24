@@ -25,11 +25,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/p2p/nat"
-	"github.com/xcareteam/xci/p2p/netutil"
-	"github.com/xcareteam/xci/rlp"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/p2p/nat"
+	"github.com/wukongcheng/databank/p2p/netutil"
+	"github.com/wukongcheng/databank/rlp"
 )
 
 const Version = 4

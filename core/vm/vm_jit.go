@@ -38,9 +38,9 @@ import (
 	"math/big"
 	"unsafe"
 
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/params"
 )
 
 type JitVm struct {

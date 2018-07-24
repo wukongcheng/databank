@@ -19,10 +19,10 @@ package metrics
 import (
 	"time"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/log"
-	gethmetrics "github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/metrics/influxdb"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/log"
+	gethmetrics "github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/metrics/influxdb"
 	"gopkg.in/urfave/cli.v1"
 )
 

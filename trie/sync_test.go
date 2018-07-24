@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/ethdb"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/ethdb"
 )
 
 // makeTestTrie create a sample test trie to test node-wise reconstruction.

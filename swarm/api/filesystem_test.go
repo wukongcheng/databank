@@ -24,8 +24,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/swarm/storage"
 )
 
 var testDownloadDir, _ = ioutil.TempDir(os.TempDir(), "bzz-test")

@@ -22,10 +22,10 @@ import (
 	//"io"
 	//"io/ioutil"
 	//
-	//"github.com/xcareteam/xci/accounts/keystore"
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/types"
-	"github.com/xcareteam/xci/crypto"
+	//"github.com/wukongcheng/databank/accounts/keystore"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/types"
+	"github.com/wukongcheng/databank/crypto"
 )
 
 //// NewTransactor is a utility method to easily create a transaction signer from

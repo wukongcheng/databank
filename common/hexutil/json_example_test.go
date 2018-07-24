@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/xcareteam/xci/common/hexutil"
+	"github.com/wukongcheng/databank/common/hexutil"
 )
 
 type MyType [5]byte

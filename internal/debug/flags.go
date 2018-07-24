@@ -24,10 +24,10 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/log/term"
-	"github.com/xcareteam/xci/metrics"
-	"github.com/xcareteam/xci/metrics/exp"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/log/term"
+	"github.com/wukongcheng/databank/metrics"
+	"github.com/wukongcheng/databank/metrics/exp"
 	colorable "github.com/mattn/go-colorable"
 	"gopkg.in/urfave/cli.v1"
 )

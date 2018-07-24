@@ -19,8 +19,8 @@ package runtime_test
 import (
 	"fmt"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/core/vm/runtime"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/core/vm/runtime"
 )
 
 func ExampleExecute() {

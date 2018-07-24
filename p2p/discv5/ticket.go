@@ -25,10 +25,10 @@ import (
 	"sort"
 	"time"
 
-	"github.com/xcareteam/xci/common"
-	"github.com/xcareteam/xci/common/mclock"
-	"github.com/xcareteam/xci/crypto"
-	"github.com/xcareteam/xci/log"
+	"github.com/wukongcheng/databank/common"
+	"github.com/wukongcheng/databank/common/mclock"
+	"github.com/wukongcheng/databank/crypto"
+	"github.com/wukongcheng/databank/log"
 )
 
 const (

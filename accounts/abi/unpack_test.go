@@ -26,7 +26,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/xcareteam/xci/common"
+	"github.com/wukongcheng/databank/common"
 	"github.com/stretchr/testify/require"
 )
 

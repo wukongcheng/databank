@@ -26,8 +26,8 @@ import (
 
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
-	"github.com/xcareteam/xci/log"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/log"
+	"github.com/wukongcheng/databank/swarm/storage"
 	"golang.org/x/net/context"
 )
 

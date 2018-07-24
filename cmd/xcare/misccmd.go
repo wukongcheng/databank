@@ -23,10 +23,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/eth"
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/eth"
+	"github.com/wukongcheng/databank/params"
 	"gopkg.in/urfave/cli.v1"
 )
 

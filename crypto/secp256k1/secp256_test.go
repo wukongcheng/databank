@@ -24,8 +24,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/xcareteam/xci/common/math"
-	"github.com/xcareteam/xci/crypto/randentropy"
+	"github.com/wukongcheng/databank/common/math"
+	"github.com/wukongcheng/databank/crypto/randentropy"
 )
 
 const TestCount = 1000

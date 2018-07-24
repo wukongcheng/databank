@@ -24,8 +24,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/xcareteam/xci/accounts/abi/bind"
-	"github.com/xcareteam/xci/common/compiler"
+	"github.com/wukongcheng/databank/accounts/abi/bind"
+	"github.com/wukongcheng/databank/common/compiler"
 )
 
 var (

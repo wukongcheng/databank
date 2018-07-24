@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/xcareteam/xci/cmd/utils"
-	"github.com/xcareteam/xci/swarm/storage"
+	"github.com/wukongcheng/databank/cmd/utils"
+	"github.com/wukongcheng/databank/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

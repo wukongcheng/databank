@@ -23,13 +23,13 @@ import (
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/xcareteam/xci/consensus/ethash"
-	"github.com/xcareteam/xci/core"
-	"github.com/xcareteam/xci/core/state"
-	"github.com/xcareteam/xci/core/vm"
-	"github.com/xcareteam/xci/ethdb"
-	"github.com/xcareteam/xci/params"
-	"github.com/xcareteam/xci/trie"
+	"github.com/wukongcheng/databank/consensus/ethash"
+	"github.com/wukongcheng/databank/core"
+	"github.com/wukongcheng/databank/core/state"
+	"github.com/wukongcheng/databank/core/vm"
+	"github.com/wukongcheng/databank/ethdb"
+	"github.com/wukongcheng/databank/params"
+	"github.com/wukongcheng/databank/trie"
 )
 
 func TestNodeIterator(t *testing.T) {

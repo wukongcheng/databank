@@ -29,11 +29,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/xcareteam/xci/event"
-	"github.com/xcareteam/xci/p2p"
-	"github.com/xcareteam/xci/p2p/discover"
-	"github.com/xcareteam/xci/p2p/simulations/adapters"
-	"github.com/xcareteam/xci/rpc"
+	"github.com/wukongcheng/databank/event"
+	"github.com/wukongcheng/databank/p2p"
+	"github.com/wukongcheng/databank/p2p/discover"
+	"github.com/wukongcheng/databank/p2p/simulations/adapters"
+	"github.com/wukongcheng/databank/rpc"
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/net/websocket"
 )

@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/xcareteam/xci/params"
+	"github.com/wukongcheng/databank/params"
 )
 
 // This table defines supported forks and their chain config.
